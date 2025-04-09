@@ -58,6 +58,19 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 
+    // Header background change on scroll
+    const header = document.getElementById('header');
+    
+    if (header) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) { // Add class after scrolling 50px
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+    }
+
     // Highlight active menu item based on scroll position
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('nav a.nav-link');

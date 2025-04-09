@@ -213,6 +213,8 @@ header {
     font-weight: 400;
     color: var(--color-text);
     letter-spacing: 1px;
+    white-space: nowrap; /* Prevent logo text wrapping */
+    margin-right: 50px; /* Add space between logo and nav */
 }
 
 .logo span {
