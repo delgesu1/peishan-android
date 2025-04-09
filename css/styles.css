@@ -190,9 +190,9 @@ header {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: var(--shadow-small);
-    transition: all var(--transition-medium);
+    background-color: transparent; /* Transparent when at the top */
+    /* box-shadow: none; /* Ensure no shadow at the top */
+    transition: background-color var(--transition-medium), box-shadow var(--transition-medium); /* Transition background and shadow */
 }
 
 .header-scrolled {
