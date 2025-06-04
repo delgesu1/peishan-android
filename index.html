@@ -15,10 +15,11 @@
     <header id="header">
         <div class="header-container container">
             <a href="#" class="logo">Fran <span>Vilde</span></a>
-            <nav>
+            
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
                 <ul>
                     <li><a href="#biography" class="nav-link">About</a></li>
-                    <li><a href="#news" class="nav-link">Latest News</a></li>
                     <li><a href="#media" class="nav-link">Media</a></li>
                     <li><a href="#teaching" class="nav-link">Teaching</a></li>
                     <li><a href="#press" class="nav-link">Press</a></li>
@@ -26,6 +27,26 @@
                 </ul>
             </nav>
 
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay">
+            <nav class="mobile-nav">
+                <div class="ambient-glow"></div>
+                <ul class="mobile-nav-list">
+                    <li><a href="#biography" class="mobile-nav-link">About</a></li>
+                    <li><a href="#media" class="mobile-nav-link">Media</a></li>
+                    <li><a href="#teaching" class="mobile-nav-link">Teaching</a></li>
+                    <li><a href="#press" class="mobile-nav-link">Press</a></li>
+                    <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -38,7 +59,7 @@
             <h1 class="hero-title">Fran Vilde</h1>
             <p class="hero-description">Captivating audiences with her extraordinary brilliance and profound interpretations.</p>
             <div class="hero-buttons">
-                <a href="#events" class="btn">Upcoming Concerts</a>
+                <a href="#biography" class="btn">Learn More</a>
             </div>
         </div>
         <a href="#biography" class="scroll-down">
@@ -53,118 +74,33 @@
             <iframe 
                 src="https://www.youtube.com/embed/0A61zQguGrc?autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0&loop=1&start=589" 
                 frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
                 title="Fran Vilde Violin Performance">
             </iframe>
         </div>
     </section>
 
-    <!-- News Section -->
-    <section class="section news" id="news">
+    <!-- Biography Section -->
+    <section class="section biography" id="biography">
         <div class="container">
-            <h2 class="section-title">Latest News</h2>
-            <p class="section-subtitle">Stay updated with Fran Vilde's latest activities, interviews, and announcements</p>
-            <div class="news-featured">
-                <img src="images/new/performing3.jpg" alt="New Album Announcement" class="news-featured-image">
-                <div class="news-featured-content">
-                    <p class="news-featured-date">April 2, 2025</p>
-                    <h3 class="news-featured-title">New Album Announcement: Contemporary Violin Works</h3>
-                    <p class="news-featured-excerpt">Fran Vilde is thrilled to announce her upcoming album featuring contemporary violin works by living composers. The recording sessions will take place this summer at Abbey Road Studios in London, with a planned release in early 2026.</p>
-                    <a href="#" class="news-featured-link">Read More</a>
+            <h2 class="section-title">Biography</h2>
+            <p class="section-subtitle">The story behind the music</p>
+            <div class="biography-container">
+                <div class="biography-image">
+                    <!-- Placeholder for biography image -->
+                    <img src="images/new/main5.jpg" alt="Fran Vilde" class="biography-img">
+                </div>
+                <div class="biography-content">
+                    <h3 class="biography-title">Fran Vilde</h3>
+                    <h4 class="biography-subtitle">Internationally Acclaimed Violinist</h4>
+                    <p class="biography-text">Fran Vilde has established herself as one of the most compelling violinists of her generation. Born into a family of musicians, she began her violin studies at the age of four and made her concert debut at twelve with the National Symphony Orchestra.</p>
+                    <p class="biography-text">A graduate of the prestigious Juilliard School in New York, where she studied under the guidance of Itzhak Perlman, Fran has gone on to perform with leading orchestras around the world, including the London Philharmonic, Berlin Philharmonic, and New York Philharmonic.</p>
+                    <p class="biography-text">Her interpretations of both classical masterpieces and contemporary works have earned her critical acclaim. The New York Times has described her playing as "luminous, intense, and passionate," while The Guardian praised her "extraordinary technical precision combined with profound musical insight."</p>
+                    <blockquote class="biography-quote">Music is not just about playing notes correctly—it's about communicating emotions, telling stories, and connecting with audiences on a deeply human level.</blockquote>
+                    <div class="biography-signature">Fran Vilde</div>
                 </div>
             </div>
-            <div class="news-grid">
-                <div class="news-card">
-                    <img src="images/new/performing2.jpg" alt="World Tour Announcement" class="news-image">
-                    <div class="news-content">
-                        <p class="news-date">March 15, 2025</p>
-                        <h3 class="news-title">World Tour Announcement: Capitals of Music</h3>
-                        <p class="news-excerpt">Fran Vilde will embark on a world tour titled "Capitals of Music" starting in September 2025, performing in 20 major cities across 5 continents.</p>
-                        <a href="#" class="news-link">Read More</a>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <img src="images/new/performing4.jpg" alt="Masterclass Series" class="news-image">
-                    <div class="news-content">
-                        <p class="news-date">February 28, 2025</p>
-                        <h3 class="news-title">Masterclass Series at Juilliard School</h3>
-                        <p class="news-excerpt">Fran Vilde returns to her alma mater to give a series of masterclasses for violin students at the Juilliard School in New York.</p>
-                        <a href="#" class="news-link">Read More</a>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <img src="images/new/wide.jpg" alt="New Violin Concerto" class="news-image">
-                    <div class="news-content">
-                        <p class="news-date">January 20, 2025</p>
-                        <h3 class="news-title">World Premiere of New Violin Concerto</h3>
-                        <p class="news-excerpt">Fran Vilde will perform the world premiere of a new violin concerto written specifically for her by renowned composer Thomas Adès.</p>
-                        <a href="#" class="news-link">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="news-more">
-                <a href="#" class="btn">View All News</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Upcoming Events Section -->
-    <section class="section events" id="events">
-        <div class="container">
-            <h2 class="section-title">Upcoming Events</h2>
-            <p class="section-subtitle">Join Fran Vilde for her upcoming performances around the world</p>
-            <div class="events-container">
-                <div class="event-card">
-                    <div class="event-date">
-                        <div class="event-date-day">15</div>
-                        <div class="event-date-month">May</div>
-                    </div>
-                    <div class="event-content">
-                        <h3 class="event-title">Tchaikovsky Violin Concerto</h3>
-                        <p class="event-location">Carnegie Hall, New York</p>
-                        <p class="event-description">Performing Tchaikovsky's Violin Concerto in D major with the New York Philharmonic under the baton of Gustavo Dudamel.</p>
-                        <a href="#" class="event-link">Get Tickets</a>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <div class="event-date-day">28</div>
-                        <div class="event-date-month">Jun</div>
-                    </div>
-                    <div class="event-content">
-                        <h3 class="event-title">Beethoven & Brahms</h3>
-                        <p class="event-location">Royal Albert Hall, London</p>
-                        <p class="event-description">Solo recital featuring Beethoven's Violin Sonatas and Brahms' Violin Sonata No. 3 in D minor, accompanied by pianist Jean-Yves Thibaudet.</p>
-                        <a href="#" class="event-link">Get Tickets</a>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <div class="event-date-day">10</div>
-                        <div class="event-date-month">Jul</div>
-                    </div>
-                    <div class="event-content">
-                        <h3 class="event-title">Summer Festival</h3>
-                        <p class="event-location">Tanglewood Music Center, Massachusetts</p>
-                        <p class="event-description">Performing Mendelssohn's Violin Concerto in E minor with the Boston Symphony Orchestra as part of the Tanglewood Summer Festival.</p>
-                        <a href="#" class="event-link">Get Tickets</a>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <div class="event-date-day">22</div>
-                        <div class="event-date-month">Sep</div>
-                    </div>
-                    <div class="event-content">
-                        <h3 class="event-title">Sibelius Violin Concerto</h3>
-                        <p class="event-location">Berlin Philharmonie, Germany</p>
-                        <p class="event-description">Performing Sibelius' Violin Concerto in D minor with the Berlin Philharmonic Orchestra conducted by Kirill Petrenko.</p>
-                        <a href="#" class="event-link">Get Tickets</a>
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="view-all-button">View All Events</a>
         </div>
     </section>
 
@@ -289,246 +225,6 @@
         </div>
     </section>
 
-    <!-- Studio Albums Section -->
-    <section class="section albums" id="albums">
-        <div class="container">
-            <h2 class="section-title">Studio Albums</h2>
-            <p class="section-subtitle">Explore Fran Vilde's discography of critically acclaimed recordings</p>
-            <div class="album-card">
-                <img src="images/new/main1.jpg" alt="Violin Masterpieces" class="album-cover">
-                <div class="album-info">
-                    <h3 class="album-title">Violin Masterpieces</h3>
-                    <p class="album-year">2023</p>
-                    <p class="album-description">A collection of timeless violin masterpieces spanning three centuries, from Bach's solo partitas to Ysaÿe's sonatas. This album showcases Fran Vilde's extraordinary technical precision and profound musical insight.</p>
-                    <p class="album-tracks">12 Tracks · 74 Minutes</p>
-                    <div class="platform-links">
-                        <a href="#" class="platform-link">Spotify</a>
-                        <a href="#" class="platform-link">Apple Music</a>
-                        <a href="#" class="platform-link">Amazon Music</a>
-                        <a href="#" class="platform-link">Buy CD</a>
-                    </div>
-                </div>
-            </div>
-            <div class="album-card">
-                <img src="images/new/main4.jpg" alt="Romantic Concertos" class="album-cover">
-                <div class="album-info">
-                    <h3 class="album-title">Romantic Concertos</h3>
-                    <p class="album-year">2021</p>
-                    <p class="album-description">Featuring the Tchaikovsky and Sibelius violin concertos with the London Symphony Orchestra conducted by Sir Simon Rattle. This recording has been praised for its emotional depth and virtuosic brilliance.</p>
-                    <p class="album-tracks">2 Concertos · 68 Minutes</p>
-                    <div class="platform-links">
-                        <a href="#" class="platform-link">Spotify</a>
-                        <a href="#" class="platform-link">Apple Music</a>
-                        <a href="#" class="platform-link">Amazon Music</a>
-                        <a href="#" class="platform-link">Buy CD</a>
-                    </div>
-                </div>
-            </div>
-            <div class="album-card">
-                <img src="images/new/main2.webp" alt="Bach: Complete Sonatas & Partitas" class="album-cover">
-                <div class="album-info">
-                    <h3 class="album-title">Bach: Complete Sonatas & Partitas</h3>
-                    <p class="album-year">2019</p>
-                    <p class="album-description">A landmark recording of Bach's complete sonatas and partitas for solo violin. Fran Vilde's interpretation brings fresh perspective to these cornerstone works of the violin repertoire.</p>
-                    <p class="album-tracks">6 Works · 2 Hours 15 Minutes</p>
-                    <div class="platform-links">
-                        <a href="#" class="platform-link">Spotify</a>
-                        <a href="#" class="platform-link">Apple Music</a>
-                        <a href="#" class="platform-link">Amazon Music</a>
-                        <a href="#" class="platform-link">Buy CD</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Biography Section -->
-    <section class="section biography" id="biography">
-        <div class="container">
-            <h2 class="section-title">Biography</h2>
-            <p class="section-subtitle">The story behind the music</p>
-            <div class="biography-container">
-                <div class="biography-image">
-                    <!-- Placeholder for biography image -->
-                    <img src="images/new/main5.jpg" alt="Fran Vilde" class="biography-img">
-                </div>
-                <div class="biography-content">
-                    <h3 class="biography-title">Fran Vilde</h3>
-                    <h4 class="biography-subtitle">Internationally Acclaimed Violinist</h4>
-                    <p class="biography-text">Fran Vilde has established herself as one of the most compelling violinists of her generation. Born into a family of musicians, she began her violin studies at the age of four and made her concert debut at twelve with the National Symphony Orchestra.</p>
-                    <p class="biography-text">A graduate of the prestigious Juilliard School in New York, where she studied under the guidance of Itzhak Perlman, Fran has gone on to perform with leading orchestras around the world, including the London Philharmonic, Berlin Philharmonic, and New York Philharmonic.</p>
-                    <p class="biography-text">Her interpretations of both classical masterpieces and contemporary works have earned her critical acclaim. The New York Times has described her playing as "luminous, intense, and passionate," while The Guardian praised her "extraordinary technical precision combined with profound musical insight."</p>
-                    <blockquote class="biography-quote">Music is not just about playing notes correctly—it's about communicating emotions, telling stories, and connecting with audiences on a deeply human level.</blockquote>
-                    <div class="biography-signature">Fran Vilde</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Repertoire Section -->
-    <section class="section repertoire" id="repertoire">
-        <div class="container">
-            <h2 class="section-title">Repertoire</h2>
-            <p class="section-subtitle">Explore Fran Vilde's extensive performance repertoire</p>
-            <div class="repertoire-tabs">
-                <div class="repertoire-tab active" data-tab="concertos">Concertos</div>
-                <div class="repertoire-tab" data-tab="sonatas">Sonatas</div>
-                <div class="repertoire-tab" data-tab="solo">Solo Works</div>
-                <div class="repertoire-tab" data-tab="chamber">Chamber Music</div>
-            </div>
-            <div class="repertoire-content active" id="concertos">
-                <h3 class="repertoire-composer">Ludwig van Beethoven</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Concerto in D major, Op. 61</li>
-                </ul>
-                <h3 class="repertoire-composer">Johannes Brahms</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Concerto in D major, Op. 77</li>
-                </ul>
-                <h3 class="repertoire-composer">Max Bruch</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Concerto No. 1 in G minor, Op. 26</li>
-                    <li>Scottish Fantasy, Op. 46</li>
-                </ul>
-                <h3 class="repertoire-composer">Antonín Dvořák</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Concerto in A minor, Op. 53</li>
-                </ul>
-                <h3 class="repertoire-composer">Felix Mendelssohn</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Concerto in E minor, Op. 64</li>
-                </ul>
-                <h3 class="repertoire-composer">Wolfgang Amadeus Mozart</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Concerto No. 3 in G major, K. 216</li>
-                    <li>Violin Concerto No. 4 in D major, K. 218</li>
-                    <li>Violin Concerto No. 5 in A major, K. 219 "Turkish"</li>
-                </ul>
-                <h3 class="repertoire-composer">Sergei Prokofiev</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Concerto No. 1 in D major, Op. 19</li>
-                    <li>Violin Concerto No. 2 in G minor, Op. 63</li>
-                </ul>
-                <h3 class="repertoire-composer">Jean Sibelius</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Concerto in D minor, Op. 47</li>
-                </ul>
-                <h3 class="repertoire-composer">Pyotr Ilyich Tchaikovsky</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Concerto in D major, Op. 35</li>
-                </ul>
-                <p class="repertoire-note">This is a selection of Fran Vilde's concerto repertoire. For a complete list, please contact her management.</p>
-            </div>
-            <div class="repertoire-content" id="sonatas">
-                <h3 class="repertoire-composer">Johann Sebastian Bach</h3>
-                <ul class="repertoire-list">
-                    <li>Sonata No. 1 in G minor, BWV 1001</li>
-                    <li>Sonata No. 2 in A minor, BWV 1003</li>
-                    <li>Sonata No. 3 in C major, BWV 1005</li>
-                </ul>
-                <h3 class="repertoire-composer">Ludwig van Beethoven</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Sonata No. 1 in D major, Op. 12 No. 1</li>
-                    <li>Violin Sonata No. 5 in F major, Op. 24 "Spring"</li>
-                    <li>Violin Sonata No. 7 in C minor, Op. 30 No. 2</li>
-                    <li>Violin Sonata No. 9 in A major, Op. 47 "Kreutzer"</li>
-                    <li>Violin Sonata No. 10 in G major, Op. 96</li>
-                </ul>
-                <h3 class="repertoire-composer">Johannes Brahms</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Sonata No. 1 in G major, Op. 78</li>
-                    <li>Violin Sonata No. 2 in A major, Op. 100</li>
-                    <li>Violin Sonata No. 3 in D minor, Op. 108</li>
-                </ul>
-                <h3 class="repertoire-composer">Claude Debussy</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Sonata in G minor, L. 140</li>
-                </ul>
-                <h3 class="repertoire-composer">César Franck</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Sonata in A major, FWV 8</li>
-                </ul>
-                <h3 class="repertoire-composer">Wolfgang Amadeus Mozart</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Sonata No. 21 in E minor, K. 304</li>
-                    <li>Violin Sonata No. 24 in F major, K. 376</li>
-                    <li>Violin Sonata No. 32 in B-flat major, K. 454</li>
-                    <li>Violin Sonata No. 35 in A major, K. 526</li>
-                </ul>
-                <h3 class="repertoire-composer">Sergei Prokofiev</h3>
-                <ul class="repertoire-list">
-                    <li>Violin Sonata No. 1 in F minor, Op. 80</li>
-                    <li>Violin Sonata No. 2 in D major, Op. 94bis</li>
-                </ul>
-                <p class="repertoire-note">This is a selection of Fran Vilde's sonata repertoire. For a complete list, please contact her management.</p>
-            </div>
-            <div class="repertoire-content" id="solo">
-                <h3 class="repertoire-composer">Johann Sebastian Bach</h3>
-                <ul class="repertoire-list">
-                    <li>Partita No. 1 in B minor, BWV 1002</li>
-                    <li>Partita No. 2 in D minor, BWV 1004</li>
-                    <li>Partita No. 3 in E major, BWV 1006</li>
-                </ul>
-                <h3 class="repertoire-composer">Béla Bartók</h3>
-                <ul class="repertoire-list">
-                    <li>Sonata for Solo Violin, Sz. 117</li>
-                </ul>
-                <h3 class="repertoire-composer">Heinrich Ignaz Franz Biber</h3>
-                <ul class="repertoire-list">
-                    <li>Passacaglia in G minor (from Mystery Sonatas)</li>
-                </ul>
-                <h3 class="repertoire-composer">Eugène Ysaÿe</h3>
-                <ul class="repertoire-list">
-                    <li>Sonata No. 2 in A minor, Op. 27 No. 2 "Obsession"</li>
-                    <li>Sonata No. 3 in D minor, Op. 27 No. 3 "Ballade"</li>
-                    <li>Sonata No. 4 in E minor, Op. 27 No. 4</li>
-                </ul>
-                <h3 class="repertoire-composer">Niccolò Paganini</h3>
-                <ul class="repertoire-list">
-                    <li>24 Caprices for Solo Violin, Op. 1</li>
-                </ul>
-                <p class="repertoire-note">This is a selection of Fran Vilde's solo repertoire. For a complete list, please contact her management.</p>
-            </div>
-            <div class="repertoire-content" id="chamber">
-                <h3 class="repertoire-composer">Ludwig van Beethoven</h3>
-                <ul class="repertoire-list">
-                    <li>String Quartet No. 7 in F major, Op. 59 No. 1 "Razumovsky"</li>
-                    <li>String Quartet No. 8 in E minor, Op. 59 No. 2 "Razumovsky"</li>
-                    <li>String Quartet No. 9 in C major, Op. 59 No. 3 "Razumovsky"</li>
-                    <li>String Quartet No. 14 in C-sharp minor, Op. 131</li>
-                </ul>
-                <h3 class="repertoire-composer">Johannes Brahms</h3>
-                <ul class="repertoire-list">
-                    <li>Piano Quartet No. 1 in G minor, Op. 25</li>
-                    <li>Piano Quintet in F minor, Op. 34</li>
-                    <li>String Quartet No. 1 in C minor, Op. 51 No. 1</li>
-                    <li>String Sextet No. 1 in B-flat major, Op. 18</li>
-                </ul>
-                <h3 class="repertoire-composer">Antonín Dvořák</h3>
-                <ul class="repertoire-list">
-                    <li>Piano Quintet No. 2 in A major, Op. 81</li>
-                    <li>String Quartet No. 12 in F major, Op. 96 "American"</li>
-                </ul>
-                <h3 class="repertoire-composer">Felix Mendelssohn</h3>
-                <ul class="repertoire-list">
-                    <li>Octet in E-flat major, Op. 20</li>
-                    <li>String Quartet No. 6 in F minor, Op. 80</li>
-                </ul>
-                <h3 class="repertoire-composer">Wolfgang Amadeus Mozart</h3>
-                <ul class="repertoire-list">
-                    <li>String Quartet No. 15 in D minor, K. 421</li>
-                    <li>String Quartet No. 19 in C major, K. 465 "Dissonance"</li>
-                    <li>String Quintet No. 4 in G minor, K. 516</li>
-                </ul>
-                <h3 class="repertoire-composer">Franz Schubert</h3>
-                <ul class="repertoire-list">
-                    <li>String Quartet No. 14 in D minor, D. 810 "Death and the Maiden"</li>
-                    <li>String Quintet in C major, D. 956</li>
-                </ul>
-                <p class="repertoire-note">This is a selection of Fran Vilde's chamber music repertoire. For a complete list, please contact her management.</p>
-            </div>
-        </div>
-    </section>
 
     <!-- Teaching Studio Section -->
     <section class="section teaching" id="teaching">
@@ -637,36 +333,8 @@
                     <p class="quote-source">— Der Tagesspiegel</p>
                 </div>
             </div>
-            <h3 class="albums-title">Album Reviews</h3>
-            <div class="albums-grid">
-                <div class="album-review">
-                    <img src="images/new/main4.jpg" alt="Violin Masterpieces" class="album-review-cover">
-                    <div class="album-review-content">
-                        <h3 class="album-review-title">Violin Masterpieces</h3>
-                        <p class="album-review-publication">BBC Music Magazine ★★★★★</p>
-                        <p class="album-review-text">"A stunning collection that showcases Vilde's extraordinary range and depth as an artist. From the introspective Bach to the virtuosic Ysaÿe, each piece receives a definitive performance."</p>
-                        <a href="#" class="album-review-link">Read Full Review</a>
-                    </div>
-                </div>
-                <div class="album-review">
-                    <img src="images/new/main2.webp" alt="Romantic Concertos" class="album-review-cover">
-                    <div class="album-review-content">
-                        <h3 class="album-review-title">Romantic Concertos</h3>
-                        <p class="album-review-publication">The Strad ★★★★★</p>
-                        <p class="album-review-text">"Vilde's interpretations of the Tchaikovsky and Sibelius concertos set new standards. Her collaboration with Rattle and the LSO produces performances of exceptional beauty and power."</p>
-                        <a href="#" class="album-review-link">Read Full Review</a>
-                    </div>
-                </div>
-                <div class="album-review">
-                    <img src="images/new/main1.jpg" alt="Bach: Complete Sonatas & Partitas" class="album-review-cover">
-                    <div class="album-review-content">
-                        <h3 class="album-review-title">Bach: Complete Sonatas & Partitas</h3>
-                        <p class="album-review-publication">Gramophone ★★★★★</p>
-                        <p class="album-review-text">"A landmark recording that will stand the test of time. Vilde's Bach is scholarly yet deeply personal, technically flawless yet emotionally engaging."</p>
-                        <a href="#" class="album-review-link">Read Full Review</a>
-                    </div>
-                </div>
-            </div>
+
+
         </div>
     </section>
 
@@ -739,7 +407,7 @@
             </div>
             <div class="newsletter">
                 <h3 class="newsletter-title">Subscribe to Newsletter</h3>
-                <p class="newsletter-subtitle">Stay updated with Fran Vilde's latest concerts, album releases, and news by subscribing to her newsletter.</p>
+                <p class="newsletter-subtitle">Stay updated with Fran Vilde's latest performances and news by subscribing to her newsletter.</p>
                 <form action="#" method="POST" class="newsletter-form">
                     <input type="email" placeholder="Your email address" class="newsletter-input" required>
                     <button type="submit" class="newsletter-submit">Subscribe</button>
@@ -755,10 +423,7 @@
                 <a href="#" class="footer-logo">Fran <span>Vilde</span></a>
                 <div class="footer-links">
                     <a href="#biography" class="footer-link">Biography</a>
-                    <a href="#events" class="footer-link">Events</a>
                     <a href="#media" class="footer-link">Media</a>
-                    <a href="#albums" class="footer-link">Albums</a>
-                    <a href="#news" class="footer-link">News</a>
                     <a href="#contact" class="footer-link">Contact</a>
                 </div>
                 <div class="footer-social">
@@ -769,7 +434,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="footer-copyright">© 2025 Fran Vilde. All rights reserved.</p>
+                <p class="footer-copyright"> 2025 Fran Vilde. All rights reserved.</p>
                 <div class="footer-legal">
                     <a href="#" class="footer-legal-link">Privacy Policy</a>
                     <a href="#" class="footer-legal-link">Terms of Use</a>

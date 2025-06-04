@@ -1,6 +1,102 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Functionality
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-nav-link');
+    const body = document.body;
+    let isMenuOpen = false;
+
+    // Debug logging
+    console.log('Mobile menu elements found:');
+    console.log('Button:', mobileMenuBtn);
+    console.log('Overlay:', mobileMenuOverlay);
+    console.log('Links:', mobileMenuLinks.length);
+
+    // Toggle mobile menu
+    function toggleMobileMenu() {
+        console.log('Toggle Mobile Menu called');
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+            mobileMenuBtn.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            body.classList.add('menu-open');
+            mobileMenuLinks.forEach((link, index) => {
+                link.style.animation = 'none';
+                link.offsetHeight; // Trigger reflow
+                link.style.animation = `menuItemFloatIn 0.6s ${index * 0.08}s forwards cubic-bezier(0.18, 0.89, 0.32, 1.28)`;
+            });
+        } else {
+            // Close menu
+            console.log('Closing mobile menu');
+            mobileMenuBtn.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            body.classList.remove('menu-open');
+            
+            // Reset menu items
+            mobileMenuLinks.forEach(link => {
+                link.style.opacity = '0';
+                link.style.transform = 'translateY(20px)';
+            });
+        }
+    }
+
+    // Mobile menu button click
+    if (mobileMenuBtn) {
+        console.log('Adding click listener to mobile menu button');
+        mobileMenuBtn.addEventListener('click', function(e) {
+            console.log('Mobile menu button clicked!');
+            e.preventDefault();
+            toggleMobileMenu();
+        });
+    } else {
+        console.error('Mobile menu button not found!');
+    }
+
+    // Close menu when clicking on overlay
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', function(e) {
+            if (e.target === mobileMenuOverlay) {
+                console.log('Mobile menu overlay clicked!');
+                toggleMobileMenu();
+            }
+        });
+    } else {
+        console.error('Mobile menu overlay not found!');
+    }
+
+    // Close menu when clicking on mobile nav links
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            console.log('Mobile nav link clicked!');
+            toggleMobileMenu();
+        });
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isMenuOpen) {
+            console.log('Escape key pressed, closing mobile menu!');
+            toggleMobileMenu();
+        }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && isMenuOpen) {
+            console.log('Window resized, closing mobile menu!');
+            toggleMobileMenu();
+        }
+        
+        // Add resize class to prevent transitions during resize
+        body.classList.add('is-resizing');
+        clearTimeout(window.resizeTimer);
+        window.resizeTimer = setTimeout(() => {
+            body.classList.remove('is-resizing');
+        }, 250);
+    });
+
     // Smooth scrolling for navigation links
-    document.querySelectorAll('nav a').forEach(anchor => {
+    document.querySelectorAll('nav a, .mobile-nav-link').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
@@ -33,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Highlight active menu item based on scroll position
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav a.nav-link');
+    const navLinks = document.querySelectorAll('nav a.nav-link, .mobile-nav-link');
     
     function highlightActiveLink() {
         const scrollPosition = window.scrollY;
