@@ -7,14 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                // Close mobile menu if it's open
-                if (window.innerWidth <= 900) {
-                    document.querySelector('nav ul').classList.remove('active');
-                    document.querySelector('.menu-toggle').classList.remove('active');
-                    document.body.classList.remove('menu-open');
-                    if (menuOverlay) menuOverlay.classList.remove('active');
-                }
-                
+    
                 window.scrollTo({
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
@@ -23,40 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('nav ul');
-    
-    // Create menu overlay
-    const menuOverlay = document.createElement('div');
-    menuOverlay.className = 'menu-overlay';
-    document.body.appendChild(menuOverlay);
-    
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
-        
-        // Close menu when clicking outside
-        menuOverlay.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-            menuToggle.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        });
-    }
-
-    // Add body styles when menu is open to prevent scrolling
-    const style = document.createElement('style');
-    style.textContent = `
-        body.menu-open {
-            overflow: hidden;
-        }
-    `;
-    document.head.appendChild(style);
+    const navMenu = document.querySelector('nav ul'); // Keep navMenu for other potential uses
 
     // Header background change on scroll
     const header = document.getElementById('header');
@@ -183,6 +143,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Dynamic hero background image adjustment
+    const heroBackground = document.querySelector('.hero-background');
+    
+    function adjustHeroBackground() {
+        if (!heroBackground) return;
+        
+        const windowWidth = window.innerWidth;
+        
+        if (windowWidth <= 1000) {
+            // Calculate position to keep the 30% point centered as window narrows
+            // For a 1000px window, we want the 30% point (300px from left) to be centered
+            // As window narrows, we smoothly adjust the percentage to keep that visual point centered
+            
+            // Calculate the position percentage (0% = left edge, 100% = right edge)
+            // This formula maps the 1000px threshold to 0% (left aligned)
+            // and narrows down to smaller widths with increasing % to keep 30% point centered
+            const baseWidth = 1000;
+            const narrowingFactor = (baseWidth - windowWidth) / baseWidth;
+            
+            // Calculate how much we need to shift right as a percentage
+            // The magic number 40 represents a tuned value that achieves the 30% centering effect
+            const positionPercentage = Math.min(40 * narrowingFactor, 40);
+            
+            // Apply the calculated position
+            heroBackground.style.backgroundPosition = `${positionPercentage}% center`;
+            heroBackground.style.backgroundSize = `cover`;
+        } else {
+            // Default position for larger screens
+            heroBackground.style.backgroundPosition = 'left center';
+            heroBackground.style.backgroundSize = 'cover';
+        }
+    }
+    
+    // Initial adjustment
+    window.addEventListener('load', adjustHeroBackground);
+    
+    // Adjust on window resize
+    window.addEventListener('resize', adjustHeroBackground);
+    
     // Parallax effect for hero section
     const heroSection = document.querySelector('.hero');
     

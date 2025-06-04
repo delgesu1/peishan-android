@@ -1,18 +1,35 @@
+/* Keyframes animation defining the hero zoom */
+@keyframes heroZoom {
+    0% {
+        transform: scale(1) translateZ(0);
+    }
+    100% {
+        transform: scale(1.1) translateZ(0);
+    }
+}
+
 /* ===== VARIABLES ===== */
 :root {
-    /* Colors - Light Theme */
-    --color-primary: #ffffff;
-    --color-secondary: #f8f5f0;
-    --color-accent: #d4b483;
-    --color-accent-light: #e6d2b5;
-    --color-text: #333333;
-    --color-text-light: #666666;
-    --color-light: #f9f9f9;
-    --color-dark: #222222;
-    --color-gray: #888888;
-    --color-highlight: #f0e6d2;
-    --color-error: #d64541;
-    --color-success: #7cb342;
+    /* Colors - Modern Blue & Lavender Theme */
+    --color-primary: #fdfdfe;
+    --color-secondary: #f8f9fc;
+    --color-accent: #6366f1;
+    --color-accent-light: #a5b4fc;
+    --color-lavender: #c4b5fd;
+    --color-lavender-light: #e0e7ff;
+    --color-navy: #1e293b;
+    --color-slate: #475569;
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
+    --color-light: #f8fafc;
+    --color-dark: #0f172a;
+    --color-gray: #9ca3af;
+    --color-highlight: #eef2ff;
+    --color-error: #ef4444;
+    --color-success: #10b981;
+    --color-muted: #f1f5f9;
+    --color-border: #e2e8f0;
+    --color-hover: #8b5cf6;
     
     /* Typography */
     --font-primary: 'Cormorant Garamond', serif;
@@ -27,9 +44,9 @@
     --spacing-xl: 8rem;
     
     /* Borders */
-    --border-radius: 3px;
+    --border-radius: 8px;
     --border-width: 1px;
-    --border-color: #e0e0e0;
+    --border-color: var(--color-border);
     
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -37,16 +54,35 @@
     --transition-slow: 0.5s ease;
     
     /* Shadows */
-    --shadow-small: 0 2px 5px rgba(0, 0, 0, 0.05);
-    --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.07);
-    --shadow-large: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --shadow-small: 0 2px 8px rgba(99, 102, 241, 0.08);
+    --shadow-medium: 0 8px 25px rgba(99, 102, 241, 0.12);
+    --shadow-large: 0 15px 35px rgba(99, 102, 241, 0.15);
 }
 
-/* ===== RESET & BASE STYLES ===== */
-* {
+/* ===== RESETS & BASE STYLES ===== */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption, blockquote, dl, dd {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Add smooth transition handling during resize */
+body.is-resizing * {
+    transition: none !important; /* Prevent transitions during resize */
+    animation-play-state: paused !important; /* Pause animations during resize */
+}
+
+/* Prevent scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
 }
 
 html {
@@ -140,8 +176,8 @@ button {
 
 .btn {
     display: inline-block;
-    padding: 12px 24px;
-    background-color: var(--color-accent);
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-hover) 100%);
     color: var(--color-primary);
     border-radius: var(--border-radius);
     font-family: var(--font-secondary);
@@ -150,22 +186,49 @@ button {
     letter-spacing: 1px;
     font-size: 0.9rem;
     transition: all var(--transition-fast);
-    border: 1px solid var(--color-accent);
+    border: 1px solid transparent;
+    box-shadow: var(--shadow-small);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-hover) 0%, var(--color-accent) 100%);
+    transition: left var(--transition-medium);
+    z-index: -1;
+}
+
+.btn:hover::before {
+    left: 0;
 }
 
 .btn:hover {
-    background-color: transparent;
-    color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+    color: var(--color-primary);
 }
 
 .btn-outline {
-    background-color: transparent;
+    background: transparent;
     color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    box-shadow: none;
+}
+
+.btn-outline::before {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-hover) 100%);
 }
 
 .btn-outline:hover {
-    background-color: var(--color-accent);
     color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
 }
 
 .text-center {
@@ -205,6 +268,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-sm) var(--spacing-md);
+    height: 80px; /* Set consistent header height */
+    box-sizing: border-box; /* Ensure padding doesn't affect overall height */
 }
 
 .logo {
@@ -215,15 +280,40 @@ header {
     letter-spacing: 1px;
     white-space: nowrap; /* Prevent logo text wrapping */
     margin-right: 50px; /* Add space between logo and nav */
+    transition: color var(--transition-medium);
+    position: relative; /* For consistent positioning */
+    height: 40px; /* Fixed height */
+    display: flex;
+    align-items: center;
+}
+
+header:not(.header-scrolled) .logo {
+    color: rgba(255, 255, 255, 0.95);
 }
 
 .logo span {
     color: var(--color-accent);
 }
 
+header:not(.header-scrolled) .logo span {
+    color: var(--color-lavender);
+}
+
+nav {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    height: 40px; /* Fixed height to match logo */
+    display: flex;
+    align-items: center;
+}
+
 nav ul {
     display: flex;
-    gap: var(--spacing-md);
+    flex-wrap: nowrap; /* Prevent wrapping to second line */
+    gap: var(--spacing-sm); /* Reduce gap between items for better fit */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    justify-content: flex-end; /* Align items to the right */
+    width: 100%; /* Ensure proper space distribution */
 }
 
 nav a {
@@ -231,8 +321,16 @@ nav a {
     font-size: 0.9rem;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px; /* Slightly reduced letter spacing for better fit */
     position: relative;
+    transition: color var(--transition-medium);
+    white-space: nowrap; /* Prevent text wrapping */
+    padding: 0.5rem 0.75rem; /* Add padding for touch targets and consistent spacing */
+    display: inline-block; /* Better control of dimensions */
+}
+
+header:not(.header-scrolled) nav a {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 nav a::after {
@@ -251,64 +349,40 @@ nav a.active::after {
     width: 100%;
 }
 
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-    position: relative;
-    z-index: 1001;
-}
-
-.menu-toggle span {
-    display: block;
-    height: 2px;
-    width: 100%;
-    background-color: var(--color-text);
-    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out, background-color 0.3s ease;
-    transform-origin: center;
-}
-
-/* Mobile Menu Animation */
-.menu-toggle.active span:nth-child(1) {
-    transform: translateY(9.5px) rotate(45deg);
-    background-color: var(--color-accent);
-}
-
-.menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-    transform: translateY(-9.5px) rotate(-45deg);
-    background-color: var(--color-accent);
-}
-
 /* ===== HERO SECTION ===== */
 .hero {
     height: 100vh;
     min-height: 600px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-end;
     position: relative;
     overflow: hidden;
     background-color: var(--color-secondary);
+    padding-right: var(--spacing-md);
 }
 
 .hero-background {
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-image: url('../images/new/hero1.jpg');
+    background-image: url('../../Pei-Shan Images/Hero.jpg?t=20240603');
     background-size: cover;
-    background-position: center;
-    filter: brightness(0.9);
+    background-position: left center;
+    background-repeat: no-repeat;
+    filter: brightness(0.85);
+    transition: background-position 0.3s ease;
+    will-change: background-position, transform; /* Hint to browser about property changes */
+    
+    /* Initial scale to ensure no white edges appear during zoom animation */
+    transform: scale(1.05) translateZ(0); /* Combine scale with hardware acceleration */
+    
+    /* The animation - 18 seconds duration, smooth easing, infinite loop, alternating direction */
+    animation: heroZoom 19s ease-in-out infinite alternate;
 }
 
 .hero-overlay {
@@ -317,51 +391,110 @@ nav a.active::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.6) 100%);
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 30%,
+        rgba(255, 255, 255, 0.02) 65%,
+        rgba(255, 255, 255, 0) 100%);
     z-index: 2;
 }
 
 .hero-content {
     position: relative;
     z-index: 3;
-    text-align: left;
+    text-align: right;
     max-width: 800px;
     padding: var(--spacing-md);
+    margin-left: auto;
 }
 
 .hero-subtitle {
     font-family: var(--font-secondary);
     font-size: 1.2rem;
     font-weight: 400;
-    color: var(--color-text);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: var(--spacing-sm);
     letter-spacing: 3px;
     text-transform: uppercase;
     opacity: 0.9;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .hero-title {
     font-family: var(--font-primary);
     font-size: 4.5rem;
     font-weight: 300;
-    color: var(--color-text);
+    color: #ffffff;
     margin-bottom: var(--spacing-md);
     line-height: 1.2;
     letter-spacing: 1px;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
 }
 
 .hero-description {
     font-family: var(--font-tertiary);
     font-size: 1.1rem;
-    color: var(--color-text);
+    color: rgba(255, 255, 255, 0.95);
     margin-bottom: var(--spacing-md);
     max-width: 430px;
+    text-align: right;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-left: auto;
 }
 
 .hero-buttons {
     display: flex;
     gap: var(--spacing-sm);
-    justify-content: flex-start;
+    justify-content: flex-end;
+}
+
+.hero .btn {
+    background: linear-gradient(135deg, rgba(196, 181, 253, 0.4) 0%, rgba(165, 180, 252, 0.3) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25), 0 0 20px rgba(196, 181, 253, 0.2);
+    color: white;
+    font-weight: 500;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.hero .btn:hover {
+    background: linear-gradient(135deg, rgba(196, 181, 253, 0.6) 0%, rgba(165, 180, 252, 0.5) 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.35), 0 0 30px rgba(196, 181, 253, 0.3);
+}
+
+.hero .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.7s;
+}
+
+.hero .btn:hover::before {
+    left: 100%;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        left: 100%;
+        opacity: 0.7;
+    }
 }
 
 .scroll-down {
@@ -384,18 +517,29 @@ nav a.active::after {
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: var(--spacing-xs);
-    color: var(--color-text);
+    color: var(--color-light);
 }
 
 .scroll-down-icon {
-    width: 30px;
-    height: 30px;
-    border: 2px solid var(--color-accent);
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: bounce 2s infinite;
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    transition: all var(--transition-fast);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-8px);
+    }
+    60% {
+        transform: translateY(-4px);
+    }
 }
 
 .scroll-down-icon::after {
@@ -408,16 +552,9 @@ nav a.active::after {
     transform: rotate(45deg) translateY(-2px);
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
+.scroll-down:hover .scroll-down-icon {
+    color: var(--color-hover);
+    transform: scale(1.1);
 }
 
 /* ===== VIDEO SECTION ===== */
@@ -509,20 +646,25 @@ nav a.active::after {
     font-style: italic;
     color: var(--color-text);
     padding: var(--spacing-sm) var(--spacing-md);
-    border-left: 3px solid var(--color-accent);
+    border-left: 4px solid var(--color-accent);
     margin-bottom: var(--spacing-md);
-    background-color: var(--color-secondary);
+    background: linear-gradient(135deg, var(--color-lavender-light) 0%, var(--color-highlight) 100%);
+    border-radius: var(--border-radius);
 }
 
 .biography-signature {
     font-family: var(--font-primary);
     font-size: 1.5rem;
     color: var(--color-accent);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-hover) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* ===== UPCOMING EVENTS SECTION ===== */
 .events {
-    background-color: var(--color-secondary);
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-lavender-light) 100%);
     position: relative;
 }
 
@@ -651,7 +793,10 @@ nav a.active::after {
     display: flex;
     justify-content: center;
     margin-bottom: var(--spacing-md);
-    border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(135deg, var(--color-light) 0%, var(--color-secondary) 100%);
+    border-radius: var(--border-radius);
+    padding: 8px;
+    box-shadow: var(--shadow-small);
 }
 
 .media-tab {
@@ -665,26 +810,14 @@ nav a.active::after {
     cursor: pointer;
     transition: all var(--transition-fast);
     position: relative;
+    border-radius: var(--border-radius);
+    margin: 0 4px;
 }
 
 .media-tab.active {
-    color: var(--color-accent);
-}
-
-.media-tab::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--color-accent);
-    transition: width var(--transition-medium);
-}
-
-.media-tab.active::after,
-.media-tab:hover::after {
-    width: 100%;
+    color: var(--color-primary);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-hover) 100%);
+    box-shadow: var(--shadow-small);
 }
 
 .media-content {
@@ -1088,6 +1221,7 @@ nav a.active::after {
     margin-bottom: var(--spacing-xs);
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -1120,7 +1254,7 @@ nav a.active::after {
 
 /* ===== CONTACT SECTION ===== */
 .contact {
-    background-color: var(--color-secondary);
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-lavender-light) 50%, var(--color-highlight) 100%);
 }
 
 .contact-container {
@@ -1160,7 +1294,7 @@ nav a.active::after {
 .contact-icon {
     width: 40px;
     height: 40px;
-    background-color: var(--color-accent-light);
+    background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-lavender) 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1168,6 +1302,7 @@ nav a.active::after {
     color: var(--color-accent);
     font-size: 1.2rem;
     flex-shrink: 0;
+    box-shadow: var(--shadow-small);
 }
 
 .contact-text {
@@ -1194,7 +1329,7 @@ nav a.active::after {
 .social-link {
     width: 40px;
     height: 40px;
-    background-color: var(--color-accent-light);
+    background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-lavender) 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1202,18 +1337,22 @@ nav a.active::after {
     color: var(--color-accent);
     font-size: 1.2rem;
     transition: all var(--transition-fast);
+    box-shadow: var(--shadow-small);
 }
 
 .social-link:hover {
-    background-color: var(--color-accent);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-hover) 100%);
     color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
 }
 
 .contact-form {
-    background-color: var(--color-primary);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-light) 100%);
     padding: var(--spacing-md);
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow-small);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--color-border);
 }
 
 .form-group {
@@ -1386,8 +1525,11 @@ textarea.form-control {
 }
 
 .repertoire-list {
-    /* columns: 2; */ /* Remove 2-column layout */
-    /* column-gap: var(--spacing-md); */ /* Remove column gap */
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background: linear-gradient(135deg, var(--color-highlight) 0%, var(--color-lavender-light) 100%);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--color-accent);
 }
 
 .repertoire-list li {
@@ -1395,7 +1537,6 @@ textarea.form-control {
     font-size: 1rem;
     color: var(--color-text);
     margin-bottom: var(--spacing-xs);
-    /* break-inside: avoid; */ /* No longer needed for single column */
     position: relative;
     padding-left: 20px;
 }
@@ -1454,15 +1595,7 @@ textarea.form-control {
     border-radius: var(--border-radius);
     padding: var(--spacing-md);
     box-shadow: var(--shadow-small);
-}
-
-.teaching-column-title {
-    font-family: var(--font-primary);
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: var(--color-text);
-    margin-bottom: var(--spacing-sm);
-    text-align: center;
+    transition: transform 0.3s ease-in-out; /* Add smooth transition */
 }
 
 .teaching-column-subtitle {
@@ -1485,12 +1618,12 @@ textarea.form-control {
 
 .feature-item {
     display: flex;
-    /* gap: var(--spacing-sm); */ /* Remove gap as icon is hidden */
-    align-items: baseline; /* Align text baseline with bullet */
+    gap: var(--spacing-sm);
+    align-items: baseline;
 }
 
 .feature-icon {
-    /* width: 40px;
+    width: 40px;
     height: 40px;
     background-color: var(--color-accent-light);
     border-radius: 50%;
@@ -1499,8 +1632,7 @@ textarea.form-control {
     justify-content: center;
     color: var(--color-accent);
     font-size: 1.2rem;
-    flex-shrink: 0; */
-    display: none; /* Hide the original icon element */
+    flex-shrink: 0;
 }
 
 .feature-text {
@@ -1508,20 +1640,16 @@ textarea.form-control {
     font-size: 0.95rem;
     color: var(--color-text);
     line-height: 1.6;
-    position: relative; /* Needed for pseudo-element alignment if needed */
-    /* padding-left: 15px; */ /* Adjust if needed based on bullet size */
+    position: relative;
+    padding-left: 15px;
 }
 
-.feature-text::before { /* Add subtle bullet */
-    content: '\2022'; /* Unicode for bullet character */
+.feature-text::before {
+    content: '\2022';
     color: var(--color-accent);
-    font-size: 1.2rem; /* Adjust size as needed */
+    font-size: 1.2rem;
     margin-right: var(--spacing-xs);
-    line-height: 1; /* Helps vertical alignment */
-    /* Optional: Absolute positioning if baseline alignment isn't perfect */
-    /* position: absolute; 
-    left: 0;
-    top: 5px; */
+    line-height: 1;
 }
 
 .teaching-cta {
@@ -1812,6 +1940,19 @@ footer {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
+/* Optimize navigation spacing for medium screens */
+@media screen and (max-width: 1200px) and (min-width: 901px) {
+    nav ul {
+        gap: 0.5rem; /* Further reduce gap on medium screens */
+    }
+    
+    nav a {
+        font-size: 0.85rem; /* Slightly smaller font */
+        padding: 0.5rem 0.5rem; /* Reduced horizontal padding */
+        letter-spacing: 0.25px; /* Minimal letter spacing */
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .container {
         max-width: 90%;
@@ -1854,8 +1995,14 @@ footer {
 }
 
 @media screen and (max-width: 992px) {
-    .container {
+    /* Exempt header container from padding changes */
+    .container:not(.header-container) {
         padding: 0 var(--spacing-sm);
+    }
+    
+    /* Ensure header container keeps consistent padding */
+    .header-container {
+        padding: var(--spacing-sm) var(--spacing-md);
     }
 
     .hero-title {
@@ -2012,180 +2159,31 @@ footer {
     }
 }
 
+/* Responsive Navigation Breakpoints */
 @media screen and (max-width: 900px) {
     .hero-title {
         font-size: 2.8rem;
     }
     
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     
     .section-title {
         font-size: 2rem;
     }
     
-    .menu-toggle {
-        display: flex;
-    }
-    
-    nav ul {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 320px;
-        height: 100vh;
-        background-color: var(--color-primary);
-        padding: 120px 40px 40px;
-        gap: var(--spacing-md);
-        align-items: flex-start;
-        transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 0.9);
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        overflow-y: auto;
-    }
-    
-    nav ul.active {
-        right: 0;
-    }
-    
-    nav ul::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 5px;
-        height: 100%;
-        background: linear-gradient(to bottom, var(--color-accent), var(--color-accent-light));
-    }
-    
-    /* Decorative elements for boutique feel */
-    nav ul::after {
-        content: '';
-        position: absolute;
-        bottom: 30px;
-        right: 30px;
-        width: 80px;
+    /* Ensure header maintains consistent height and position */
+    .header-container {
         height: 80px;
-        border: 1px solid var(--color-accent-light);
-        opacity: 0.3;
-        z-index: -1;
     }
     
-    /* Add decorative element for boutique feel */
-    nav::before {
-        content: '';
-        position: absolute;
-        top: 40px;
-        right: 40px;
-        width: 60px;
-        height: 60px;
-        border: 1px solid var(--color-accent-light);
-        opacity: 0.2;
-        z-index: 1001;
-        transform: rotate(45deg);
-    }
-    
-    /* Add inner decorative element */
-    nav::after {
-        content: '';
-        position: absolute;
-        top: 50px;
-        right: 50px;
-        width: 40px;
-        height: 40px;
-        border: 1px solid var(--color-accent);
-        opacity: 0.3;
-        z-index: 1001;
-        transform: rotate(45deg);
-    }
-    
-    nav ul li {
-        width: 100%;
-        opacity: 0;
-        transform: translateX(20px);
-        transition: transform 0.4s ease, opacity 0.4s ease;
-        position: relative;
-    }
-    
-    nav ul.active li {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    
-    /* Staggered animation for menu items */
-    nav ul.active li:nth-child(1) { transition-delay: 0.1s; }
-    nav ul.active li:nth-child(2) { transition-delay: 0.2s; }
-    nav ul.active li:nth-child(3) { transition-delay: 0.3s; }
-    nav ul.active li:nth-child(4) { transition-delay: 0.4s; }
-    nav ul.active li:nth-child(5) { transition-delay: 0.5s; }
-    nav ul.active li:nth-child(6) { transition-delay: 0.6s; }
-    
-    nav a {
-        font-size: 1.1rem;
-        display: block;
-        width: 100%;
-        padding: 12px 0;
-        font-weight: 300;
-        letter-spacing: 2px;
-        position: relative;
-        transition: transform 0.3s ease, color 0.3s ease;
-    }
-    
-    nav a:hover {
-        transform: translateX(5px);
-    }
-    
-    nav a::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background-color: var(--color-accent);
-        transition: width 0.3s ease;
-    }
-    
-    nav a:hover::after {
-        width: 100%;
-    }
-    
-    /* Decorative dot beside active link */
-    nav a.active::before {
-        content: '';
-        position: absolute;
-        left: -15px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background-color: var(--color-accent);
-    }
-    
-    /* Overlay when menu is open */
-    .menu-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(3px);
-        z-index: 999;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-    
-    .menu-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
+    /* Desktop navigation styles are inherited. 
+       Only add overrides here if desktop nav needs to change for <900px 
+       BEFORE any new mobile menu logic is added. */
+    /* Example: If nav items needed smaller font on medium-small tablet before mobile menu: */
+    /* nav a { font-size: 0.8rem; padding: 0.5rem; } */
+    /* For now, assuming desktop nav is fine as is until new mobile menu. */
     
     .press-quotes {
         grid-template-columns: 1fr;
