@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="js/script.js" defer></script>
 </head>
 <body>
@@ -111,50 +112,105 @@
     <!-- Media Gallery Section -->
     <section class="section media-gallery" id="media">
         <div class="container">
-            <h2 class="section-title">Media Gallery</h2>
-            <p class="section-subtitle">Explore Pei-Shan Lee's performances through photos, videos, and audio recordings</p>
+            <h2 class="section-title">Gallery</h2>
+            <p class="section-subtitle">Explore Pei-Shan Lee's performances</p>
             <div class="media-tabs">
                 <div class="media-tab active" data-tab="photos">Photos</div>
                 <div class="media-tab" data-tab="videos">Videos</div>
-                <div class="media-tab" data-tab="audio">Audio</div>
             </div>
             <div class="media-content active" id="photos">
-                <div class="media-grid">
-                    <div class="media-item">
-                        <img src="images/new/performing1.jpg" alt="Pei-Shan Lee Performance" class="media-img">
-                        <div class="media-overlay">
-                            <div class="media-icon">+</div>
+                <div class="gallery-container">
+                    <!-- Main Carousel -->
+                    <div class="gallery-main">
+                        <div class="gallery-carousel">
+                            <div class="gallery-slide">
+                                <img src="Pei-Shan Images/Gallery/4.jpg" alt="Pei-Shan Lee performance" class="gallery-img">
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="Pei-Shan Images/Gallery/DSC0167.jpg" alt="Pei-Shan Lee in concert" class="gallery-img">
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="Pei-Shan Images/Gallery/DSC0169.jpg" alt="Pei-Shan Lee performing" class="gallery-img">
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="Pei-Shan Images/Gallery/pmp-in-sarasota.jpg" alt="Pei-Shan Lee at PMP in Sarasota" class="gallery-img">
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="Pei-Shan Images/Gallery/rehearsal-with-pieter.jpeg" alt="Pei-Shan Lee rehearsing with Pieter" class="gallery-img">
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="Pei-Shan Images/Gallery/hero2-small.jpg" alt="Pei-Shan Lee portrait" class="gallery-img">
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="Pei-Shan Images/Gallery/with-jupiter-quartet.jpeg" alt="Pei-Shan Lee with Jupiter Quartet" class="gallery-img">
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="Pei-Shan Images/Gallery/with-pieter-wispelwey-at-rockport.jpeg" alt="Pei-Shan Lee with Pieter Wispelwey at Rockport" class="gallery-img">
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="Pei-Shan Images/Gallery/with-pieter-wispelwey.jpeg" alt="Pei-Shan Lee with Pieter Wispelwey" class="gallery-img">
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="Pei-Shan Images/Gallery/with-sophie-shao.jpg" alt="Pei-Shan Lee with Sophie Shao" class="gallery-img">
+                            </div>
+                        </div>
+                        <!-- Navigation Arrows -->
+                        <button class="gallery-arrow gallery-prev" aria-label="Previous slide">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="gallery-arrow gallery-next" aria-label="Next slide">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Indicator Dots -->
+                        <div class="gallery-dots"></div>
+                    </div>
+                    
+                    <!-- Thumbnails -->
+                    <div class="gallery-thumbnails">
+                        <div class="thumbnail active" data-index="0">
+                            <img src="Pei-Shan Images/Gallery/4.jpg" alt="Thumbnail" class="thumbnail-img">
+                        </div>
+                        <div class="thumbnail" data-index="1">
+                            <img src="Pei-Shan Images/Gallery/DSC0167.jpg" alt="Thumbnail" class="thumbnail-img">
+                        </div>
+                        <div class="thumbnail" data-index="2">
+                            <img src="Pei-Shan Images/Gallery/DSC0169.jpg" alt="Thumbnail" class="thumbnail-img">
+                        </div>
+                        <div class="thumbnail" data-index="3">
+                            <img src="Pei-Shan Images/Gallery/pmp-in-sarasota.jpg" alt="Thumbnail" class="thumbnail-img">
+                        </div>
+                        <div class="thumbnail" data-index="4">
+                            <img src="Pei-Shan Images/Gallery/rehearsal-with-pieter.jpeg" alt="Thumbnail" class="thumbnail-img">
+                        </div>
+                        <div class="thumbnail" data-index="5">
+                            <img src="Pei-Shan Images/Gallery/hero2-small.jpg" alt="Thumbnail" class="thumbnail-img">
+                        </div>
+                        <div class="thumbnail" data-index="6">
+                            <img src="Pei-Shan Images/Gallery/with-jupiter-quartet.jpeg" alt="Thumbnail" class="thumbnail-img">
+                        </div>
+                        <div class="thumbnail" data-index="7">
+                            <img src="Pei-Shan Images/Gallery/with-pieter-wispelwey-at-rockport.jpeg" alt="Thumbnail" class="thumbnail-img">
+                        </div>
+                        <div class="thumbnail" data-index="8">
+                            <img src="Pei-Shan Images/Gallery/with-pieter-wispelwey.jpeg" alt="Thumbnail" class="thumbnail-img">
+                        </div>
+                        <div class="thumbnail" data-index="9">
+                            <img src="Pei-Shan Images/Gallery/with-sophie-shao.jpg" alt="Thumbnail" class="thumbnail-img">
                         </div>
                     </div>
-                    <div class="media-item">
-                        <img src="images/new/performing2.jpg" alt="Pei-Shan Lee Performance" class="media-img">
-                        <div class="media-overlay">
-                            <div class="media-icon">+</div>
-                        </div>
-                    </div>
-                    <div class="media-item">
-                        <img src="images/new/performing3.jpg" alt="Pei-Shan Lee Performance" class="media-img">
-                        <div class="media-overlay">
-                            <div class="media-icon">+</div>
-                        </div>
-                    </div>
-                    <div class="media-item">
-                        <img src="images/new/performing4.jpg" alt="Pei-Shan Lee Performance" class="media-img">
-                        <div class="media-overlay">
-                            <div class="media-icon">+</div>
-                        </div>
-                    </div>
-                    <div class="media-item">
-                        <img src="images/new/main1.jpg" alt="Pei-Shan Lee Portrait" class="media-img">
-                        <div class="media-overlay">
-                            <div class="media-icon">+</div>
-                        </div>
-                    </div>
-                    <div class="media-item">
-                        <img src="images/new/wide.jpg" alt="Pei-Shan Lee with Orchestra" class="media-img">
-                        <div class="media-overlay">
-                            <div class="media-icon">+</div>
-                        </div>
+                </div>
+                
+                <!-- Fullscreen Modal -->
+                <div class="gallery-modal">
+                    <div class="modal-content">
+                        <img src="" alt="" class="modal-img">
+                        <button class="modal-close" aria-label="Close modal">&times;</button>
+                        <button class="modal-arrow modal-prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="modal-arrow modal-next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>

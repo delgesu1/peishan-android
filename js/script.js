@@ -393,4 +393,267 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    // Modern Gallery Functionality
+    function initGallery() {
+        // Elements
+        const carousel = document.querySelector('.gallery-carousel');
+        const slides = document.querySelectorAll('.gallery-slide');
+        const prevBtn = document.querySelector('.gallery-prev');
+        const nextBtn = document.querySelector('.gallery-next');
+        const dots = document.querySelector('.gallery-dots');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const modal = document.querySelector('.gallery-modal');
+        const modalImg = document.querySelector('.modal-img');
+        const modalClose = document.querySelector('.modal-close');
+        const modalPrev = document.querySelector('.modal-prev');
+        const modalNext = document.querySelector('.modal-next');
+        
+        // Variables
+        const slideCount = slides.length;
+        let currentIndex = 0;
+        let autoplayInterval;
+        let startX;
+        let touchX;
+        
+        // Only initialize if the gallery elements exist
+        if (!carousel || !slides.length) return;
+        
+        // Create dot indicators
+        if (dots) {
+            dots.innerHTML = ''; // Clear existing dots
+            for (let i = 0; i < slideCount; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.setAttribute('data-index', i);
+                dots.appendChild(dot);
+                
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                });
+            }
+        }
+        
+        // Initialize
+        function init() {
+            updateSlidePositions();
+            
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+            
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    goToSlide(index);
+                });
+            });
+            
+            slides.forEach((slide, index) => {
+                slide.addEventListener('click', () => {
+                    openModal(index);
+                });
+            });
+            
+            if (modalClose) modalClose.addEventListener('click', closeModal);
+            if (modalPrev) modalPrev.addEventListener('click', () => navigateModal('prev'));
+            if (modalNext) modalNext.addEventListener('click', () => navigateModal('next'));
+            
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeModal();
+                });
+            }
+            
+            carousel.addEventListener('touchstart', handleTouchStart, false);
+            carousel.addEventListener('touchmove', handleTouchMove, false);
+            carousel.addEventListener('touchend', handleTouchEnd, false);
+            
+            document.addEventListener('keydown', handleKeydown);
+            
+            startAutoplay();
+            
+            carousel.addEventListener('mouseenter', stopAutoplay);
+            carousel.addEventListener('mouseleave', startAutoplay);
+        }
+        
+        // Main functions
+        function updateSlidePositions() {
+            // Shift entire carousel so the current slide is in view
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        
+        function goToSlide(index) {
+            console.log('Go to slide', index);
+            
+            currentIndex = index;
+            
+            if (currentIndex < 0) currentIndex = slideCount - 1;
+            if (currentIndex >= slideCount) currentIndex = 0;
+            
+            updateSlidePositions();
+            
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+            
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === currentIndex);
+                if (i === currentIndex) {
+                    scrollToThumbnail(thumb);
+                }
+            });
+            
+            resetAutoplay();
+        }
+        
+        function scrollToThumbnail(thumbnail) {
+            const thumbnailsContainer = document.querySelector('.gallery-thumbnails');
+            if (!thumbnailsContainer) return;
+            
+            const containerWidth = thumbnailsContainer.offsetWidth;
+            const thumbnailLeft = thumbnail.offsetLeft;
+            const thumbnailWidth = thumbnail.offsetWidth;
+            
+            thumbnailsContainer.scrollTo({
+                left: thumbnailLeft - (containerWidth / 2) + (thumbnailWidth / 2),
+                behavior: 'smooth'
+            });
+        }
+        
+        function prevSlide() {
+            goToSlide(currentIndex - 1);
+        }
+        
+        function nextSlide() {
+            goToSlide(currentIndex + 1);
+        }
+        
+        // Modal functions
+        function openModal(index) {
+            if (!modal || !modalImg || !slides[index]) return;
+            
+            currentIndex = index;
+            const img = slides[index].querySelector('img');
+            if (img) {
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+            }
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            if (!modal) return;
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function navigateModal(direction) {
+            if (direction === 'prev') {
+                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+            } else {
+                currentIndex = (currentIndex + 1) % slideCount;
+            }
+            
+            const img = slides[currentIndex].querySelector('img');
+            if (img) {
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+            }
+        }
+        
+        // Touch controls
+        function handleTouchStart(e) {
+            startX = e.touches[0].clientX;
+            touchX = startX;
+            stopAutoplay();
+        }
+        
+        function handleTouchMove(e) {
+            if (!startX) return;
+            touchX = e.touches[0].clientX;
+        }
+        
+        function handleTouchEnd() {
+            if (!startX || !touchX) return;
+            
+            const diff = startX - touchX;
+            const threshold = 50;
+            
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+            
+            startX = null;
+            touchX = null;
+            startAutoplay();
+        }
+        
+        // Keyboard navigation
+        function handleKeydown(e) {
+            const isModalActive = modal && modal.classList.contains('active');
+            
+            if (isModalActive) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') navigateModal('prev');
+                if (e.key === 'ArrowRight') navigateModal('next');
+            } else {
+                const rect = carousel.getBoundingClientRect();
+                const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isInViewport) {
+                    if (e.key === 'ArrowLeft') prevSlide();
+                    if (e.key === 'ArrowRight') nextSlide();
+                }
+            }
+        }
+        
+        // Autoplay functions
+        function startAutoplay() {
+            stopAutoplay();
+            autoplayInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+        }
+        
+        function resetAutoplay() {
+            stopAutoplay();
+            startAutoplay();
+        }
+        
+        // Initialize the gallery
+        init();
+    }
+    
+    // Media tabs functionality
+    function initMediaTabs() {
+        const tabs = document.querySelectorAll('.media-tab');
+        const contents = document.querySelectorAll('.media-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to current tab and content
+                tab.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+    }
+    
+    // Initialize gallery and tabs
+    initMediaTabs();
+    initGallery();
 });
