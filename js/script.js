@@ -670,7 +670,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(() => {
-                    initTeachingCollaborationScroll();
+                    // initTeachingCollaborationScroll(); // disabled due to new teaching section implementation
                     ScrollTrigger.refresh();
                 }, 200);
             });
@@ -835,5 +835,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize gallery, tabs, and teaching collaboration
     initMediaTabs();
     initGallery();
-    initTeachingCollaborationScroll();
+    // initTeachingCollaborationScroll(); // disabled due to new teaching section implementation
 });
