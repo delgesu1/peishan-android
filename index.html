@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
     <script src="js/script.js" defer></script>
 </head>
 <body>
@@ -22,7 +24,7 @@
                 <ul>
                     <li><a href="#biography" class="nav-link">About</a></li>
                     <li><a href="#media" class="nav-link">Media</a></li>
-                    <li><a href="#teaching" class="nav-link">Teaching</a></li>
+                    <li><a href="#teaching-collaboration" class="nav-link">Teaching &amp; Collaboration</a></li>
                     <li><a href="#press" class="nav-link">Press</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -43,7 +45,7 @@
                 <ul class="mobile-nav-list">
                     <li><a href="#biography" class="mobile-nav-link">About</a></li>
                     <li><a href="#media" class="mobile-nav-link">Media</a></li>
-                    <li><a href="#teaching" class="mobile-nav-link">Teaching</a></li>
+                    <li><a href="#teaching-collaboration" class="mobile-nav-link">Teaching &amp; Collaboration</a></li>
                     <li><a href="#press" class="mobile-nav-link">Press</a></li>
                     <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
                 </ul>
@@ -285,6 +287,100 @@
         </div>
     </section>
 
+
+    <!-- Teaching & Collaboration Section -->
+    <section class="section teaching-collaboration" id="teaching-collaboration">
+        <h2 class="visually-hidden">Teaching &amp; Collaboration</h2>
+
+        <!-- Progress indicator -->
+        <nav class="tc-progress-indicator" aria-label="Section progress">
+            <button class="tc-progress-dot active" data-panel="0" aria-label="Panel 1"></button>
+            <button class="tc-progress-dot" data-panel="1" aria-label="Panel 2"></button>
+            <button class="tc-progress-dot" data-panel="2" aria-label="Panel 3"></button>
+        </nav>
+
+        <div class="tc-sticky-container">
+            <div class="tc-panel-wrapper">
+
+                <!-- Panel 1: Why I Love Collaborative Piano -->
+                <article class="tc-panel">
+                    <div class="tc-panel-content">
+                        <h3 class="tc-panel-heading">Why I Love Collaborative Piano</h3>
+                        <p class="tc-panel-paragraph">
+                            <span class="tc-anim-line">I was fortunate to have begun my schooling in an exceptional musical environment where everyone in my class, from grade one through six, was a “music major.”</span>
+                            <span class="tc-anim-line">There was lots of musical interaction, and every week all grades would come together for singing in chorus and playing in orchestra.</span>
+                            <span class="tc-anim-line">In fact, I was just 6 years old when I played my first duo: Mozart’s e minor Sonata for Piano and Violin, K. 304.</span>
+                            <span class="tc-anim-line">I still remember how much I loved playing with the violinist and how fearless I was at her final exam!</span>
+                            <span class="tc-anim-line">She was one year my senior and near a nervous breakdown as we went in to play for a really scary jury.</span>
+                            <span class="tc-anim-line">Instinctively I moved to calm her, touching her shoulder and holding her very shaky right hand for a few seconds.</span>
+                            <span class="tc-anim-line">I had no idea if that helped settle her, but later she told me how thrilled she was that her bow didn’t shake!</span>
+                            <span class="tc-anim-line">Throughout my high school years, I continued to benefit from a specialized musical education, and it became more than natural for me to play for my classmates’ lessons, exams, recitals, etc.</span>
+                            <span class="tc-anim-line">It is no different today!</span>
+                            <span class="tc-anim-line">Supporting the people I play with both musically and emotionally brings me great personal satisfaction–I feel I have done something good for the day.</span>
+                            <span class="tc-anim-line">As a kid in Taiwan, my piano focus was solo, and I first came to the U.S. to continue the study of solo piano.</span>
+                            <span class="tc-anim-line">It was after spending a year in the U.S. that I learned that several major conservatories offered graduate degrees in “Accompanying”.</span>
+                            <span class="tc-anim-line">This was something unheard of in Taiwan (fortunately it’s different now!)</span>
+                            <span class="tc-anim-line">I decided to expedite my undergraduate studies, earned my bachelor’s degree in three years, and was admitted to the master’s degree program in “Accompanying” at The Juilliard School.</span>
+                            <span class="tc-anim-line">Today, the program has been more appropriately renamed “Collaborative Piano”.</span>
+                            <span class="tc-anim-line">Immediately I felt this field is where I belong—I was so content that I could concentrate on (and financially support myself with) what I loved doing all my life.</span>
+                            <span class="tc-anim-line">Throughout my undergraduate years, I worked 9 to 6 Saturdays at the pre-college, running from one place to another every half-hour (the pay back then was $6 for 30 minutes!) and gaining invaluable experience playing with other people.</span>
+                            <span class="tc-anim-line">This is how I discovered my passion.</span>
+                            <span class="tc-anim-line">Today I am completely devoted to all aspects of the collaborative field—I perform, I teach, and I am excited to be building graduate collaborative piano programs.</span>
+                            <span class="tc-anim-line">While some friends seemed disappointed that I did not continue to pursue more solo playing, they didn’t realize that because of my formative years in Taiwan I have never thought of collaborative piano as something less important.</span>
+                            <span class="tc-anim-line">I love playing the piano, both solo and collaborative, but to put it simply, making music with others is what brings me true fulfillment.</span>
+                        </p>
+                        <div class="tc-callout-quote tc-anim-line">
+                            <p>"Supporting the people I play with both musically and emotionally brings me great personal satisfaction.”</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Panel 2: The Journey & The Craft -->
+                <article class="tc-panel">
+                    <div class="tc-panel-content">
+                        <h3 class="tc-panel-heading">The Journey & The Craft</h3>
+                        <p class="tc-panel-paragraph">
+                            <span class="tc-anim-line">Trying to decide whether to enter this field? There are young pianists today considering these same choices and I hope that sharing my background here has been helpful. </span>
+                            <span class="tc-anim-line">Collaborative Piano is not an escape from difficult repertoire—it is an art form and a career choice, a different role for those who truly love the piano and love making music with others. </span>
+                            <span class="tc-anim-line">Studying collaborative piano at the graduate level is busy but ideal for learning repertoire and accumulating experience. Your day is filled with personal practice, rehearsals, playing for your partner's lessons, in classes, concerts, student juries and recitals. </span>
+                            <span class="tc-anim-line">Having solid training as a pianist is really a prerequisite–the repertoire we have to learn and keep in our fingers is enormous, not to mention all the related skills like lyric diction, opera coaching, and score reading. </span>
+                            <span class="tc-anim-line">If you are a good pianist who loves to work hard, enjoys people and the exchange of musical ideas, and takes pleasure in both leading and supportive roles, then collaborative piano is probably for you. You may spend more time at the piano than ever before, but your life will be richer in ways that you cannot imagine.</span>
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Panel 3: Balancing Roles & Building Programs -->
+                <article class="tc-panel">
+                    <div class="tc-panel-content">
+                        <h3 class="tc-panel-heading">Balancing Roles & Building Programs</h3>
+                        <p class="tc-panel-paragraph">
+                            <span class="tc-anim-line">Working and studying at four major music conservatories in the U. S. taught me how essential a collaborative piano program is to the success of the rest of a school.</span>
+                            <span class="tc-anim-line">I became aware of what worked and what didn’t, and how challenging it could be to balance the education of a collaborative piano major with the service needs of the institution.</span>
+                            <span class="tc-anim-line">As a doctoral student, I began teaching sonata coaching and collaborative courses to pianists and instrumentalists, organizing several departmental events, and started to look for subjects for my doctoral thesis.</span>
+                            <span class="tc-anim-line">When I discovered that more and more music schools of the world were beginning to establish collaborative piano programs, I realized I could potentially be of help by writing about what I had learned–I have been educated in three of the best collaborative piano programs in the world!</span>
+                            <span class="tc-anim-line">The bulk of my paper examines how to balance the service needs of a school accompanying system with the demanding curriculum of a MM in Collaborative Piano.</span>
+                            <span class="tc-anim-line">In particular, it is unfortunate that some school administrators think of this program only as a way to attract pianists to play for their instrumental and vocal students, a misguided oversimplification that never works.</span>
+                            <span class="tc-anim-line">To obtain a copy of my dissertation, please click on the link below and the publication number is: 3415684</span>
+                        </p>
+                        <div class="tc-dissertation-link-wrapper">
+                            <span class="tc-anim-line">
+                                <a href="https://dissexpress.proquest.com/" target="_blank" rel="noopener noreferrer" class="tc-dissertation-link">ProQuest Dissertations Express</a>
+                            </span>
+                            <img src="images/new/dissertation_placeholder.jpg" alt="Dissertation Cover Thumbnail" class="tc-dissertation-thumb tc-anim-line">
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Floating element (image or quote) -->
+            <div class="tc-floating-element">
+                <img class="tc-floating-img" src="" alt="" />
+                <blockquote class="tc-floating-quote"></blockquote>
+            </div>
+
+
+        </div>
+    </section>
 
     <!-- Teaching Studio Section -->
     <section class="section teaching" id="teaching">

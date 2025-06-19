@@ -653,7 +653,187 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize gallery and tabs
+    // ----- Teaching & Collaboration Scroll-triggered section -----
+    function initTeachingCollaborationScroll() {
+        // --- 1. Clean up previous state ---
+        // Remove existing ScrollTriggers tied to this section
+        ScrollTrigger.getAll().forEach(tg => {
+            const trg = tg.trigger || tg.scroller || null;
+            if (trg && trg.closest && trg.closest('#teaching-collaboration')) {
+                tg.kill(); // kill trigger
+            }
+        });
+
+        // Add a single resize listener that re-initialises this section when viewport crosses breakpoints
+        if (!window._tcResizeBound) {
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    initTeachingCollaborationScroll();
+                    ScrollTrigger.refresh();
+                }, 200);
+            });
+            window._tcResizeBound = true;
+        }
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+            console.error('GSAP/ScrollTrigger not loaded');
+            return;
+        }
+        gsap.registerPlugin(ScrollTrigger);
+
+        const section = document.querySelector('#teaching-collaboration');
+        if (!section) return;
+
+        const sticky = section.querySelector('.tc-sticky-container');
+        const panels = gsap.utils.toArray('.tc-panel');
+        const sectionTop = section.offsetTop;
+        const floatingEl = section.querySelector('.tc-floating-element');
+        const floatingImg = floatingEl.querySelector('.tc-floating-img');
+        const floatingQuote = floatingEl.querySelector('.tc-floating-quote');
+        // reset nav visibility
+        const progressNav = section.querySelector('.tc-progress-indicator');
+        if (progressNav) progressNav.classList.remove('visible');
+
+        // Remove old click listeners by cloning
+        if (progressNav) {
+            const cloned = progressNav.cloneNode(true);
+            progressNav.parentNode.replaceChild(cloned, progressNav);
+        }
+        const progressNavNew = section.querySelector('.tc-progress-indicator');
+        const dots = gsap.utils.toArray(progressNavNew.querySelectorAll('.tc-progress-dot'));
+
+        // Define assets for floating element (image or quote)
+        const floatAssets = [
+            {type:'image', src:'images/teaching/rehearsal.jpg', alt:'Rehearsal Photo'},
+            {type:'image', src:'images/teaching/juilliard.jpg',  alt:'Juilliard School'},
+            {type:'image', src:'images/teaching/dissertation.jpg',alt:'Dissertation Cover'}
+        ];
+
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
+        function updateFloating(i) {
+            if (isMobile) { // Hide floating element on mobile
+                floatingEl.style.display = 'none';
+                gsap.set(floatingEl, { autoAlpha: 0 }); // Also hide with GSAP for consistency
+                return;
+            }
+            // Ensure it's visible on desktop and ready for GSAP animations
+            floatingEl.style.display = 'block'; 
+            gsap.set(floatingEl, { autoAlpha: 1 });
+
+            if (i >= 0 && i < floatAssets.length) {
+                const asset = floatAssets[i];
+                gsap.to([floatingImg, floatingQuote], { autoAlpha: 0, duration: 0.3, onComplete: () => {
+                    floatingImg.classList.remove('active');
+                    floatingQuote.classList.remove('active');
+                    if (asset.type === 'image') {
+                        floatingImg.src = asset.src;
+                        floatingImg.alt = asset.alt || '';
+                        floatingImg.classList.add('active');
+                        gsap.to(floatingImg, { autoAlpha: 1, duration: 0.3 });
+                    } else if (asset.type === 'quote') {
+                        floatingQuote.textContent = asset.text;
+                        floatingQuote.classList.add('active');
+                        gsap.to(floatingQuote, { autoAlpha: 1, duration: 0.3 });
+                    }
+                }});
+            } else {
+                // Optional: Hide both if index is out of bounds
+                gsap.to([floatingImg, floatingQuote], { autoAlpha: 0, duration: 0.3 });
+            }
+        }
+
+        updateFloating(0); // Initial call
+
+        // Calculate dynamic scroll distance based on actual panel heights to ensure
+        // each panel becomes visible even if its content exceeds the viewport height.
+        function getDynamicEnd() {
+            const totalHeight = panels.reduce((sum, panel) => {
+                return sum + Math.max(panel.scrollHeight, window.innerHeight);
+            }, 0);
+            return '+=' + (totalHeight * 1.2); // Add 20% buffer for smooth transitions
+        }
+
+        // Pin sticky container on all viewports with dynamic end distance
+        ScrollTrigger.create({
+            trigger: sticky,
+            start: 'top top',
+            end: getDynamicEnd,
+            pin: true,
+            pinSpacing: true,
+            scrub: 0.5,
+            pinType: 'fixed'
+        });
+
+        // Show/hide progress navigation when section in view
+        if (progressNavNew) {
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top bottom', // section enters viewport
+                end: 'bottom top',   // section leaves viewport
+                onEnter: () => progressNavNew.classList.add('visible'),
+                onEnterBack: () => progressNavNew.classList.add('visible'),
+                onLeave: () => progressNavNew.classList.remove('visible'),
+                onLeaveBack: () => progressNavNew.classList.remove('visible')
+            });
+        }
+
+        // Create individual ScrollTriggers for each panel with better spacing
+        panels.forEach((panel, i) => {
+            const lines = panel.querySelectorAll('.tc-anim-line');
+            gsap.set(lines, { opacity: 0, y: 15 });
+            
+            // Calculate start and end positions for each panel
+            const startPosition = i * window.innerHeight;
+            const endPosition = (i + 1) * window.innerHeight;
+            
+            ScrollTrigger.create({
+                trigger: sticky,
+                start: () => `top+=${startPosition} top`,
+                end: () => `top+=${endPosition} top`,
+                onUpdate: (self) => {
+                    // Progressive activation based on scroll progress
+                    const progress = self.progress;
+                    if (progress > 0.1) { // Activate when 10% into the panel
+                        panel.classList.add('active');
+                        updateFloating(i);
+                        dots.forEach((d, di) => d.classList.toggle('active', di === i));
+                        
+                        if (!prefersReduced && !panel.hasAttribute('data-animated')) {
+                            gsap.to(lines, { 
+                                opacity: 1, 
+                                y: 0, 
+                                duration: 0.8, 
+                                stagger: 0.05,
+                                ease: "power2.out"
+                            });
+                            panel.setAttribute('data-animated', 'true');
+                        } else if (prefersReduced) {
+                            gsap.set(lines, { opacity: 1, y: 0 });
+                        }
+                    } else {
+                        panel.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                window.scrollTo({
+                    top: sectionTop + i * window.innerHeight,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // refresh already handled by re-init listener above
+    }
+
+    // Initialize gallery, tabs, and teaching collaboration
     initMediaTabs();
     initGallery();
+    initTeachingCollaborationScroll();
 });

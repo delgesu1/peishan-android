@@ -1,0 +1,1 @@
+// JavaScript for the new teaching section will go here
