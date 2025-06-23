@@ -815,6 +815,10 @@ header:not(.header-scrolled) .hamburger-line {
         display: none;
     }
 
+    .header-container {
+        justify-content: flex-end;
+    }
+
     .hero-banner-image {
         max-width: 90%;
     }
