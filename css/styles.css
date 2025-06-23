@@ -1052,7 +1052,7 @@ header:not(.header-scrolled) .hamburger-line {
 
 .scroll-down {
     position: absolute;
-    bottom: var(--spacing-md);
+    bottom: var(--spacing-lg); /* moved up */
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
