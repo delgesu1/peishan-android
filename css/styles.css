@@ -400,6 +400,10 @@ nav a.active::after {
     width: 100%;
 }
 
+.mobile-hero-logo {
+    display: none;
+}
+
 /* ===== MOBILE MENU ===== */
 /* Mobile Menu Button */
 .mobile-menu-btn {
@@ -909,6 +913,22 @@ header:not(.header-scrolled) .hamburger-line {
 }
 
 @media screen and (max-width: 600px) {
+    /* Header adjustments */
+    .header-container {
+        justify-content: space-between; /* Logo left, menu right */
+        align-items: center;
+    }
+
+    .mobile-hero-logo {
+        display: block; /* Show image */
+        width: 60vw; /* Stay large */
+        max-width: 280px;
+    }
+
+    /* Hide hero-banner inside hero-content to avoid duplication */
+    .hero-banner-image {
+        display: none;
+    }
     .hero {
         justify-content: center;
     }
@@ -916,13 +936,15 @@ header:not(.header-scrolled) .hamburger-line {
     .hero-content {
         text-align: center;
         width: 100%;
-        margin-left: auto; /* Override desktop style */
-        margin-right: auto; /* Ensure centering */
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 var(--spacing-xs, 0.5rem);
+        margin-bottom: var(--spacing-xl); /* More space above Discover indicator */
     }
 
     .hero-banner-image {
-        width: 500px;   /* Keep image large */
-        max-width: 95%; /* Shrink only when it hits the viewport edges */
+        width: 95% !important;   /* Nearly full-width until viewport edge */
+        max-width: none !important; /* Remove explicit pixel cap */
     }
 
     .hero-buttons {
