@@ -958,7 +958,7 @@ header:not(.header-scrolled) .hamburger-line {
         margin-left: auto;
         margin-right: auto;
         padding: 0 var(--spacing-xs, 0.5rem);
-        margin-bottom: calc(var(--spacing-xl) - 3rem); /* Move buttons up by ~3rem */
+        margin-bottom: calc(var(--spacing-xl) + var(--spacing-md)); /* more space, moves both button & scroll up */
     }
 
     .hero-banner-image {
@@ -1011,10 +1011,9 @@ header:not(.header-scrolled) .hamburger-line {
 @media screen and (max-width: 600px) {
     .hero-buttons {
         justify-content: center !important;
-        margin-top: -3rem; /* move button up */
     }
     .scroll-down {
-        bottom: calc(var(--spacing-lg) + 3rem); /* move indicator up */
+        bottom: calc(var(--spacing-xl) + var(--spacing-md)); /* move scroll indicator up */
     }
 }
 
