@@ -810,6 +810,23 @@ header:not(.header-scrolled) .hamburger-line {
     .mobile-menu-btn {
         display: flex;
     }
+
+    .logo {
+        display: none;
+    }
+
+    .hero-banner-image {
+        max-width: 90%;
+    }
+
+    .hero-description {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.2rem;
+        font-style: italic;
+        max-width: 90%;
+    }
     
     .mobile-nav-link {
         font-size: 1.8rem;
