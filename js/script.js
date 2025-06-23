@@ -659,7 +659,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Remove existing ScrollTriggers tied to this section
         ScrollTrigger.getAll().forEach(tg => {
             const trg = tg.trigger || tg.scroller || null;
-            if (trg && trg.closest && trg.closest('#teaching-collaboration')) {
+            if (trg && trg.closest && trg.closest('#teaching-collaborative-piano')) {
                 tg.kill(); // kill trigger
             }
         });
@@ -682,7 +682,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         gsap.registerPlugin(ScrollTrigger);
 
-        const section = document.querySelector('#teaching-collaboration');
+        const section = document.querySelector('#teaching-collaborative-piano');
         if (!section) return;
 
         const sticky = section.querySelector('.tc-sticky-container');

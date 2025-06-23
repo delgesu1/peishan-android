@@ -8,7 +8,7 @@
       setTimeout(() => waitForGSAP(callback), 50);
     }
   
-    const section = document.getElementById('teaching-collaboration');
+    const section = document.getElementById('teaching-collaborative-piano');
     if (!section) return;
 
     const sectionTitleElement = section.querySelector('h2.section-title');
@@ -36,6 +36,30 @@
     const totalPanels = 6;
     let currentPanel = 0;
     let scrollTriggerInstance = null; // To store the main ST instance
+
+    // --- Dynamic background crossfade helper ---
+    const dynamicBgContainer = document.getElementById('dynamicBg');
+    function changeBackground(panelIndex) {
+      if (!dynamicBgContainer) return;
+      // Create new gradient layer
+      const newLayer = document.createElement('div');
+      newLayer.className = `bg-layer bg-panel-${panelIndex + 1}`;
+      gsap.set(newLayer, { opacity: 0 });
+      dynamicBgContainer.appendChild(newLayer);
+      // Fade in new layer
+      gsap.to(newLayer, { opacity: 1, duration: 1.2, ease: 'power1.out' });
+      // Fade out & remove previous layers
+      dynamicBgContainer.querySelectorAll('.bg-layer').forEach(layer => {
+        if (layer !== newLayer) {
+          gsap.to(layer, {
+            opacity: 0,
+            duration: 1.2,
+            ease: 'power1.out',
+            onComplete: () => layer.remove()
+          });
+        }
+      });
+    }
   
     // --- Unified Panel Navigation Logic ---
     function goToPanel(panelIndex) {
@@ -65,7 +89,7 @@
   
       document.querySelectorAll('.panel').forEach((p, idx) => p.classList.toggle('active', idx === panelIndex));
       document.querySelectorAll('.nav-dot').forEach((d, idx) => d.classList.toggle('active', idx === panelIndex));
-      document.getElementById('dynamicBg').className = `dynamic-bg bg-panel-${panelIndex + 1}`;
+      changeBackground(panelIndex);
     }
   
     // --- Initialize GSAP animations ---
@@ -141,6 +165,13 @@
       const navDots = document.getElementById('navDots');
       if (navDots) {
         document.body.appendChild(navDots);
+      }
+
+      // Initialize first background layer if not present
+      if (dynamicBgContainer && !dynamicBgContainer.querySelector('.bg-layer')) {
+        const firstLayer = document.createElement('div');
+        firstLayer.className = 'bg-layer bg-panel-1';
+        dynamicBgContainer.appendChild(firstLayer);
       }
 
       document.getElementById('loading').classList.add('hidden');

@@ -3,21 +3,21 @@
    All rules are scoped to the section so they don’t clash globally
    ------------------------------------------------------------- */
 
-/* Utility — section wrapper is already #teaching-collaboration */
-#teaching-collaboration {
+/* Utility — section wrapper is already #teaching-collaborative-piano */
+#teaching-collaborative-piano {
     position: relative;
     padding: var(--spacing-lg) 0 0;
     background: transparent; /* Background is now handled by #dynamicBg */
 }
 
-#teaching-collaboration .section-title {
+#teaching-collaborative-piano .section-title {
     color: #ffffff;
     margin-bottom: var(--spacing-lg);
     position: relative; /* Needed for z-index */
     z-index: 3; /* Ensure title is above the dynamic background */
 }
 
-#teaching-collaboration .section-title::after {
+#teaching-collaborative-piano .section-title::after {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -64,7 +64,10 @@
   .panel { width:16.666%; height:100vh; display:flex; align-items:center; justify-content:center; position:relative; flex-shrink:0; padding:0 40px; box-sizing:border-box; }
   
   /* Dynamic background */
-  .dynamic-bg { position:absolute; inset:0; z-index:-1; background:linear-gradient(135deg,#1e293b 0%, #312e81 100%); transition:background 1.2s ease; will-change:background; }
+  /* Dynamic background container - individual layers will handle gradients */
+  .dynamic-bg { position:absolute; inset:0; z-index:-1; background:none; overflow:hidden; }
+  /* Background gradient layers */
+  .bg-layer { position:absolute; inset:0; }
   .bg-panel-1{background:linear-gradient(135deg,#1e293b 0%, #312e81 100%);} .bg-panel-2{background:linear-gradient(135deg,#312e81 0%, #4338ca 100%);} .bg-panel-3{background:linear-gradient(135deg,#4338ca 0%, #6366f1 100%);} .bg-panel-4{background:linear-gradient(135deg,#6366f1 0%, #6d7199 100%);} .bg-panel-5{background:linear-gradient(135deg,#6d7199 0%, #7c8bb3 100%);} .bg-panel-6{background:linear-gradient(135deg,#7c8bb3 0%, #8b9bb8 100%);} 
   
   /* Panel content */
