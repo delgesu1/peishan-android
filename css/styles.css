@@ -908,6 +908,22 @@ header:not(.header-scrolled) .hamburger-line {
     }
 }
 
+@media screen and (max-width: 600px) {
+    .hero {
+        justify-content: center;
+    }
+
+    .hero-content {
+        text-align: center;
+        width: 100%;
+    }
+
+    .hero-banner-image {
+        width: 90%;
+        max-width: 450px;
+    }
+}
+
 .hero-subtitle {
     font-family: var(--font-secondary);
     font-size: 1.2rem;
