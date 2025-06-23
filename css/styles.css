@@ -921,8 +921,13 @@ header:not(.header-scrolled) .hamburger-line {
     }
 
     .hero-banner-image {
-        width: 90%;
-        max-width: 450px;
+        width: 95%; /* Make image larger */
+        max-width: 500px;
+    }
+
+    .hero-buttons {
+        justify-content: center; /* Center the button */
+        margin-top: var(--spacing-sm);
     }
 }
 
