@@ -110,6 +110,13 @@
     border: 1px solid rgba(var(--color-accent-rgb), 0.15);
 }
 
+/* Hide hero tagline on smaller screens */
+@media (max-width: 800px) {
+    .hero-description {
+        display: none;
+    }
+}
+
 #press .article-link:hover {
     background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-lavender) 100%);
     color: white;
