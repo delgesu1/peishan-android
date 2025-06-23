@@ -842,6 +842,18 @@ header:not(.header-scrolled) .hamburger-line {
     }
 }
 
+@media screen and (max-width: 992px) {
+    #header.header-scrolled .logo {
+        display: flex;
+    }
+    #header.header-scrolled .mobile-hero-logo {
+        display: none;
+    }
+    #header.header-scrolled .header-container {
+        justify-content: space-between;
+    }
+}
+
 /* ===== HERO SECTION ===== */
 .hero {
     height: 100vh;
