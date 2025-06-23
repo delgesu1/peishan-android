@@ -1,0 +1,131 @@
+/* Links Section Styles */
+.links {
+    padding-top: 5rem; /* Add padding to give space from previous section */
+    padding-bottom: 5rem; /* Add padding to give space for the next section */
+    background: linear-gradient(180deg, #f7f5fa 0%, #ffffff 100%);
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.link-card {
+    /* position: relative; */ /* Commented out, not strictly needed for new layout */
+    border-radius: 12px;
+    overflow: hidden; /* Ensures image corners are clipped if image itself isn't rounded */
+    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.15);
+    transform: translateY(0);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    /* aspect-ratio: 16/9; */ /* Removed from card, will apply to image container */
+    text-decoration: none;
+    color: inherit;
+    background-color: #ffffff; /* Set card background to white to stand out from gradient */
+}
+
+.link-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.25);
+}
+
+.link-image {
+    width: 100%;
+    /* height: 100%; */ /* Removed, will be determined by aspect-ratio */
+    /* position: absolute; */ /* Removed, image flows normally */
+    /* top: 0; */ /* Removed */
+    /* left: 0; */ /* Removed */
+    aspect-ratio: 4/3; /* Changed to 4:3 for more compact cards */
+    overflow: hidden; /* Good practice for child img scaling/object-fit */
+}
+
+.link-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1.2s ease;
+}
+
+.link-card:hover .link-image img {
+    transform: scale(1.05);
+}
+
+.link-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent; /* Made transparent as text is no longer on image */
+    z-index: -1; /* Sent behind content */
+    transition: all 0.4s ease;
+}
+
+.link-card:hover .link-overlay {
+    background: transparent; /* Keep transparent on hover */
+}
+
+.link-content {
+    /* position: absolute; */ /* Removed */
+    /* bottom: 0; */ /* Removed */
+    /* left: 0; */ /* Removed */
+    /* right: 0; */ /* Removed */
+    padding: 0.65rem 0.85rem 0.85rem; /* Further reduced padding for more compact design */
+    /* z-index: 2; */ /* Removed */
+    /* transform: translateY(0); */ /* Removed as card itself transforms */
+    transition: none; /* Removed transition as hover effect on content itself is removed */
+    text-align: left;
+}
+
+
+
+.link-content h3 {
+    margin: 0;
+    font-size: 0.9rem; /* Further reduced font size for smaller cards */
+    font-weight: 600; /* Adjusted font weight */
+    letter-spacing: 0.01em;
+    color: #333; /* Changed to dark color for visibility */
+    line-height: 1.25;
+    text-shadow: none; /* Removed text shadow */
+    position: relative;
+    padding-bottom: 0.3rem;
+}
+
+.link-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #555; /* Changed to dark color for underline */
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.link-card:hover .link-content h3::after {
+    width: 60px;
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .links-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1.15rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .links-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .link-content h3 {
+        font-size: 0.85rem;
+        line-height: 1.2;
+    }
+}

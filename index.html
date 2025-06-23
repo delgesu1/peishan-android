@@ -4,24 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pei-Shan Lee | pianist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/elegant-contact.css?v=20250623">
+    <link rel="stylesheet" href="css/press-overrides.css?v=20250623b">
+    <link rel="stylesheet" href="css/links-section.css">
+    <link rel="stylesheet" href="css/video-modal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- New Teaching Section Styles -->
-    <link rel="stylesheet" href="css/teaching-section-new.css">
+    <link rel="stylesheet" href="css/teaching-section-new.css?v=20250623">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
     <script src="js/script.js" defer></script>
+    <script src="js/elegant-contact.js" defer></script>
     <!-- New Teaching Section Script -->
     <script src="js/teaching-section-new.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
     <header id="header">
         <div class="header-container container">
-            <a href="#" class="logo">Pei-Shan <span>Lee</span></a>
+            <a href="#" class="logo">Pei-Shan&nbsp;<span>Lee</span></a>
             
             <!-- Desktop Navigation -->
             <nav class="desktop-nav">
@@ -49,7 +57,7 @@
                 <ul class="mobile-nav-list">
                     <li><a href="#biography" class="mobile-nav-link">About</a></li>
                     <li><a href="#media" class="mobile-nav-link">Media</a></li>
-                    <li><a href="#teaching-collaboration" class="mobile-nav-link">Teaching &amp; Collaboration</a></li>
+                    <li><a href="#teaching-collaboration" class="mobile-nav-link">Teaching &amp;<br>Collaboration</a></li>
                     <li><a href="#press" class="mobile-nav-link">Press</a></li>
                     <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
                 </ul>
@@ -64,9 +72,9 @@
         <div class="hero-content">
             <h2 class="hero-subtitle">International pianist</h2>
             <h1 class="hero-title">Pei-Shan Lee</h1>
-            <p class="hero-description">Captivating audiences with her extraordinary brilliance and profound interpretations.</p>
+            <p class="hero-description">Bringing music to life through meaningful partnerships and shared artistic vision.</p>
             <div class="hero-buttons">
-                <a href="#biography" class="btn">Learn More</a>
+                <a href="#contact" class="btn">Get In Touch</a>
             </div>
         </div>
         <a href="#biography" class="scroll-down">
@@ -115,11 +123,87 @@
         </div>
     </section>
 
+    <!-- Links Section -->
+    <section class="section links" id="links">
+        <div class="container">
+
+            <p class="links-subtitle">Professional affiliations and resources</p>
+            
+            <div class="links-grid">
+                <!-- New England Conservatory -->
+                <a href="https://necmusic.edu/" target="_blank" rel="noopener" class="link-card">
+                    <div class="link-image">
+                        <img src="images/links/nec.jpg" alt="New England Conservatory" />
+                    </div>
+                    <div class="link-overlay"></div>
+                    <div class="link-content">
+                        <h3>New England Conservatory</h3>
+                    </div>
+                </a>
+                
+                <!-- NEC Dual Degree -->
+                <a href="https://necmusic.edu/admissions/degree-programs/undergraduate-programs/#dual-degree" target="_blank" rel="noopener" class="link-card">
+                    <div class="link-image">
+                        <img src="images/links/nec-dual.jpg" alt="NEC Dual Degree Program" />
+                    </div>
+                    <div class="link-overlay"></div>
+                    <div class="link-content">
+                        <h3>NEC Piano + Collaborative Piano Dual Degree</h3>
+                    </div>
+                </a>
+                
+                <!-- Bowdoin Festival -->
+                <a href="https://www.bowdoinfestival.org/" target="_blank" rel="noopener" class="link-card">
+                    <div class="link-image">
+                        <img src="images/links/bowdoin.jpg" alt="Bowdoin International Music Festival" />
+                    </div>
+                    <div class="link-overlay"></div>
+                    <div class="link-content">
+                        <h3>Bowdoin International Music Festival</h3>
+                    </div>
+                </a>
+                
+                <!-- CelloBello.org -->
+                <a href="https://cellobello.org" target="_blank" rel="noopener" class="link-card">
+                    <div class="link-image">
+                        <img src="images/links/CelloBello.jpg" alt="CelloBello.org" />
+                    </div>
+                    <div class="link-overlay"></div>
+                    <div class="link-content">
+                        <h3>Artistic Advisor, CelloBello.org</h3>
+                    </div>
+                </a>
+                
+                <!-- BIMF Fellowship -->
+                <a href="https://www.bowdoinfestival.org/institute/collaborative-piano/" target="_blank" rel="noopener" class="link-card">
+                    <div class="link-image">
+                        <img src="images/links/bowdoin-collab.jpg" alt="BIMF Collaborative Piano Fellowship" />
+                    </div>
+                    <div class="link-overlay"></div>
+                    <div class="link-content">
+                        <h3>BIMF Collaborative Piano Fellowship</h3>
+                    </div>
+                </a>
+                
+                <!-- Dissertation -->
+                <a href="https://www.proquest.com/docview/637439700/abstract/BF08DF9731C44E97" target="_blank" rel="noopener" class="link-card">
+                    <div class="link-image">
+                        <img src="images/links/dissertation.jpg" alt="Doctoral Dissertation" />
+                    </div>
+                    <div class="link-overlay"></div>
+                    <div class="link-content">
+                        <h3>Pei-Shan's Doctoral Dissertation</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Media Gallery Section -->
     <section class="section media-gallery" id="media">
         <div class="container">
-            <h2 class="section-title">Gallery</h2>
-            <p class="section-subtitle">Explore Pei-Shan Lee's performances</p>
+            <h2 class="section-title">Media</h2>
+
             <div class="media-tabs">
                 <div class="media-tab active" data-tab="photos">Photos</div>
                 <div class="media-tab" data-tab="videos">Videos</div>
@@ -222,26 +306,34 @@
             </div>
             <div class="media-content" id="videos">
                 <div class="videos-grid">
-                    <div class="video-item">
-                        <img src="images/new/main4.jpg" alt="Tchaikovsky Violin Concerto" class="video-thumbnail">
+                    <!-- Elgar Piano Quintet -->
+                    <div class="video-item" data-video-id="N_VB-VyCMY0">
+                        <img src="https://i.ytimg.com/vi/N_VB-VyCMY0/maxresdefault.jpg" alt="Elgar Piano Quintet" class="video-thumbnail">
                         <div class="video-play"></div>
-                        <h3 class="video-title">Tchaikovsky Violin Concerto in D major</h3>
+                        <h3 class="video-title">Elgar Piano Quintet in A minor, Op. 84</h3>
                     </div>
-                    <div class="video-item">
-                        <img src="images/new/main2.webp" alt="Bach Partita No. 2" class="video-thumbnail">
+                    <!-- Schumann Piano Quartet -->
+                    <div class="video-item" data-video-id="vsF5cMhTXfE">
+                        <img src="https://i.ytimg.com/vi/vsF5cMhTXfE/maxresdefault.jpg" alt="Schumann Piano Quartet" class="video-thumbnail">
                         <div class="video-play"></div>
-                        <h3 class="video-title">Bach Partita No. 2 in D minor</h3>
+                        <h3 class="video-title">Schumann Piano Quartet in E-flat major, Op. 47</h3>
                     </div>
-                    <div class="video-item">
-                        <img src="images/new/main-darker3.png" alt="Sibelius Violin Concerto" class="video-thumbnail">
-                        <div class="video-play"></div>
-                        <h3 class="video-title">Sibelius Violin Concerto in D minor</h3>
-                    </div>
-                    <div class="video-item">
-                        <img src="images/new/hero1.jpg" alt="Brahms Violin Sonata" class="video-thumbnail">
-                        <div class="video-play"></div>
-                        <h3 class="video-title">Brahms Violin Sonata No. 3 in D minor</h3>
-                    </div>
+                    <!-- New Video Link 1 -->
+                    <a href="https://cellobello.org/ensemble-lesson/clara-schumann-romance-1-op-22-for-violin-and-piano/" target="_blank" class="video-item-link">
+                        <div class="video-item">
+                            <img src="images/gallery/ensemble1.jpg" alt="Clara Schumann Romance Op. 22" class="video-thumbnail">
+                            <div class="video-play"></div>
+                            <h3 class="video-title">Clara Schumann: Romance Op. 22</h3>
+                        </div>
+                    </a>
+                    <!-- New Video Link 2 -->
+                    <a href="https://cellobello.org/ensemble-lesson/poulenc-sonata-for-violin-and-piano/" target="_blank" class="video-item-link">
+                        <div class="video-item">
+                            <img src="images/gallery/ensemble2.jpg" alt="Poulenc Sonata for Violin and Piano" class="video-thumbnail">
+                            <div class="video-play"></div>
+                            <h3 class="video-title">Poulenc: Sonata for Violin and Piano</h3>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="media-content" id="audio">
@@ -288,14 +380,25 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Video Modal -->
+            <div class="video-modal">
+                <div class="video-modal-content">
+                    <button class="video-modal-close">&times;</button>
+                    <div class="video-player-container">
+                        <iframe id="youtube-player" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
 
-    <!-- Teaching & Collaboration Section -->
+    <!-- Teaching & Collaborative Piano Section -->
     <section class="section teaching-collaboration" id="teaching-collaboration">
-        <h2 class="visually-hidden">Teaching &amp; Collaboration</h2>
+        <h2 class="section-title">Teaching &amp; Collaborative Piano</h2>
 
+        <div class="tc-content-wrapper">
         <!-- Progress indicator -->
         <nav class="tc-progress-indicator" aria-label="Section progress">
             <button class="tc-progress-dot active" data-panel="0" aria-label="Panel 1"></button>
@@ -383,194 +486,186 @@
             </div>
 
 
-        </div>
-    </section>
-
-    <!-- Teaching Studio Section -->
-    <section class="section teaching" id="teaching">
-        <div class="container">
-            <h2 class="section-title">Teaching Studio</h2>
-            <p class="section-subtitle">Learn from one of today's most accomplished pianists</p>
-            <div class="teaching-intro">
-                <p class="teaching-text">Pei-Shan Lee is dedicated to nurturing the next generation of pianists through her teaching. She maintains a select private studio and regularly gives masterclasses at prestigious music institutions around the world, including the Juilliard School, Curtis Institute of Music, Royal Academy of Music, and the Paris Conservatoire.</p>
-                <p class="teaching-text">Her teaching philosophy emphasizes technical foundation, musical expression, and developing each student's unique artistic voice. Pei-Shan's approach combines the best elements of various violin schools, drawing from her own diverse training and performance experience.</p>
-            </div>
-            <div class="teaching-columns">
-                <div class="teaching-column">
-                    <h3 class="teaching-column-title">Private Lessons</h3>
-                    <h4 class="teaching-column-subtitle">For Advanced Students & Professionals</h4>
-                    <div class="features-grid">
-                        <div class="feature-item">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">Personalized instruction tailored to individual needs and goals</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">Technical refinement and problem-solving</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">Repertoire development and interpretation</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">Performance preparation and career guidance</div>
-                        </div>
-                    </div>
-                    <p class="teaching-text">Pei-Shan Lee accepts a limited number of private students by audition only. Lessons are available in person in New York City or online via video conference for international students.</p>
-                    <div class="teaching-cta">
-                        <a href="#contact" class="btn">Inquire About Lessons</a>
-                    </div>
-                </div>
-                <div class="teaching-column">
-                    <h3 class="teaching-column-title">Masterclasses</h3>
-                    <h4 class="teaching-column-subtitle">For Institutions & Festivals</h4>
-                    <div class="features-grid">
-                        <div class="feature-item">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">Interactive sessions with individual feedback</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">Technical and interpretive insights</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">Performance psychology and stage presence</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">Career development and industry knowledge</div>
-                        </div>
-                    </div>
-                    <p class="teaching-text">Pei-Shan Lee is available for masterclasses at conservatories, universities, music festivals, and other educational institutions worldwide. Each masterclass is tailored to the specific needs and level of the participating students.</p>
-                    <div class="teaching-cta">
-                        <a href="#contact" class="btn">Book a Masterclass</a>
-                    </div>
-                </div>
-            </div>
-            <h3 class="testimonials-title">Student Testimonials</h3>
-            <div class="testimonials-container">
-                <div class="testimonial">
-                    <p class="testimonial-text">"Studying with Pei-Shan Lee transformed my playing. Her attention to detail and ability to diagnose technical issues is remarkable, but what sets her apart is how she connects technique to musical expression. She helped me find my own voice as a pianist."</p>
-                    <p class="testimonial-author">— Sarah Chen, Concertmaster, Boston Philharmonic</p>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"Pei-Shan's masterclass was a revelation. In just 30 minutes, she completely changed my approach to the Tchaikovsky concerto. Her insights were practical, immediately applicable, and deeply musical. It was like seeing the piece through new eyes."</p>
-                    <p class="testimonial-author">— Michael Torres, Juilliard School</p>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"What makes Pei-Shan an exceptional teacher is her ability to balance technical precision with artistic freedom. She creates a supportive environment where you feel empowered to take risks and develop your own interpretations while maintaining the highest standards."</p>
-                    <p class="testimonial-author">— Emma Dawson, Royal Academy of Music</p>
-                </div>
-            </div>
-        </div>
+        </div> <!-- Closes tc-sticky-container -->
+        </div> <!-- Closing tc-content-wrapper -->
     </section>
 
     <!-- Press & Reviews Section -->
     <section class="section press" id="press">
         <div class="container">
             <h2 class="section-title">Press & Reviews</h2>
-            <p class="section-subtitle">Critical acclaim for Pei-Shan Lee's performances and recordings</p>
-            <div class="featured-quote">
-                <img src="images/new/main1.jpg" alt="Pei-Shan Lee Portrait" class="featured-quote-image">
-                <div class="featured-quote-content">
-                    <p class="quote-text">"Pei-Shan Lee's performance of the Sibelius Violin Concerto was nothing short of revelatory. Her technical command is absolute, but it's her profound musicality and emotional depth that truly set her apart. In her hands, this familiar concerto sounded fresh and newly discovered, with each phrase shaped with purpose and meaning."</p>
-                    <p class="quote-source">— The New York Times</p>
-                </div>
-            </div>
-            <div class="press-quotes">
-                <div class="press-quote">
-                    <p class="quote-text">"Lee brings a rare combination of intellectual rigor and emotional spontaneity to Bach's solo works. Her recording of the complete Sonatas and Partitas stands among the finest available, distinguished by its clarity, rhythmic vitality, and deep understanding of Baroque style."</p>
-                    <p class="quote-source">— Gramophone Magazine</p>
-                </div>
-                <div class="press-quote">
-                    <p class="quote-text">"In her recital at Wigmore Hall, Lee demonstrated why she is considered one of the most compelling pianists of her generation. Her program, spanning from Bach to Bartók, showcased her versatility and stylistic range, with each work receiving a thoughtful, distinctive interpretation."</p>
-                    <p class="quote-source">— The Guardian</p>
-                </div>
-                <div class="press-quote">
-                    <p class="quote-text">"Lee's Tchaikovsky Concerto with the Berlin Philharmonic was a triumph of virtuosity and musicality. She navigated the technical challenges with seemingly effortless precision while bringing fresh insights to this warhorse of the repertoire."</p>
-                    <p class="quote-source">— Der Tagesspiegel</p>
-                </div>
-            </div>
+            
+            <!-- Press Articles Grid -->
+            <div class="press-grid">
+                <!-- Featured Article -->
+                <article class="press-article">
+                    <div class="press-article-header">
+                        <span class="article-publication">Classical Scene</span>
+                        <span class="article-date">Oct 8, 2024</span>
+                        <h4 class="article-title">Nuance and Emotional Breadth: Ninomiya and Lee at Jordan Hall</h4>
+                    </div>
+                    <div class="press-article-content">
+                        <p class="article-quote">
+                            "Ninomiya and Lee gifted the audience with their nuanced and balanced version of the expansive, ardent and massive Richard Strauss Sonata in E-Flat Major, Opus 18"
+                        </p>
+                    </div>
+                    <div class="press-article-footer">
+                        <a href="https://www.classical-scene.com/2024/10/08/nuance-and-emotional-breadth-ninomiya-and-lee-at-jordan-hall/" 
+                           class="article-link" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <span>Read Review</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </article>
 
+                <!-- Article 2 -->
+                <article class="press-article">
+                    <div class="press-article-header">
+                        <span class="article-publication">Portland Press Herald</span>
+                        <span class="article-date">Jun 2016</span>
+                        <h4 class="article-title">Concert Reviews: Bowdoin Festival</h4>
+                    </div>
+                    <div class="press-article-content">
+                        <p class="article-quote">
+                            "Lee's playing was particularly strong in the first movement, where her lyricism and dynamic control created a compelling narrative arc."
+                        </p>
+                    </div>
+                    <div class="press-article-footer">
+                        <a href="https://www.pressherald.com/2016/06/concert-reviews-bowdoin-festival/" 
+                           class="article-link" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <span>Read Review</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </article>
 
+                <!-- Article 3 -->
+                <article class="press-article">
+                    <div class="press-article-header">
+                        <span class="article-publication">Classical Scene</span>
+                        <span class="article-date">Jun 2019</span>
+                        <h4 class="article-title">Wispelwey Con Anima</h4>
+                    </div>
+                    <div class="press-article-content">
+                        <p class="article-quote">
+                            "Lee demonstrated exceptional technical prowess and musical sensitivity in her accompaniment, creating a perfect balance with the soloist."
+                        </p>
+                    </div>
+                    <div class="press-article-footer">
+                        <a href="https://www.classical-scene.com/2019/06/wispelwey-con-anima/" 
+                           class="article-link" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <span>Read Review</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="press-article">
+                    <div class="press-article-header">
+                        <span class="article-publication">The Strad</span>
+                        <span class="article-date">Jun 2023</span>
+                        <h4 class="article-title">Bowdoin Festival Opens With Familiar Works Performed Impeccably</h4>
+                    </div>
+                    <div class="press-article-content">
+                        <p class="article-quote">
+                            "glittering… sensuous, tender, and luminous"
+                        </p>
+                    </div>
+                    <div class="press-article-footer">
+                        <a href="https://www.thestrad.com/bowdoin-festival-2023-review/" 
+                           class="article-link" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <span>Read Review</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="press-article">
+                    <div class="press-article-header">
+                        <span class="article-publication">The Washington Post</span>
+                        <span class="article-date">Nov 2013</span>
+                        <h4 class="article-title">Pieter Wispelwey Delivers Gem of a Program</h4>
+                    </div>
+                    <div class="press-article-content">
+                        <p class="article-quote">
+                            "Lee's accompaniment was masterful, providing both technical precision and emotional depth that elevated the entire performance."
+                        </p>
+                    </div>
+                    <div class="press-article-footer">
+                        <a href="https://www.washingtonpost.com/entertainment/music/pieter-wispelwey-delivers-gem-of-a-program/2013/11/22/" 
+                           class="article-link" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <span>Read Review</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section class="section contact" id="contact">
         <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <p class="section-subtitle">Get in touch with Pei-Shan Lee for bookings, collaborations, or inquiries</p>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3 class="contact-title">Management & Bookings</h3>
-                    <p class="contact-subtitle">For all professional inquiries, please contact Pei-Shan Lee's management team.</p>
-                    <div class="contact-item">
-                        <div class="contact-text">
-                            <strong>Management</strong>
-                            Global Classical Artists<br>
-                            Sarah Johnson, Artist Manager
+            <h2 class="section-title">Get In Touch</h2>
+            <!-- Web3Forms Contact Form -->
+            <div class="elegant-form-wrapper">
+                <form action="https://api.web3forms.com/submit" method="POST" id="form" class="needs-validation" novalidate>
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+                    <input type="hidden" name="subject" value="New Contact Form Submission from Website" />
+                    <input type="hidden" name="from_name" value="Pei-Shan Lee Website" />
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+                    
+                    <div class="elegant-form-grid">
+                        <div>
+                            <label for="first_name">FIRST NAME</label>
+                            <input type="text" name="first_name" id="first_name" placeholder="John" required />
+                            <div class="error-message empty-feedback"><i class="fas fa-exclamation-circle"></i>Please provide your first name.</div>
+                        </div>
+
+                        <div>
+                            <label for="last_name">LAST NAME</label>
+                            <input type="text" name="last_name" id="last_name" placeholder="Doe" required />
+                            <div class="error-message empty-feedback"><i class="fas fa-exclamation-circle"></i>Please provide your last name.</div>
+                        </div>
+
+                        <div>
+                            <label for="email">EMAIL ADDRESS</label>
+                            <input type="email" name="email" id="email" placeholder="you@company.com" required />
+                            <div class="error-message empty-feedback"><i class="fas fa-exclamation-circle"></i>Please provide your email address.</div>
+                            <div class="error-message invalid-feedback"><i class="fas fa-exclamation-circle"></i>Please provide a valid email address.</div>
+                        </div>
+
+                        <div>
+                            <label for="phone">PHONE NUMBER</label>
+                            <input type="tel" name="phone" id="phone" placeholder="+1 (555) 1234-567" required />
+                            <div class="error-message empty-feedback"><i class="fas fa-exclamation-circle"></i>Please provide your phone number.</div>
+                        </div>
+
+                        <div class="full-width">
+                            <label for="message">YOUR MESSAGE</label>
+                            <textarea rows="5" name="message" id="message" placeholder="Your message" required></textarea>
+                            <div class="error-message empty-feedback"><i class="fas fa-exclamation-circle"></i>Please enter your message.</div>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-text">
-                            <strong>Email</strong>
-                            management@Pei-ShanLee.com<br>
-                            bookings@Pei-ShanLee.com
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-text">
-                            <strong>Phone</strong>
-                            +1 (212) 555-7890<br>
-                            +44 20 7946 0123
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-text">
-                            <strong>Address</strong>
-                            Global Classical Artists<br>
-                            123 Fifth Avenue, Suite 4B<br>
-                            New York, NY 10003, USA
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" class="social-link"></a>
-                        <a href="#" class="social-link"></a>
-                        <a href="#" class="social-link"></a>
-                        <a href="#" class="social-link"></a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form action="#" method="POST">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" id="name" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" name="subject" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea id="message" name="message" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="form-submit">Send Message</button>
-                    </form>
-                </div>
-            </div>
-            <div class="newsletter">
-                <h3 class="newsletter-title">Subscribe to Newsletter</h3>
-                <p class="newsletter-subtitle">Stay updated with Pei-Shan Lee's latest performances and news by subscribing to her newsletter.</p>
-                <form action="#" method="POST" class="newsletter-form">
-                    <input type="email" placeholder="Your email address" class="newsletter-input" required>
-                    <button type="submit" class="newsletter-submit">Subscribe</button>
+
+                    <button type="submit">
+                        <span>SEND MESSAGE</span>
+                        <div class="spinner"></div>
+                    </button>
+                    
+                    <p id="result"></p>
                 </form>
             </div>
         </div>
@@ -579,29 +674,75 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <a href="#" class="footer-logo">Pei-Shan <span>Lee</span></a>
-                <div class="footer-links">
-                    <a href="#biography" class="footer-link">Biography</a>
-                    <a href="#media" class="footer-link">Media</a>
-                    <a href="#contact" class="footer-link">Contact</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#" class="footer-social-link"></a>
-                    <a href="#" class="footer-social-link"></a>
-                    <a href="#" class="footer-social-link"></a>
-                    <a href="#" class="footer-social-link"></a>
-                </div>
-            </div>
+
             <div class="footer-bottom">
-                <p class="footer-copyright"> 2025 Pei-Shan Lee. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#" class="footer-legal-link">Privacy Policy</a>
-                    <a href="#" class="footer-legal-link">Terms of Use</a>
-                    <a href="#" class="footer-legal-link">Cookie Policy</a>
-                </div>
+                <p class="footer-copyright" style="text-align: center; width: 100%;">© 2025 Pei-Shan Lee. All rights reserved.</p>
             </div>
         </div>
     </footer>
+<script>
+(function () {
+  "use strict";
+  const forms = document.querySelectorAll(".needs-validation");
+  const result = document.getElementById("result");
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener(
+      "submit",
+      function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+          form.querySelectorAll(":invalid")[0].focus();
+        } else {
+          const formData = new FormData(form);
+          event.preventDefault();
+          event.stopPropagation();
+          const object = {};
+          formData.forEach((value, key) => {
+            object[key] = value;
+          });
+          const json = JSON.stringify(object);
+          result.innerHTML = "Please wait...";
+
+          fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+            },
+            body: json
+          })
+            .then(async (response) => {
+              let json = await response.json();
+              if (response.status == 200) {
+                result.innerHTML = json.message;
+                result.classList.remove("text-gray-500");
+                result.classList.add("text-green-500");
+              } else {
+                console.log(response);
+                result.innerHTML = json.message;
+                result.classList.remove("text-gray-500");
+                result.classList.add("text-red-500");
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+              result.innerHTML = "Something went wrong!";
+            })
+            .then(function () {
+              form.reset();
+              form.classList.remove("was-validated");
+              setTimeout(() => {
+                result.style.display = "none";
+              }, 5000);
+            });
+        }
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,153 @@
+/* Press & Reviews section overrides */
+/* Elegant, minimalistic styling for press cards */
+
+#press .press-article {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border-top: 3px solid rgba(var(--color-accent-rgb), 0.6);
+}
+
+/* Refined header with integrated elements */
+#press .press-article-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding-bottom: 0.5rem;
+}
+
+#press .article-publication {
+    font-family: var(--font-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+#press .article-date {
+    position: static;
+    margin-left: auto;
+    font-family: var(--font-secondary);
+    font-size: 0.8rem;
+    color: rgba(var(--color-text-rgb), 0.6);
+    font-weight: 400;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+#press .article-title {
+    flex: 0 0 100%;
+    margin-top: 0.75rem;
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0;
+}
+
+/* Clean quote styling */
+#press .article-quote {
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--color-text);
+    line-height: 1.45;
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 1.2rem;
+    border-left: 2px solid rgba(var(--color-lavender-rgb), 0.5);
+}
+
+.article-quote::before {
+    content: "\201C";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.5rem;
+    color: rgba(var(--color-accent-rgb), 0.6);
+    font-family: var(--font-primary);
+    font-weight: 300;
+    line-height: 0.6;
+}
+
+/* Hover enhancement */
+#press .press-article:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border-top-color: var(--color-accent);
+}
+
+/* Footer and link styling */
+#press .press-article-footer {
+    margin-top: 1.5rem;
+}
+
+/* Style the Read Review link as the only pill/bubble */
+#press .article-link {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(var(--color-accent-rgb), 0.08);
+    color: var(--color-accent);
+    font-family: var(--font-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(var(--color-accent-rgb), 0.15);
+}
+
+#press .article-link:hover {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-lavender) 100%);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--color-accent-rgb), 0.25);
+}
+
+#press .article-link span {
+    margin-right: 0.5rem;
+}
+
+#press .article-link i {
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+#press .article-link:hover i {
+    transform: translateX(3px);
+}
+
+/* Disable default dark overlay defined in base styles */
+#press .article-link::before {
+    background: transparent !important;
+}
+#press .article-link:hover::before {
+    opacity: 0 !important;
+}
+
+/* Press grid layout adjustments */
+#press .press-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+@media (min-width: 992px) {
+    #press .press-grid article:first-child {
+        grid-column: span 2;
+    }
+}

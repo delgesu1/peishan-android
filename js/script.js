@@ -832,8 +832,54 @@ document.addEventListener('DOMContentLoaded', function() {
         // refresh already handled by re-init listener above
     }
 
+    // Video Player Modal Functionality
+    function initVideoPlayer() {
+        const videoItems = document.querySelectorAll('.video-item');
+        const modal = document.querySelector('.video-modal');
+        const closeModalBtn = document.querySelector('.video-modal-close');
+        const iframe = document.getElementById('youtube-player');
+
+        if (!videoItems.length || !modal || !closeModalBtn || !iframe) {
+            console.log('Video player elements not found, skipping initialization.');
+            return;
+        }
+
+        videoItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const videoId = item.getAttribute('data-video-id');
+                if (videoId) {
+                    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                }
+            });
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            iframe.src = ''; // Stop the video from playing in the background
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+
     // Initialize gallery, tabs, and teaching collaboration
     initMediaTabs();
     initGallery();
+    initVideoPlayer();
     // initTeachingCollaborationScroll(); // disabled due to new teaching section implementation
+
 });
