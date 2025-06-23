@@ -11,4 +11,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Local scripts
-optimize-images.js 
+optimize-images.js
+
+# Local Netlify folder
+.netlify
