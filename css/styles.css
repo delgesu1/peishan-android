@@ -913,6 +913,11 @@ header:not(.header-scrolled) .hamburger-line {
 }
 
 @media screen and (max-width: 600px) {
+    /* mobile header tighter padding */
+    .header-container {
+        padding: var(--spacing-xs) var(--spacing-xs) !important;
+    }
+
     /* Header adjustments */
     .header-container {
         justify-content: space-between; /* Logo left, menu right */
@@ -4133,7 +4138,7 @@ footer {
     
     /* Ensure header container keeps consistent padding */
     .header-container {
-        padding: var(--spacing-sm) var(--spacing-md);
+        padding: var(--spacing-xs) var(--spacing-sm);
     }
 
     .hero-title {
