@@ -916,6 +916,8 @@ header:not(.header-scrolled) .hamburger-line {
     .hero-content {
         text-align: center;
         width: 100%;
+        margin-left: auto; /* Override desktop style */
+        margin-right: auto; /* Ensure centering */
     }
 
     .hero-banner-image {
