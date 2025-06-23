@@ -937,6 +937,7 @@ header:not(.header-scrolled) .hamburger-line {
     }
     .hero {
         justify-content: center;
+        padding-right: 0; /* remove right padding on small screens to truly center content */
     }
 
     .hero-content {
