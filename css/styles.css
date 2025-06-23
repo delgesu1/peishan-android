@@ -917,6 +917,7 @@ header:not(.header-scrolled) .hamburger-line {
     .header-container {
         justify-content: space-between; /* Logo left, menu right */
         align-items: center;
+        padding: var(--spacing-xs) var(--spacing-xs); /* tighter horizontal padding */
     }
 
     .mobile-hero-logo {
