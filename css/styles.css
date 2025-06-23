@@ -995,6 +995,12 @@ header:not(.header-scrolled) .hamburger-line {
     justify-content: flex-end;
 }
 
+@media screen and (max-width: 600px) {
+    .hero-buttons {
+        justify-content: center !important;
+    }
+}
+
 .hero .btn {
     background: linear-gradient(135deg, rgba(196, 181, 253, 0.4) 0%, rgba(165, 180, 252, 0.3) 100%);
     backdrop-filter: blur(8px);
