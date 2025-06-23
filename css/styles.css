@@ -888,15 +888,12 @@ header:not(.header-scrolled) .hamburger-line {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.hero-title {
-    font-family: var(--font-primary);
-    font-size: 4.5rem;
-    font-weight: 300;
-    color: #ffffff;
-    margin-bottom: var(--spacing-md);
-    line-height: 1.2;
-    letter-spacing: 1px;
-    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+.hero-banner-image {
+    max-width: 550px; /* Adjust as needed */
+    width: 90%;
+    height: auto;
+    margin: 0 auto var(--spacing-md);
+    display: block;
 }
 
 .hero-description {
