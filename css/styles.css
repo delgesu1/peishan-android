@@ -4284,7 +4284,7 @@ footer {
     border: none;
     border-left: 4px solid var(--color-accent);
     padding: var(--spacing-md) var(--spacing-lg);
-    margin: var(--spacing-sm) auto var(--spacing-sm);
+    margin: var(--spacing-xs) auto var(--spacing-sm);
     font-style: italic;
     font-size: 1.35rem;
     font-weight: 300;
@@ -4349,7 +4349,7 @@ footer {
 
 @media screen and (max-width: 480px) {
     .biography-featured-quote {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         padding: var(--spacing-sm) var(--spacing-md);
         max-width: 100%;
     }
