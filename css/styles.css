@@ -921,8 +921,8 @@ header:not(.header-scrolled) .hamburger-line {
     }
 
     .hero-banner-image {
-        width: 95%; /* Make image larger */
-        max-width: 500px;
+        width: 500px;   /* Keep image large */
+        max-width: 95%; /* Shrink only when it hits the viewport edges */
     }
 
     .hero-buttons {
