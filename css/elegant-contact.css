@@ -1,234 +1,261 @@
-/* Elegant Contact Form Styles - A modern, minimalist approach */
+/* Modern Elegant Contact Form - Redesigned for Minimalist Beauty */
 
-/* Keyframe Animations */
-@keyframes floatElement {
-    0% { transform: translateY(0) rotate(0); opacity: 0.7; }
-    50% { transform: translateY(-20px) rotate(5deg); opacity: 0.9; }
-    100% { transform: translateY(0) rotate(0); opacity: 0.7; }
+/* CSS Custom Properties matching website design system */
+:root {
+    --form-bg-primary: rgba(253, 253, 254, 0.95);
+    --form-bg-glass: rgba(255, 255, 255, 0.85);
+    --form-text-primary: #1f2937;
+    --form-text-secondary: #6b7280;
+    --form-accent: #6366f1;
+    --form-accent-light: #a5b4fc;
+    --form-lavender: #c4b5fd;
+    --form-success: #059669;
+    --form-error: #dc2626;
+    --form-border: rgba(226, 232, 240, 0.6);
+    --form-shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.03);
+    --form-shadow-medium: 0 4px 15px rgba(99, 102, 241, 0.08);
+    --form-shadow-strong: 0 8px 25px rgba(99, 102, 241, 0.15);
+    --form-radius: 16px;
+    --form-radius-large: 24px;
 }
 
-@keyframes pulseGlow {
-    0% { box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(var(--color-accent-rgb), 0); }
-    100% { box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0); }
+/* Keyframe Animations - Refined and subtle */
+@keyframes gentleFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+        opacity: 0.4; 
+    }
+    50% { 
+        transform: translateY(-12px) rotate(2deg); 
+        opacity: 0.6; 
+    }
 }
 
-@keyframes gradientFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+@keyframes subtleShine {
+    0% { 
+        transform: translateX(-100%) skewX(-15deg); 
+        opacity: 0; 
+    }
+    50% { 
+        opacity: 0.6; 
+    }
+    100% { 
+        transform: translateX(200%) skewX(-15deg); 
+        opacity: 0; 
+    }
 }
 
-@keyframes shine {
-    0% { left: -100%; opacity: 0; }
-    20% { opacity: 0.5; }
-    100% { left: 100%; opacity: 0; }
+@keyframes focusGlow {
+    0% { 
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); 
+    }
+    70% { 
+        box-shadow: 0 0 0 6px rgba(99, 102, 241, 0); 
+    }
+    100% { 
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); 
+    }
 }
 
-/* Main wrapper for the form with enhanced glass effect */
+/* Main Form Container - Ultra Modern Glass Design */
 .elegant-form-wrapper {
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 24px;
-    padding: 3rem;
-    margin-top: 3rem;
-    box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.05),
-        0 5px 15px rgba(0, 0, 0, 0.03),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    background: var(--form-bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--form-radius-large);
+    padding: 3.5rem;
+    margin: 4rem auto 0;
+    max-width: 720px;
     position: relative;
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 
+        var(--form-shadow-strong),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* Decorative floating elements */
+.elegant-form-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 12px 35px rgba(99, 102, 241, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Subtle Floating Decorations */
 .elegant-form-wrapper::before,
 .elegant-form-wrapper::after {
     content: '';
     position: absolute;
     border-radius: 50%;
     z-index: -1;
-    opacity: 0.6;
-    filter: blur(40px);
+    filter: blur(60px);
+    pointer-events: none;
 }
 
 .elegant-form-wrapper::before {
-    width: 150px;
-    height: 150px;
-    background: linear-gradient(to right, var(--color-accent-light), var(--color-lavender));
-    top: -75px;
-    left: -75px;
-    animation: floatElement 12s infinite ease-in-out;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--form-accent-light), var(--form-lavender));
+    top: -60px;
+    left: -60px;
+    animation: gentleFloat 20s infinite ease-in-out;
 }
 
 .elegant-form-wrapper::after {
-    width: 180px;
-    height: 180px;
-    background: linear-gradient(to right, var(--color-lavender-light), var(--color-accent-light));
-    bottom: -90px;
-    right: -90px;
-    animation: floatElement 15s infinite ease-in-out reverse;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--form-lavender), rgba(196, 181, 253, 0.4));
+    bottom: -50px;
+    right: -50px;
+    animation: gentleFloat 25s infinite ease-in-out reverse;
 }
 
-/* Remove default Web3Forms container styles */
-.elegant-form-wrapper .dark\:bg-gray-900, 
-.elegant-form-wrapper .bg-white {
-    background-color: transparent !important;
-}
-
-.elegant-form-wrapper .shadow-sm { 
-    box-shadow: none !important; 
-}
-
-.elegant-form-wrapper .p-5 { 
-    padding: 0 !important; 
-}
-
-.elegant-form-wrapper .m-7 { 
-    margin: 0 !important; 
-}
-
-/* Form grid layout */
+/* Form Grid Layout - Clean and Spacious */
 .elegant-form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 24px;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .elegant-form-grid .full-width {
     grid-column: 1 / -1;
 }
 
-/* Label Styling */
+/* Labels - Refined Typography */
 .elegant-form-wrapper label {
-    font-family: var(--font-secondary);
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--color-text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--form-text-secondary);
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 10px;
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
     display: block;
-    transition: all 0.3s ease;
-    opacity: 0.85;
+    transition: color 0.3s ease;
 }
 
-/* Input and Textarea Styling */
+/* Input Fields - Minimalist and Elegant */
 .elegant-form-wrapper input[type='text'],
 .elegant-form-wrapper input[type='email'],
 .elegant-form-wrapper input[type='tel'],
 .elegant-form-wrapper textarea {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid transparent; /* Use box-shadow for a more controllable border */
-    padding: 14px 18px;
-    border-radius: 12px;
-    font-family: var(--font-secondary);
+    background: var(--form-bg-primary);
+    border: 1.5px solid var(--form-border);
+    padding: 1rem 1.25rem;
+    border-radius: var(--form-radius);
+    font-family: 'Lato', sans-serif;
     font-size: 1rem;
-    color: var(--color-text);
+    font-weight: 400;
+    color: var(--form-text-primary);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 
-        inset 0 0 0 1.5px rgba(var(--color-text-rgb), 0.15), /* Gentle outline */
-        0 4px 10px rgba(0, 0, 0, 0.02);
     outline: none;
+    box-shadow: var(--form-shadow-subtle);
 }
 
+.elegant-form-wrapper textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+}
+
+/* Placeholder Styling */
 .elegant-form-wrapper input::placeholder,
 .elegant-form-wrapper textarea::placeholder {
-    color: rgba(var(--color-text-rgb), 0.5);
-    font-family: var(--font-secondary);
+    color: rgba(107, 114, 128, 0.7);
+    font-weight: 300;
 }
 
+/* Hover States - Subtle and Responsive */
 .elegant-form-wrapper input:hover,
 .elegant-form-wrapper textarea:hover {
-    background-color: rgba(255, 255, 255, 0.7);
-    transform: translateY(-2px);
-    box-shadow: 
-        inset 0 0 0 1.5px rgba(var(--color-accent-rgb), 0.4), /* Accent outline on hover */
-        0 8px 15px rgba(0, 0, 0, 0.04);
+    border-color: rgba(99, 102, 241, 0.4);
+    transform: translateY(-1px);
+    box-shadow: var(--form-shadow-medium);
 }
 
+/* Focus States - Beautiful and Accessible */
 .elegant-form-wrapper input:focus,
 .elegant-form-wrapper textarea:focus {
-    background-color: #fff;
-    transform: translateY(-2px);
+    border-color: var(--form-accent);
+    background: #ffffff;
+    transform: translateY(-1px);
     box-shadow: 
-        inset 0 0 0 1.5px rgba(var(--color-accent-rgb), 0.6), /* Stronger inset outline */
-        0 0 0 3px rgba(var(--color-accent-rgb), 0.2), /* Outer glow */
-        0 10px 20px rgba(0, 0, 0, 0.04);
-    outline: none;
+        0 0 0 3px rgba(99, 102, 241, 0.1),
+        var(--form-shadow-medium);
+    animation: focusGlow 2s ease-out;
 }
 
-/* Button Styling */
+.elegant-form-wrapper input:focus + label,
+.elegant-form-wrapper textarea:focus + label {
+    color: var(--form-accent);
+}
+
+/* Submit Button - Premium Design */
 .elegant-form-wrapper button[type='submit'] {
     width: 100%;
-    padding: 18px 24px;
-    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-lavender) 100%);
-    background-size: 200% 200%;
-    animation: gradientFlow 12s ease infinite;
-    color: var(--color-primary);
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, var(--form-accent) 0%, var(--form-lavender) 100%);
+    color: white;
     border: none;
-    border-radius: 16px;
-    font-family: var(--font-secondary);
-    font-size: 1rem;
+    border-radius: var(--form-radius);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 6px 15px rgba(var(--color-accent-rgb), 0.2);
-    margin-top: 10px;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: var(--form-shadow-medium);
+    margin-top: 1rem;
 }
 
-/* Button shine effect */
-.elegant-form-wrapper button[type='submit']::after {
+/* Button Shine Effect */
+.elegant-form-wrapper button[type='submit']::before {
     content: '';
     position: absolute;
-    top: -50%;
+    top: 0;
     left: -100%;
-    width: 70%;
-    height: 200%;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(255, 255, 255, 0) 100%
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
     );
-    transform: rotate(25deg);
-    opacity: 0;
-    transition: 0.7s;
+    transition: left 0.6s;
 }
 
-.elegant-form-wrapper button[type='submit']:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(var(--color-accent-rgb), 0.4);
-    letter-spacing: 2.5px;
+.elegant-form-wrapper button[type='submit']:hover::before {
+    left: 100%;
 }
-.elegant-form-wrapper button[type='submit']:hover::after {
-    animation: shine 1.5s ease;
+
+/* Button Hover State */
+.elegant-form-wrapper button[type='submit']:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--form-shadow-strong);
+    letter-spacing: 1.5px;
 }
 
 .elegant-form-wrapper button[type='submit']:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.3);
-    transition: 0.1s;
+    transition: transform 0.1s;
 }
 
+/* Loading State */
 .elegant-form-wrapper button[type='submit'].loading {
     cursor: wait;
-    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-lavender) 100%) !important;
+    pointer-events: none;
 }
 
 .elegant-form-wrapper button[type='submit'].loading span {
-    opacity: 0;
+    opacity: 0.3;
 }
 
 .elegant-form-wrapper button[type='submit'] .spinner {
@@ -238,8 +265,8 @@
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    border-top-color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     opacity: 0;
@@ -254,70 +281,33 @@
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Result Message Styling */
-#result {
-    font-family: var(--font-secondary);
-    font-size: 1rem;
-    margin-top: 1.5rem;
-    padding: 16px;
-    border-radius: 12px;
-    text-align: center;
-    transition: all 0.4s ease;
-    transform: translateY(0);
-    opacity: 0;
-}
-
-#result.success {
-    background: rgba(var(--color-accent-rgb), 0.1);
-    color: var(--color-accent);
-    border: 1px solid rgba(var(--color-accent-rgb), 0.2);
-    animation: pulseGlow 2s infinite;
-    opacity: 1;
-    transform: translateY(-5px);
-}
-
-#result.error {
-    background: rgba(255, 0, 0, 0.1);
-    color: #e53e3e;
-    border: 1px solid rgba(255, 0, 0, 0.2);
-    opacity: 1;
-}
-
-/* Validation styling */
+/* Validation States - Clean and Clear */
 .elegant-form-wrapper .invalid {
-    background-color: rgba(254, 226, 226, 0.2);
-    box-shadow: inset 0 0 0 1.5px #e53e3e, 0 4px 10px rgba(0, 0, 0, 0.02);
-}
-
-.elegant-form-wrapper .invalid:focus {
-    background-color: #fff;
+    border-color: var(--form-error);
+    background: rgba(220, 38, 38, 0.02);
     box-shadow: 
-        inset 0 0 0 1.5px #e53e3e, 
-        0 0 0 3px rgba(229, 62, 62, 0.2),
-        0 10px 20px rgba(0, 0, 0, 0.04);
+        0 0 0 3px rgba(220, 38, 38, 0.1),
+        var(--form-shadow-subtle);
 }
 
 .elegant-form-wrapper .valid {
-    box-shadow: inset 0 0 0 1.5px #38a169, 0 4px 10px rgba(0, 0, 0, 0.02);
-}
-
-.elegant-form-wrapper .valid:focus {
-    background-color: #fff;
+    border-color: var(--form-success);
+    background: rgba(5, 150, 105, 0.02);
     box-shadow: 
-        inset 0 0 0 1.5px #38a169, 
-        0 0 0 3px rgba(56, 161, 105, 0.2),
-        0 10px 20px rgba(0, 0, 0, 0.04);
+        0 0 0 3px rgba(5, 150, 105, 0.1),
+        var(--form-shadow-subtle);
 }
 
+/* Error Messages - Elegant and Informative */
 .error-message {
-    color: #c53030; /* Darker red for better contrast */
-    font-size: 0.85rem;
+    color: var(--form-error);
+    font-size: 0.8rem;
     font-weight: 500;
-    margin-top: 8px;
-    font-family: var(--font-secondary);
+    font-family: 'Lato', sans-serif;
+    margin-top: 0.5rem;
     opacity: 0;
-    transform: translateY(-5px);
-    transition: all 0.3s ease;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
 }
@@ -328,32 +318,117 @@
 }
 
 .error-message i {
-    margin-right: 6px;
-    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
 }
 
-/* Responsive adjustments */
+/* Result Messages - Success and Error States */
+#result {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--form-radius);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+#result.success {
+    background: rgba(5, 150, 105, 0.1);
+    color: var(--form-success);
+    border: 1px solid rgba(5, 150, 105, 0.2);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#result.error {
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--form-error);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design - Mobile First */
 @media (max-width: 768px) {
     .elegant-form-wrapper {
-        padding: 2rem;
+        padding: 2.5rem;
+        margin-top: 3rem;
     }
     
     .elegant-form-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
     .elegant-form-wrapper {
-        padding: 1.5rem;
+        padding: 2rem;
         margin-top: 2rem;
+        border-radius: var(--form-radius);
     }
     
     .elegant-form-wrapper input[type='text'],
     .elegant-form-wrapper input[type='email'],
     .elegant-form-wrapper input[type='tel'],
     .elegant-form-wrapper textarea {
-        padding: 14px 18px;
+        padding: 0.875rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .elegant-form-wrapper button[type='submit'] {
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .elegant-form-grid {
+        gap: 1.25rem;
+    }
+}
+
+/* Remove any Web3Forms default styling conflicts */
+.elegant-form-wrapper .dark\:bg-gray-900, 
+.elegant-form-wrapper .bg-white {
+    background-color: transparent !important;
+}
+
+.elegant-form-wrapper .shadow-sm { 
+    box-shadow: none !important; 
+}
+
+.elegant-form-wrapper .p-5,
+.elegant-form-wrapper .m-7 { 
+    padding: 0 !important; 
+    margin: 0 !important; 
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+    .elegant-form-wrapper,
+    .elegant-form-wrapper input,
+    .elegant-form-wrapper textarea,
+    .elegant-form-wrapper button,
+    .elegant-form-wrapper::before,
+    .elegant-form-wrapper::after {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .elegant-form-wrapper {
+        border: 2px solid var(--form-text-primary);
+        background: white;
+    }
+    
+    .elegant-form-wrapper input,
+    .elegant-form-wrapper textarea {
+        border: 2px solid var(--form-text-primary);
+        background: white;
     }
 }

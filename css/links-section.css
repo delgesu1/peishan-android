@@ -23,12 +23,12 @@
     /* aspect-ratio: 16/9; */ /* Removed from card, will apply to image container */
     text-decoration: none;
     color: inherit;
-    background-color: #ffffff; /* Set card background to white to stand out from gradient */
+    background: linear-gradient(135deg, #4a506a 0%, #3d4459 100%); /* Even lighter dark gradient for better readability */
 }
 
 .link-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.4), 0 0 20px rgba(168, 162, 230, 0.15);
 }
 
 .link-image {
@@ -87,7 +87,7 @@
     font-size: 0.9rem; /* Further reduced font size for smaller cards */
     font-weight: 600; /* Adjusted font weight */
     letter-spacing: 0.01em;
-    color: #333; /* Changed to dark color for visibility */
+    color: #e8e6f0; /* Changed to light color for dark background */
     line-height: 1.25;
     text-shadow: none; /* Removed text shadow */
     position: relative;
@@ -101,7 +101,7 @@
     left: 0;
     width: 40px;
     height: 2px;
-    background-color: #555; /* Changed to dark color for underline */
+    background-color: #a8a2e6; /* Changed to elegant purple accent for underline */
     opacity: 0.9;
     transition: all 0.3s ease;
 }
