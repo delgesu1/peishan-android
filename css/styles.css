@@ -350,6 +350,27 @@ header:not(.header-scrolled) .logo span {
     color: var(--color-lavender);
 }
 
+/* Chinese name styling */
+.logo .chinese-name {
+    color: white !important;
+    font-weight: 300;
+    margin-left: 0.5rem;
+}
+
+/* Hide Chinese name only on mobile devices (where hamburger menu appears) */
+@media (max-width: 992px) {
+    .logo .chinese-name {
+        display: none;
+    }
+}
+
+/* Ensure proper logo spacing with Chinese name on desktop/tablet */
+@media (min-width: 993px) {
+    .logo {
+        margin-right: 60px; /* Extra space for longer logo with Chinese name */
+    }
+}
+
 nav {
     position: relative;
     transition: all 0.3s ease-in-out;
