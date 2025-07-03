@@ -1664,6 +1664,26 @@ header:not(.header-scrolled) .hamburger-line {
     margin: 0 auto;
 }
 
+/* Edge-to-edge gallery styles for PHOTOS section only */
+#photos .gallery-container {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    max-width: none;
+}
+
+#photos .gallery-main {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+#photos .gallery-img {
+    border-radius: 0;
+}
+
 /* Main Gallery Carousel */
 .gallery-main {
     position: relative;
