@@ -321,6 +321,9 @@ header {
     padding: var(--spacing-sm) var(--spacing-md);
     height: 80px; /* Set consistent header height */
     box-sizing: border-box; /* Ensure padding doesn't affect overall height */
+    /* Remove Tailwind's container constraints for header */
+    max-width: none !important;
+    width: 100%;
 }
 
 .logo {
@@ -330,7 +333,8 @@ header {
     color: var(--color-text);
     letter-spacing: 1px;
     white-space: nowrap; /* Prevent logo text wrapping */
-    margin-right: 50px; /* Add space between logo and nav */
+    /* Progressive margin scaling: 20px at small viewports, 60px at large */
+    margin-right: clamp(20px, 4vw, 60px);
     transition: color var(--transition-medium);
     position: relative; /* For consistent positioning */
     height: 40px; /* Fixed height */
@@ -364,12 +368,7 @@ header:not(.header-scrolled) .logo span {
     }
 }
 
-/* Ensure proper logo spacing with Chinese name on desktop/tablet */
-@media (min-width: 993px) {
-    .logo {
-        margin-right: 60px; /* Extra space for longer logo with Chinese name */
-    }
-}
+/* Logo margin now handled by clamp() for progressive scaling */
 
 nav {
     position: relative;
@@ -382,7 +381,8 @@ nav {
 nav ul {
     display: flex;
     flex-wrap: nowrap; /* Prevent wrapping to second line */
-    gap: var(--spacing-sm); /* Reduce gap between items for better fit */
+    /* Progressive gap scaling: 0.5rem to 1rem based on viewport */
+    gap: clamp(0.5rem, 0.4rem + 0.6vw, 1rem);
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     justify-content: flex-end; /* Align items to the right */
     width: 100%; /* Ensure proper space distribution */
@@ -390,14 +390,17 @@ nav ul {
 
 nav a {
     font-family: var(--font-secondary);
-    font-size: 0.9rem;
+    /* Progressive font scaling: 0.85rem to 0.9rem */
+    font-size: clamp(0.85rem, 0.8rem + 0.5vw, 0.9rem);
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.5px; /* Slightly reduced letter spacing for better fit */
+    /* Progressive letter spacing */
+    letter-spacing: clamp(0.3px, 0.2px + 0.2vw, 0.5px);
     position: relative;
     transition: color var(--transition-medium);
     white-space: nowrap; /* Prevent text wrapping */
-    padding: 0.5rem 0.75rem; /* Add padding for touch targets and consistent spacing */
+    /* Progressive padding: smaller at narrow viewports */
+    padding: clamp(0.4rem, 0.3rem + 0.3vw, 0.5rem) clamp(0.5rem, 0.4rem + 0.4vw, 0.75rem);
     display: inline-block; /* Better control of dimensions */
 }
 
@@ -4083,21 +4086,10 @@ footer {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-/* Optimize navigation spacing for medium screens */
-@media screen and (max-width: 1200px) and (min-width: 901px) {
-    nav ul {
-        gap: 0.5rem; /* Further reduce gap on medium screens */
-    }
-    
-    nav a {
-        font-size: 0.85rem; /* Slightly smaller font */
-        padding: 0.5rem 0.5rem; /* Reduced horizontal padding */
-        letter-spacing: 0.25px; /* Minimal letter spacing */
-    }
-}
+/* Navigation now uses progressive scaling with clamp() instead of fixed breakpoints */
 
 @media screen and (max-width: 1200px) {
-    .container {
+    .container:not(.header-container) {
         max-width: 90%;
     }
     
