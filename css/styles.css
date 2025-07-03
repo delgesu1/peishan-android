@@ -1904,6 +1904,12 @@ header:not(.header-scrolled) .hamburger-line {
     gap: var(--spacing-md);
 }
 
+@media (max-width: 600px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .video-item {
     position: relative;
     overflow: hidden;
