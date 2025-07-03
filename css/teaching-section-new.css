@@ -115,7 +115,12 @@
   /* Responsive tweaks */
   /* Width-based responsiveness */
   @media(max-width:900px){ .panel{align-items:center;} .panel-content{margin:8vh auto;} }
-  @media(max-width:600px){ .panel{padding:0 20px;} .panel-content{margin:5vh auto;} .panel h2{font-size:1.8rem;} .panel p{font-size:1rem;} .nav-dots{bottom:30px; gap:12px;} .nav-dot{width:6px; height:6px;} .nav-dot::before{content:''; position:absolute; top:-10px; left:-10px; right:-10px; bottom:-10px; border-radius:50%;} .nav-dot.active{width:18px; height:6px;} .nav-dot.active::before{border-radius:4px;} }
+  @media(max-width:600px){ .panel{padding:0 20px;} .panel-content{margin:5vh auto;} .panel h2{font-size:1.8rem;} .panel p{font-size:1rem;} .nav-dots{bottom:30px; gap:12px;} .nav-dot{width:6px; height:6px;} .nav-dot.active{width:18px; height:6px;} }
+  /* Mobile phone specific styles - disable interaction visual cues */
+  @media (max-width: 600px) and (pointer: coarse) and (hover: none) {
+    .nav-dot { cursor: default; opacity: 0.5; }
+    .nav-dot:hover { transform: none; background: rgba(255,255,255,0.2); opacity: 0.5; }
+  }
   @media(min-width:1250px){ .panel-content{max-width:1220px; padding:0 60px;} .panel h2{font-size:3.2rem;} .panel p{font-size:1.6rem;} }
   /* Override ultra-wide screens: keep same sizes to prevent runaway scaling */
 @media(min-width:1800px){ .panel h2{font-size:3.2rem;} .panel p{font-size:1.6rem;} }

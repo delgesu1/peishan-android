@@ -103,8 +103,18 @@
         dot.dataset.panel = i;
         navContainer.appendChild(dot);
         
-        // Add both click and touch events for mobile compatibility
+        // Detect if device is a mobile phone (not just touch-capable)
+        const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        // Add navigation only for non-mobile devices
         const handleNavigation = (e) => {
+          // Block navigation on mobile phones
+          if (isMobileDevice) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+          
           e.preventDefault();
           e.stopPropagation();
           goToPanel(i);
