@@ -91,6 +91,11 @@
 }
 
 /* ===== RESETS & BASE STYLES ===== */
+/* Universal box-sizing to prevent overflow issues */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption, blockquote, dl, dd {
     margin: 0;
     padding: 0;
@@ -119,6 +124,9 @@ body.menu-open {
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    height: 100%;
+    /* Prevent iOS rubber band scrolling beyond document */
+    overscroll-behavior: none;
 }
 
 body {
@@ -127,6 +135,11 @@ body {
     background-color: var(--color-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    min-height: 100%;
+    /* Prevent iOS rubber band scrolling */
+    overscroll-behavior: none;
+    /* Prevent mobile scrolling beyond content */
+    position: relative;
 }
 
 a {
@@ -978,8 +991,8 @@ header:not(.header-scrolled) .hamburger-line {
 
     .mobile-hero-logo {
         display: block; /* Show image */
-        width: 60vw; /* Stay large */
-        max-width: 280px;
+        width: 55vw; /* Safer mobile width */
+        max-width: 260px;
     }
 
     /* Hide hero-banner inside hero-content to avoid duplication */
@@ -4009,6 +4022,11 @@ textarea.form-control {
 footer {
     background-color: var(--color-secondary);
     padding: var(--spacing-lg) 0;
+    /* Ensure footer is the absolute end of the document */
+    margin-bottom: 0;
+    /* Prevent any content bleeding below footer on mobile */
+    position: relative;
+    z-index: 1;
 }
 
 .footer-content {
@@ -4274,6 +4292,23 @@ footer {
 }
 
 @media screen and (max-width: 576px) {
+    /* Fix mobile infinite scrolling issue */
+    html, body {
+        overflow-x: hidden;
+        overscroll-behavior-y: none;
+        -webkit-overflow-scrolling: touch;
+        /* Prevent bouncing/rubber band effect */
+        position: relative;
+    }
+    
+    /* Ensure footer definitively ends the page */
+    footer {
+        clear: both;
+        display: block;
+        margin-bottom: 0 !important;
+        padding-bottom: var(--spacing-lg) !important;
+    }
+    
     .hero-title {
         font-size: 2.2rem;
     }

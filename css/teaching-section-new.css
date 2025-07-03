@@ -115,7 +115,7 @@
   /* Responsive tweaks */
   /* Width-based responsiveness */
   @media(max-width:900px){ .panel{align-items:center;} .panel-content{margin:8vh auto;} }
-  @media(max-width:600px){ .panel-content{margin:5vh auto;} .panel h2{font-size:1.8rem;} .panel p{font-size:1rem;} .nav-dots{right:20px; gap:12px;} .nav-dot{width:10px; height:10px;} }
+  @media(max-width:600px){ .panel{padding:0 20px;} .panel-content{margin:5vh auto;} .panel h2{font-size:1.8rem;} .panel p{font-size:1rem;} .nav-dots{right:20px; gap:12px;} .nav-dot{width:10px; height:10px;} }
   @media(min-width:1250px){ .panel-content{max-width:1220px; padding:0 60px;} .panel h2{font-size:3.2rem;} .panel p{font-size:1.6rem;} }
   /* Override ultra-wide screens: keep same sizes to prevent runaway scaling */
 @media(min-width:1800px){ .panel h2{font-size:3.2rem;} .panel p{font-size:1.6rem;} }
