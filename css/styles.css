@@ -4293,87 +4293,173 @@ footer {
 
 /* Featured Biography Quote - Added 2025-06-12 */
 .biography-featured-quote {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(167, 139, 250, 0.05) 100%);
+    background: rgba(248, 249, 252, 0.5);
     border: none;
-    border-left: 4px solid var(--color-accent);
-    padding: var(--spacing-md) var(--spacing-lg);
-    margin: var(--spacing-xs) auto var(--spacing-sm);
-    font-style: italic;
-    font-size: 1.35rem;
+    border-left: 4px solid var(--color-accent-light);
+    padding: var(--spacing-md) 0 var(--spacing-md) var(--spacing-lg);
+    margin: var(--spacing-lg) auto var(--spacing-xs) auto; /* Further reduced bottom margin */
+    font-style: normal;
+    /* Cap font size at ~750px viewport size */
+    font-size: min(1.5rem, clamp(1.2rem, 2vw + 0.3rem, 2rem));
     font-weight: 300;
     color: var(--color-text);
     position: relative;
-    border-radius: 0 12px 12px 0;
-    clear: both;
-    text-align: center;
-    letter-spacing: 0.5px;
-    max-width: 90%;
-    line-height: 1.4;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    letter-spacing: 0.03em;
+    max-width: 600px;
+    line-height: 1.6;
+    font-family: var(--font-primary);
+    isolation: isolate;
+    overflow: hidden;
+    /* Smooth transitions for all responsive changes */
+    transition: font-size 0.5s ease-out,
+                max-width 0.5s ease-out,
+                padding 0.5s ease-out,
+                transform 0.5s ease-out;
+    transform: translateZ(0); /* Force GPU acceleration */
+    will-change: font-size, max-width, padding;
 }
 
-.biography-featured-quote::before {
+/* Ensure smooth transitions for the text span */
+.biography-featured-quote > span {
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+    line-height: inherit;
+}
+
+/* Opening quote mark - large and elegant */
+.biography-featured-quote > *:first-child::before {
     content: "\201C";
     position: absolute;
-    top: -5px;
-    left: 15px;
-    font-size: 2.5rem;
-    color: var(--color-accent);
+    left: 0;
+    top: -0.6em;
+    font-size: 2em;
+    color: var(--color-accent-light);
     opacity: 0.3;
-    font-family: var(--font-primary);
+    font-family: Georgia, serif;
+    font-weight: normal;
+    line-height: 1;
+    /* Smooth transitions for quote marks */
+    transition: font-size 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.biography-featured-quote::after {
+/* Closing quote mark - balanced design */
+.biography-featured-quote > *:first-child::after {
     content: "\201D";
     position: absolute;
-    bottom: -25px;
-    right: 15px;
-    font-size: 2.5rem;
-    color: var(--color-accent);
+    right: 0;
+    bottom: -1.3em;
+    font-size: 2em;
+    color: var(--color-accent-light);
     opacity: 0.3;
-    font-family: var(--font-primary);
+    font-family: Georgia, serif;
+    font-weight: normal;
+    line-height: 1;
+    /* Smooth transitions for quote marks */
+    transition: font-size 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                right 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .biography-citation {
     display: block;
-    text-align: right;
     font-style: normal;
-    font-size: 0.9rem;
-    font-weight: 400;
+    font-size: 0.75rem;
+    font-weight: 500;
     color: var(--color-text-light);
     margin-top: var(--spacing-sm);
-    opacity: 0.75;
-    font-family: var(--font-tertiary);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: var(--font-secondary);
+    position: relative;
+    opacity: 0.6;
+    text-align: left;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+}
+
+/* Citation dash */
+.biography-citation::before {
+    content: "—";
+    margin-right: 0.5em;
+    opacity: 0.5;
 }
 
 /* Responsive styles for featured quote */
 @media screen and (max-width: 960px) {
     .biography-featured-quote {
-        font-size: 1.2rem;
-        padding: var(--spacing-md) var(--spacing-md);
-        max-width: 95%;
+        max-width: 85%;
+        padding-left: var(--spacing-md);
     }
     
-    .biography-featured-quote::before,
-    .biography-featured-quote::after {
-        font-size: 3.5rem;
+    /* Keep quote marks consistent size */
+}
+
+@media screen and (max-width: 600px) {
+    .biography-featured-quote {
+        max-width: 90%;
+        margin: var(--spacing-lg) auto var(--spacing-xs) auto; /* Keep consistent margin */
+        padding: var(--spacing-md) 0 var(--spacing-md) var(--spacing-sm);
+        border-left-width: 3px;
+    }
+    
+    .biography-featured-quote > *:first-child::before {
+        font-size: 2em;
+        left: 0;
+        top: -0.6em;
+    }
+    
+    /* Keep closing quote mark consistent */
+    
+    .biography-citation {
+        font-size: 0.65rem;
+        margin-top: var(--spacing-xs);
     }
 }
 
-@media screen and (max-width: 480px) {
+/* Freeze element dimensions above 750px */
+@media screen and (min-width: 750px) {
     .biography-featured-quote {
-        font-size: 0.85rem;
-        padding: var(--spacing-sm) var(--spacing-md);
-        max-width: 100%;
+        max-width: 600px; /* Fixed width above 750px */
+        font-size: 1.5rem; /* Smaller fixed font size to prevent wrapping */
     }
-    
-    .biography-citation {
-        font-size: 0.85rem;
+}
+
+/* Keep original font sizing but adjust width on smaller screens */
+@media screen and (max-width: 768px) {
+    .biography-featured-quote {
+        max-width: 80%;
     }
-    
-    .biography-featured-quote::before,
-    .biography-featured-quote::after {
-        font-size: 2.5rem;
+}
+
+@media screen and (max-width: 650px) {
+    .biography-featured-quote {
+        max-width: 85%;
+        font-size: clamp(1.3rem, 2vw + 0.3rem, 2rem);
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .biography-featured-quote {
+        max-width: 90%;
+        font-size: clamp(1.2rem, 2vw + 0.2rem, 1.8rem);
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .biography-featured-quote {
+        max-width: 92%;
+        font-size: clamp(1.1rem, 2vw + 0.1rem, 1.6rem);
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .biography-featured-quote {
+        max-width: 95%;
+        font-size: 1.2rem;
     }
 }
 
