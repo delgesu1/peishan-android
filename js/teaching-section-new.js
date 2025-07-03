@@ -61,12 +61,27 @@
       });
     }
   
+    let isNavigating = false;
+    
     // --- Unified Panel Navigation Logic ---
     function goToPanel(panelIndex) {
-      if (panelIndex < 0 || panelIndex >= totalPanels || !scrollTriggerInstance) return;
+      if (panelIndex < 0 || panelIndex >= totalPanels || !scrollTriggerInstance || isNavigating) return;
+      
+      isNavigating = true;
       const progress = panelIndex / (totalPanels - 1);
       const targetScroll = scrollTriggerInstance.start + progress * (scrollTriggerInstance.end - scrollTriggerInstance.start);
-      gsap.to(window, { scrollTo: { y: targetScroll, autoKill: false }, duration: 1, ease: 'power2.inOut' });
+      
+      gsap.to(window, { 
+        scrollTo: { y: targetScroll, autoKill: true }, 
+        duration: 0.6, 
+        ease: 'power2.out',
+        onComplete: () => {
+          // Brief lock to prevent snap interference
+          setTimeout(() => {
+            isNavigating = false;
+          }, 150);
+        }
+      });
     }
   
     // --- Create navigation dots ---
@@ -106,8 +121,8 @@
           // Keep nav dots visible while the horizontal story is active
       ScrollTrigger.create({
         trigger: '.story-wrapper',
-        start: 'top top',   // when the story wrapper reaches the top of viewport
-        end: '+=400%',  // Match the end of the main pinning animation
+        start: 'top bottom',   // Show when story wrapper enters viewport
+        end: '+=600%',  // Further extended to ensure dots stay visible through last panel
         onToggle: self => {
           gsap.to([navDots, progressBar], { autoAlpha: self.isActive ? 1 : 0, duration: 0.3 });
         }
@@ -118,7 +133,15 @@
           trigger: '.story-wrapper',
           pin: true,
           scrub: 1,
-          snap: { snapTo: 1 / (totalPanels - 1), duration: 0.35, delay: 0 },
+          snap: { 
+            snapTo: (progress) => {
+              // Don't snap during programmatic navigation
+              if (isNavigating) return progress;
+              return Math.round(progress * (totalPanels - 1)) / (totalPanels - 1);
+            }, 
+            duration: 0.35, 
+            delay: 0 
+          },
           end: '+=400%',
           onUpdate: self => {
             const progress = self.progress;
