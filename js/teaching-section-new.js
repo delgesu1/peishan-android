@@ -69,17 +69,26 @@
       
       isNavigating = true;
       const progress = panelIndex / (totalPanels - 1);
-      const targetScroll = scrollTriggerInstance.start + progress * (scrollTriggerInstance.end - scrollTriggerInstance.start);
+      const scrollDistance = scrollTriggerInstance.end - scrollTriggerInstance.start;
+      const targetScroll = scrollTriggerInstance.start + progress * scrollDistance;
       
       gsap.to(window, { 
         scrollTo: { y: targetScroll, autoKill: true }, 
         duration: 0.6, 
         ease: 'power2.out',
         onComplete: () => {
-          // Brief lock to prevent snap interference
+          // Ensure perfect centering by applying snap position
           setTimeout(() => {
+            const snapProgress = Math.round(progress * (totalPanels - 1)) / (totalPanels - 1);
+            const snapTargetScroll = scrollTriggerInstance.start + snapProgress * scrollDistance;
+            
+            // Fine-tune position if needed
+            if (Math.abs(window.pageYOffset - snapTargetScroll) > 1) {
+              gsap.set(window, { scrollTo: { y: snapTargetScroll } });
+            }
+            
             isNavigating = false;
-          }, 150);
+          }, 50);
         }
       });
     }
@@ -93,7 +102,21 @@
         if (i === 0) dot.classList.add('active');
         dot.dataset.panel = i;
         navContainer.appendChild(dot);
-        dot.addEventListener('click', () => goToPanel(i));
+        
+        // Add both click and touch events for mobile compatibility
+        const handleNavigation = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          goToPanel(i);
+        };
+        
+        dot.addEventListener('click', handleNavigation);
+        dot.addEventListener('touchend', handleNavigation);
+        
+        // Prevent default touch behavior on dots
+        dot.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+        });
       }
     }
   
@@ -140,7 +163,8 @@
               return Math.round(progress * (totalPanels - 1)) / (totalPanels - 1);
             }, 
             duration: 0.35, 
-            delay: 0 
+            delay: 0.15,  // Increased delay for better mobile snap behavior
+            ease: "power2.inOut"
           },
           end: '+=400%',
           onUpdate: self => {

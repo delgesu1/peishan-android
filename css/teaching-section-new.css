@@ -51,7 +51,7 @@
   
   /* Navigation dots - horizontal bottom layout */
   .nav-dots { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 1000; display: flex; flex-direction: row; gap: 16px; /* mix-blend-mode: overlay; /* Removed to ensure visibility on all backgrounds */ }
-  .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); backdrop-filter: blur(1px); cursor: pointer; transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); position: relative; opacity: 0.7; }
+  .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); backdrop-filter: blur(1px); cursor: pointer; transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); position: relative; opacity: 0.7; touch-action: manipulation; }
   .nav-dot:hover { transform: scale(1.3); background: rgba(255,255,255,0.4); opacity: 0.9; }
   .nav-dot.active { width: 24px; height: 8px; border-radius: 4px; background: rgba(255,255,255,0.9); box-shadow: 0 0 12px rgba(255,255,255,0.5); opacity: 1; }
   
@@ -115,7 +115,7 @@
   /* Responsive tweaks */
   /* Width-based responsiveness */
   @media(max-width:900px){ .panel{align-items:center;} .panel-content{margin:8vh auto;} }
-  @media(max-width:600px){ .panel{padding:0 20px;} .panel-content{margin:5vh auto;} .panel h2{font-size:1.8rem;} .panel p{font-size:1rem;} .nav-dots{bottom:30px; gap:12px;} .nav-dot{width:6px; height:6px;} .nav-dot.active{width:18px; height:6px;} }
+  @media(max-width:600px){ .panel{padding:0 20px;} .panel-content{margin:5vh auto;} .panel h2{font-size:1.8rem;} .panel p{font-size:1rem;} .nav-dots{bottom:30px; gap:12px;} .nav-dot{width:6px; height:6px;} .nav-dot::before{content:''; position:absolute; top:-10px; left:-10px; right:-10px; bottom:-10px; border-radius:50%;} .nav-dot.active{width:18px; height:6px;} .nav-dot.active::before{border-radius:4px;} }
   @media(min-width:1250px){ .panel-content{max-width:1220px; padding:0 60px;} .panel h2{font-size:3.2rem;} .panel p{font-size:1.6rem;} }
   /* Override ultra-wide screens: keep same sizes to prevent runaway scaling */
 @media(min-width:1800px){ .panel h2{font-size:3.2rem;} .panel p{font-size:1.6rem;} }
