@@ -39,6 +39,88 @@
 
     // --- Dynamic background crossfade helper ---
     const dynamicBgContainer = document.getElementById('dynamicBg');
+    
+    // Create ambient orbs once
+    function createAmbientOrbs() {
+      if (!dynamicBgContainer) return;
+      
+      // Create 3 ambient orbs
+      for (let i = 1; i <= 3; i++) {
+        const orb = document.createElement('div');
+        orb.className = `ambient-orb orb-${i}`;
+        dynamicBgContainer.appendChild(orb);
+      }
+    }
+    
+    // Create musical particle system
+    function createParticleSystem() {
+      if (!dynamicBgContainer) return;
+      
+      const particleContainer = document.createElement('div');
+      particleContainer.className = 'particle-container';
+      dynamicBgContainer.appendChild(particleContainer);
+      
+      // Create particles periodically
+      const particleTypes = ['note', 'eighth', 'beam'];
+      
+      function createParticle() {
+        const particle = document.createElement('i');
+        const type = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+        particle.className = `musical-particle ${type}`;
+        
+        // Random horizontal position
+        particle.style.left = Math.random() * 100 + '%';
+        
+        // Random animation delay and duration
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+        
+        particleContainer.appendChild(particle);
+        
+        // Remove particle after animation completes
+        setTimeout(() => {
+          particle.remove();
+        }, 25000);
+      }
+      
+      // Create initial particles
+      for (let i = 0; i < 5; i++) {
+        setTimeout(createParticle, i * 3000);
+      }
+      
+      // Continue creating particles
+      setInterval(createParticle, 4000);
+    }
+    
+    // Create subtle geometric elements
+    function createGeometricElements() {
+      if (!dynamicBgContainer) return;
+      
+      const geoContainer = document.createElement('div');
+      geoContainer.className = 'geometric-elements';
+      dynamicBgContainer.appendChild(geoContainer);
+      
+      // Define element types and their classes
+      const elementTypes = [
+        { class: 'geo-circle', count: 2 },
+        { class: 'geo-triangle', count: 2 },
+        { class: 'geo-square', count: 2 },
+        { class: 'geo-line', count: 1 },
+        { class: 'geo-dots', count: 1 }
+      ];
+      
+      let elementIndex = 1;
+      
+      elementTypes.forEach(type => {
+        for (let i = 0; i < type.count; i++) {
+          const element = document.createElement('div');
+          element.className = `geo-element ${type.class} geo-${elementIndex}`;
+          geoContainer.appendChild(element);
+          elementIndex++;
+        }
+      });
+    }
+    
     function changeBackground(panelIndex) {
       if (!dynamicBgContainer) return;
       // Create new gradient layer
@@ -217,6 +299,9 @@
     // --- Initialization sequence ---
     function initialize() {
       createNavigation();
+      createAmbientOrbs(); // Add ambient light orbs
+      createParticleSystem(); // Add floating musical particles
+      createGeometricElements(); // Add subtle geometric elements
 
       // Isolate nav dots from section stacking contexts by moving it to the body
       const navDots = document.getElementById('navDots');

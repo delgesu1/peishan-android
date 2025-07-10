@@ -49,11 +49,59 @@
   .progress-bar { position: fixed; top: 0; left: 0; width: 100%; height: 2px; background: rgba(255,255,255,0.03); z-index: 1001; backdrop-filter: blur(1px); }
   .progress-fill { height: 100%; width: 0%; background: rgba(255,255,255,0.7); box-shadow: 0 0 10px rgba(255,255,255,0.15); will-change: width; transition: width 0.1s linear; }
   
-  /* Navigation dots - horizontal bottom layout */
-  .nav-dots { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 1000; display: flex; flex-direction: row; gap: 16px; /* mix-blend-mode: overlay; /* Removed to ensure visibility on all backgrounds */ }
-  .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); backdrop-filter: blur(1px); cursor: pointer; transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); position: relative; opacity: 0.7; touch-action: manipulation; }
-  .nav-dot:hover { transform: scale(1.3); background: rgba(255,255,255,0.4); opacity: 0.9; }
-  .nav-dot.active { width: 24px; height: 8px; border-radius: 4px; background: rgba(255,255,255,0.9); box-shadow: 0 0 12px rgba(255,255,255,0.5); opacity: 1; }
+  /* Navigation dots - enhanced design */
+  .nav-dots { 
+    position: fixed; 
+    bottom: 40px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    z-index: 1000; 
+    display: flex; 
+    flex-direction: row; 
+    gap: 20px;
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .nav-dot { 
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    background: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(1px); 
+    cursor: pointer; 
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); 
+    position: relative; 
+    opacity: 0.8; 
+    touch-action: manipulation;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .nav-dot:hover { 
+    transform: scale(1.4); 
+    background: rgba(255, 255, 255, 0.6); 
+    opacity: 1;
+    box-shadow: 
+      0 0 20px rgba(255, 255, 255, 0.4),
+      0 0 40px rgba(255, 255, 255, 0.2);
+  }
+  
+  .nav-dot.active { 
+    width: 28px; 
+    height: 10px; 
+    border-radius: 5px; 
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)); 
+    box-shadow: 
+      0 0 20px rgba(255, 255, 255, 0.6),
+      0 0 40px rgba(255, 255, 255, 0.3),
+      inset 0 0 10px rgba(255, 255, 255, 0.2); 
+    opacity: 1;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
   
   /* Hidden state for nav dots & progress bar */
   .nav-dots.hidden, .progress-bar.hidden { opacity: 0; pointer-events: none; }
@@ -64,17 +112,318 @@
   .panel { width:16.666%; height:100vh; display:flex; align-items:center; justify-content:center; position:relative; flex-shrink:0; padding:0 40px; box-sizing:border-box; }
   
   /* Dynamic background */
-  /* Dynamic background container - individual layers will handle gradients */
-  .dynamic-bg { position:absolute; inset:0; z-index:-1; background:none; overflow:hidden; }
-  /* Background gradient layers */
-  .bg-layer { position:absolute; inset:0; }
-  .bg-panel-1{background:linear-gradient(135deg,#1e293b 0%, #312e81 100%);} .bg-panel-2{background:linear-gradient(135deg,#312e81 0%, #4338ca 100%);} .bg-panel-3{background:linear-gradient(135deg,#4338ca 0%, #6366f1 100%);} .bg-panel-4{background:linear-gradient(135deg,#6366f1 0%, #6d7199 100%);} .bg-panel-5{background:linear-gradient(135deg,#6d7199 0%, #7c8bb3 100%);} .bg-panel-6{background:linear-gradient(135deg,#7c8bb3 0%, #8b9bb8 100%);} 
+  /* Dynamic background container - enhanced with texture and effects */
+  .dynamic-bg { 
+    position: absolute; 
+    inset: 0; 
+    z-index: -1; 
+    background: none; 
+    overflow: hidden;
+  }
   
-  /* Panel content */
-  .panel-content { max-width:800px; text-align:left; opacity:0.3; transform:scale(0.8); will-change:transform,opacity; transition:all 0.8s ease; padding-block:6vh; }
-  .panel.active .panel-content { opacity:1; transform:scale(1); }
-  .panel h2 { font-family: 'Cormorant Garamond', serif; font-size:clamp(2.2rem,3.5vw,3.5rem); margin:0 0 2.4rem; font-weight:300; letter-spacing:-0.01em; transform:translateY(20px); opacity:0; transition:all 0.8s ease 0.2s; line-height:1.2; position:relative; }
-  .panel.active h2 { transform:translateY(0); opacity:1; }
+  /* Add noise texture overlay for sophistication */
+  .dynamic-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    z-index: 10;
+    background-image: 
+      repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.01) 35px, rgba(255,255,255,.01) 70px);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  
+  /* Vignette effect for depth */
+  .dynamic-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+    z-index: 5;
+    pointer-events: none;
+  }
+  
+  /* Ambient light orbs for depth and atmosphere */
+  .ambient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.3;
+    animation: float-orb 20s ease-in-out infinite;
+    pointer-events: none;
+  }
+  
+  .orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(147, 112, 219, 0.6) 0%, transparent 70%);
+    top: 10%;
+    left: -10%;
+    animation-duration: 25s;
+  }
+  
+  .orb-2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 182, 193, 0.5) 0%, transparent 70%);
+    bottom: 20%;
+    right: -5%;
+    animation-duration: 30s;
+    animation-delay: -10s;
+  }
+  
+  .orb-3 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 35s;
+    animation-delay: -20s;
+  }
+  
+  @keyframes float-orb {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(50px, -30px) scale(1.1);
+    }
+    50% {
+      transform: translate(-30px, 50px) scale(0.9);
+    }
+    75% {
+      transform: translate(-50px, -20px) scale(1.05);
+    }
+  }
+  
+  /* Musical particle system - keeping existing */
+  .particle-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 3;
+  }
+  
+  .musical-particle {
+    position: absolute;
+    font-family: 'Font Awesome 5 Free', sans-serif;
+    font-weight: 900;
+    opacity: 0;
+    animation: float-particle 15s linear infinite;
+    color: rgba(255, 255, 255, 0.15);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    font-size: clamp(14px, 1.5vw, 24px);
+  }
+  
+  .musical-particle.note::before { content: '\f001'; }
+  .musical-particle.eighth::before { content: '\f441'; }
+  .musical-particle.beam::before { content: '\f440'; }
+  
+  @keyframes float-particle {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    90% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-100px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
+  /* Subtle geometric floating elements */
+  .geometric-elements {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .geo-element {
+    position: absolute;
+    opacity: 0.03;
+    animation: float-geo 30s ease-in-out infinite;
+  }
+  
+  /* Circle element */
+  .geo-circle {
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+  }
+  
+  /* Triangle element */
+  .geo-triangle {
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 70px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Square element */
+  .geo-square {
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transform: rotate(45deg);
+  }
+  
+  /* Line element */
+  .geo-line {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  }
+  
+  /* Dots pattern */
+  .geo-dots {
+    width: 50px;
+    height: 50px;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.3) 2px, transparent 2px);
+    background-size: 15px 15px;
+  }
+  
+  @keyframes float-geo {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    25% {
+      transform: translate(100px, -50px) rotate(90deg) scale(1.1);
+    }
+    50% {
+      transform: translate(-50px, 100px) rotate(180deg) scale(0.9);
+    }
+    75% {
+      transform: translate(-100px, -30px) rotate(270deg) scale(1.05);
+    }
+  }
+  
+  /* Position variations */
+  .geo-1 { top: 10%; left: 5%; animation-delay: 0s; animation-duration: 35s; }
+  .geo-2 { top: 70%; right: 10%; animation-delay: -10s; animation-duration: 40s; }
+  .geo-3 { bottom: 20%; left: 15%; animation-delay: -20s; animation-duration: 45s; }
+  .geo-4 { top: 40%; right: 20%; animation-delay: -5s; animation-duration: 38s; }
+  .geo-5 { top: 60%; left: 50%; animation-delay: -15s; animation-duration: 42s; }
+  .geo-6 { bottom: 40%; right: 5%; animation-delay: -25s; animation-duration: 50s; }
+  .geo-7 { top: 20%; left: 70%; animation-delay: -8s; animation-duration: 36s; }
+  .geo-8 { bottom: 10%; left: 40%; animation-delay: -18s; animation-duration: 44s; }
+  /* Background gradient layers - Premium palette */
+  .bg-layer { 
+    position: absolute; 
+    inset: 0;
+    background-blend-mode: normal;
+  }
+  
+  /* Panel 1: Deep midnight to royal purple */
+  .bg-panel-1 {
+    background: 
+      radial-gradient(ellipse at top left, rgba(25, 25, 112, 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(75, 0, 130, 0.3) 0%, transparent 50%),
+      linear-gradient(135deg, #0f0f3a 0%, #1a1a5e 25%, #2d1b69 75%, #3d2f7f 100%);
+  }
+  
+  /* Panel 2: Royal purple to wine burgundy */
+  .bg-panel-2 {
+    background: 
+      radial-gradient(ellipse at top right, rgba(128, 0, 128, 0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at bottom left, rgba(139, 0, 139, 0.4) 0%, transparent 50%),
+      linear-gradient(135deg, #3d2f7f 0%, #4a3a8c 25%, #722f37 75%, #8b1a1a 100%);
+  }
+  
+  /* Panel 3: Wine to deep forest green */
+  .bg-panel-3 {
+    background: 
+      radial-gradient(ellipse at top right, rgba(0, 100, 0, 0.3) 0%, transparent 70%),
+      radial-gradient(ellipse at bottom left, rgba(34, 139, 34, 0.4) 0%, transparent 60%),
+      linear-gradient(135deg, #8b1a1a 0%, #6b1414 25%, #1a4d2e 75%, #0f3020 100%);
+  }
+  
+  /* Panel 4: Forest green to deep teal */
+  .bg-panel-4 {
+    background: 
+      radial-gradient(ellipse at center, rgba(0, 128, 128, 0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(0, 77, 77, 0.4) 0%, transparent 50%),
+      linear-gradient(135deg, #0f3020 0%, #1a4d4d 30%, #004d4d 70%, #003333 100%);
+  }
+  
+  /* Panel 5: Deep teal to midnight navy */
+  .bg-panel-5 {
+    background: 
+      radial-gradient(ellipse at top left, rgba(0, 0, 128, 0.3) 0%, transparent 70%),
+      radial-gradient(ellipse at center bottom, rgba(25, 25, 112, 0.4) 0%, transparent 60%),
+      linear-gradient(135deg, #003333 0%, #002633 30%, #191970 70%, #0f0f3a 100%);
+  }
+  
+  /* Panel 6: Midnight navy to deep plum */
+  .bg-panel-6 {
+    background: 
+      radial-gradient(ellipse at center, rgba(75, 0, 130, 0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at top right, rgba(85, 26, 139, 0.4) 0%, transparent 70%),
+      linear-gradient(135deg, #0f0f3a 0%, #2d1b69 30%, #483d8b 70%, #4b0082 100%);
+  } 
+  
+  /* Panel content - Clean design without frame */
+  .panel-content { 
+    max-width: 800px; 
+    text-align: left; 
+    opacity: 0.3; 
+    transform: scale(0.8); 
+    will-change: transform, opacity; 
+    transition: all 0.8s ease; 
+    padding: 3rem;
+    padding-block: 6vh;
+    /* Remove glass morphism - clean text only */
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+  
+  .panel.active .panel-content { 
+    opacity: 1; 
+    transform: scale(1);
+    background: transparent;
+    box-shadow: none;
+  }
+  .panel h2 { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: clamp(2.2rem, 3.5vw, 3.5rem); 
+    margin: 0 0 2.4rem; 
+    font-weight: 300; 
+    letter-spacing: -0.01em; 
+    transform: translateY(20px); 
+    opacity: 0; 
+    transition: all 0.8s ease 0.2s; 
+    line-height: 1.2; 
+    position: relative;
+    /* Enhanced typography */
+    text-shadow: 
+      0 0 40px rgba(255, 255, 255, 0.1),
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .panel.active h2 { 
+    transform: translateY(0); 
+    opacity: 1;
+    text-shadow: 
+      0 0 60px rgba(255, 255, 255, 0.2),
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      0 0 120px rgba(255, 255, 255, 0.05);
+  }
   
   /* Slick short line divider */
   .panel h2::after { 
@@ -106,8 +455,27 @@
     transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 2s; 
   }
   .panel.active h2::before { transform: scale(1); }
-  .panel p { font-family: 'Spectral', serif; font-size:clamp(1.2rem,1.8vw,1.6rem); font-weight:400; line-height:1.75; opacity:0; transform:translateY(20px); transition:all 0.8s ease 0.4s; margin-bottom:1rem; text-align:justify; text-align-last:left; }
-  .panel.active p { opacity:0.9; transform:translateY(0); }
+  .panel p { 
+    font-family: 'Spectral', serif; 
+    font-size: clamp(1.2rem, 1.8vw, 1.6rem); 
+    font-weight: 400; 
+    line-height: 1.75; 
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: all 0.8s ease 0.4s; 
+    margin-bottom: 1rem; 
+    text-align: justify; 
+    text-align-last: left;
+    /* Subtle text enhancement */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.85);
+  }
+  
+  .panel.active p { 
+    opacity: 0.95; 
+    transform: translateY(0);
+    color: rgba(255, 255, 255, 0.95);
+  }
   
   /* Spacer for scroll distance */
   .scroll-spacer { height:0; display:none; }
@@ -115,7 +483,29 @@
   /* Responsive tweaks */
   /* Width-based responsiveness */
   @media(max-width:900px){ .panel{align-items:center;} .panel-content{margin:8vh auto;} }
-  @media(max-width:600px){ .panel{padding:0 20px;} .panel-content{margin:5vh auto;} .panel h2{font-size:1.8rem;} .panel p{font-size:1rem;} .nav-dots{bottom:30px; gap:12px;} .nav-dot{width:6px; height:6px;} .nav-dot.active{width:18px; height:6px;} }
+  @media(max-width:600px){ 
+    .panel{padding:0 20px;} 
+    .panel-content{
+      margin:5vh auto;
+      padding: 2rem 1.5rem;
+    } 
+    .panel h2{font-size:1.8rem;} 
+    .panel p{font-size:1rem;} 
+    .nav-dots{
+      bottom:30px; 
+      gap:12px;
+      padding: 12px 18px;
+    } 
+    .nav-dot{width:6px; height:6px;} 
+    .nav-dot.active{width:18px; height:6px;}
+    /* Reduce particle density on mobile */
+    .musical-particle { display: none; }
+    /* Simplify orbs on mobile */
+    .ambient-orb { 
+      filter: blur(40px);
+      opacity: 0.2;
+    }
+  }
   /* Mobile phone specific styles - disable interaction visual cues */
   @media (max-width: 600px) and (pointer: coarse) and (hover: none) {
     .nav-dot { cursor: default; opacity: 0.5; }
