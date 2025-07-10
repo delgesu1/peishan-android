@@ -300,7 +300,7 @@
     function initialize() {
       createNavigation();
       createAmbientOrbs(); // Add ambient light orbs
-      createParticleSystem(); // Add floating musical particles
+      // createParticleSystem(); // Add floating musical particles - REMOVED
       createGeometricElements(); // Add subtle geometric elements
 
       // Isolate nav dots from section stacking contexts by moving it to the body
