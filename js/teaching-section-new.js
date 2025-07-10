@@ -33,7 +33,7 @@
       </div>
     `;
   
-    const totalPanels = 6;
+    const totalPanels = 5;
     let currentPanel = 0;
     let scrollTriggerInstance = null; // To store the main ST instance
 
@@ -232,16 +232,6 @@
       // Initially hide the UI elements
       gsap.set([navDots, progressBar], { autoAlpha: 0 });
   
-      // Use a ScrollTrigger to toggle visibility of the nav UI
-          // Keep nav dots visible while the horizontal story is active
-      ScrollTrigger.create({
-        trigger: '.story-wrapper',
-        start: 'top bottom',   // Show when story wrapper enters viewport
-        end: '+=600%',  // Further extended to ensure dots stay visible through last panel
-        onToggle: self => {
-          gsap.to([navDots, progressBar], { autoAlpha: self.isActive ? 1 : 0, duration: 0.3 });
-        }
-      });
   
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -259,6 +249,18 @@
             ease: "power2.inOut"
           },
           end: '+=400%',
+          onEnter: () => {
+            gsap.to([navDots, progressBar], { autoAlpha: 1, duration: 0.3 });
+          },
+          onLeave: () => {
+            gsap.to([navDots, progressBar], { autoAlpha: 0, duration: 0.3 });
+          },
+          onEnterBack: () => {
+            gsap.to([navDots, progressBar], { autoAlpha: 1, duration: 0.3 });
+          },
+          onLeaveBack: () => {
+            gsap.to([navDots, progressBar], { autoAlpha: 0, duration: 0.3 });
+          },
           onUpdate: self => {
             const progress = self.progress;
             const panelIdx = Math.min(totalPanels - 1, Math.round(progress * (totalPanels - 1)));
@@ -280,12 +282,11 @@
     // --- Build panels markup ---
     function createPanelsMarkup() {
       const panels = [
-        { title: 'The Spark', text: `I was fortunate to have begun my schooling in an exceptional musical environment where everyone in my class, from grade one through six, was a "music major." There was lots of musical interaction, and every week all grades would come together for singing in chorus and playing in orchestra. In fact, I was just 6 years old when I played my first duo: Mozart's e minor Sonata for Piano and Violin, K. 304. I still remember how much I loved playing with the violinist and how fearless I was at her final exam! She was one year my senior and near a nervous breakdown as we went in to play for a really scary jury. Instinctively I moved to calm her, touching her shoulder and holding her very shaky right hand for a few seconds. I had no idea if that helped settle her, but later she told me how thrilled she was that her bow didn't shake!` },
-        { title: 'A Natural Path', text: `Throughout my high school years, I continued to benefit from a specialized musical education, and it became more than natural for me to play for my classmates' lessons, exams, recitals, etc. It is no different today! Supporting the people I play with both musically and emotionally brings me great personal satisfaction–I feel I have done something good for the day. While some friends seemed disappointed that I did not continue to pursue more solo playing, they didn't realize that because of my formative years in Taiwan I have never thought of collaborative piano as something less important. I love playing the piano, both solo and collaborative, but to put it simply, making music with others is what brings me true fulfillment.` },
-        { title: 'A Fortunate Discovery', text: `I came to the U.S. from Taiwan focused on solo piano, but after a year, I discovered that major conservatories offered graduate degrees in "Accompanying"—a field then unheard of back home. I expedited my undergraduate studies, finishing in three years to join the master's program at The Juilliard School in what is now more aptly called "Collaborative Piano." I immediately felt I belonged, finally able to concentrate on—and support myself with—the work I had loved my entire life. During my undergrad, I also gained invaluable experience working long Saturdays at the pre-college, running between lessons every half-hour for what was then just $6.` },
-        { title: 'The Art of Collaboration', text: `This is how I discovered my passion, and today I am devoted to all aspects of the collaborative field—I perform, teach, and am excited to be building graduate collaborative piano programs. I hope sharing my background has been helpful to young pianists considering this path. Here are a few more things to know: "Collaborative Piano" is not an escape from difficult repertoire; it is an art form and a career for those who love the piano and making music with others. Studying collaborative piano at the graduate level is busy. Life is often hectic, but a music school is ideal for learning repertoire and gaining experience. Your day is filled with personal practice, rehearsals, playing for your partner's lessons, classes, concerts, student juries, and recitals.` },
-        { title: 'Are You the Right Fit?', text: `Having solid training as a pianist is really a pre-requisite–the repertoire we have to learn and keep in our fingers is enormous, not to mention all the related skills (e.g., lyric diction, opera coaching, score reading). If you are a good pianist, love to work hard, enjoy people and the exchange of musical ideas, take pleasure in both leading and supportive roles (the two are absolutely necessary), then collaborative piano is probably for you. You may spend more time at the piano than ever before, but your life will be richer in ways that you cannot imagine.` },
-        { title: 'A Deeper Understanding', text: `My work at four major U.S. conservatories taught me how essential collaborative piano programs are to a school's overall success. I saw firsthand the challenge of balancing a student's education with institutional service needs, which inspired my doctoral work. It's unfortunate that some administrators misjudge these programs as just a source of service pianists—a misguided oversimplification that never works. Seeing new programs emerge worldwide, I felt my education from three of the world's best could be of help. My thesis, therefore, examines how to balance a demanding master's curriculum with a school's need for accompanists to create a model that truly serves everyone.` }
+        { title: 'The Spark', text: `I was fortunate to have begun my schooling in an exceptional musical environment where everyone in my class, from grade one through six, was a "music major." There was lots of musical interaction, and every week all grades would come together for singing in chorus and playing in orchestra. In fact, I was just 6 years old when I played my first duo: Mozart's e minor Sonata for Piano and Violin, K. 304. I still remember how much I loved playing with the violinist and how I was able to help her at her final exam! She was one year my senior and near a nervous breakdown as we went in to play for a really scary jury. Instinctively I moved to calm her and held her very shaky right hand for a few seconds. I had no idea if that would help settle her, but later she told me how thrilled she was that her bow didn't shake! Looking back, I see that it was an intensely positive spark that would eventually propel my professional life.` },
+        { title: 'A Natural Path', text: `Throughout my high school years, I continued to benefit from being in a class of only music majors and it was more than natural for me to play for my classmates' lessons, exams, recitals, etc. Nothing has changed except that I have been privileged to play with some of the world's finest artists! Supporting my partners both musically and emotionally brings me great personal satisfaction–I feel I have done something good for the day. Due to these formative years in Taiwan, I have always thought of solo and collaborative piano as equally important. I love playing the piano, both solo and collaborative, but to put it simply, making music with others is what brings me true fulfillment.` },
+        { title: 'A Life-Changing Discovery', text: `I came to the U.S. from Taiwan focused on solo piano, but after a year, I was excited to discover that major conservatories offered graduate degrees in "Accompanying"—a major discipline then unheard of back home. I expedited my undergraduate studies, finishing in three years so I could join the master's program at The Juilliard School in what is now more appropriately called "Collaborative Piano." I immediately felt I belonged, finally able to concentrate on—and support myself with—the work I had loved my entire life. I also gained invaluable experience working long Saturdays at the pre-college, running between lessons every half-hour for what was then just $6! This is how I discovered my passion, and today I am devoted to all aspects of the collaborative field—I perform, teach, and I am excited to have helped build graduate collaborative piano programs.` },
+        { title: 'Passion to Profession', text: `My work at four prominent U.S. conservatories has taught me how crucial a thriving collaborative piano program is to a school's success. Unfortunately, many institutions view these programs merely as a means to utilize pianists for service, often neglecting their educational needs. Achieving a balance between a student's educational experience and the demands of institutional service is challenging, yet essential. A well-designed graduate curriculum is vital for preparing individuals for a diverse collaborative career. This topic was the focus of my doctoral thesis, The Collaborative Pianists: Balancing Roles in Partnership (ADD LINK). It is encouraging to witness so many new programs in my field globally and how they inspire a new generation of pianists to share in my love and passion for this art form.` },
+        { title: 'Are You the Right Fit?', text: `I hope sharing my background is helpful to young pianists considering this path. Studying collaborative piano at the graduate level is busy, often hectic. Your day is filled with personal practice, rehearsals, playing for lessons, classes, student juries, and recitals — ideal for learning repertoire and gaining experience. Solid training as a pianist is really a prerequisite because the repertoire we must learn and keep in our fingers is enormous, not to mention all the related skills (e.g., orchestral reductions, lyric diction, score reading). Here are a few more things to know: "Collaborative Piano" is certainly not an escape from difficult repertoire, but it is an art form and a career for those who love the piano and making music with others. If you are a good pianist, enjoy people, the exchange of musical ideas, and take pleasure in both leading and supportive roles (the two are absolutely necessary), then collaborative piano is probably for you. You may spend more time at the piano than ever before, but your life will be richer in ways that you cannot imagine.` }
       ];
       return panels.map((p, idx) => `<section class="panel${idx === 0 ? ' active' : ''}" data-panel="${idx + 1}"><div class="panel-content"><h2>${p.title}</h2><p>${p.text}</p></div></section>`).join('');
     }

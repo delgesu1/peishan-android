@@ -1,20 +1,20 @@
 /* Modern Elegant Contact Form - Redesigned for Minimalist Beauty */
 
-/* CSS Custom Properties matching website design system */
+/* CSS Custom Properties - Neutral harmony with warm undertones */
 :root {
-    --form-bg-primary: rgba(253, 253, 254, 0.95);
+    --form-bg-primary: rgba(252, 251, 250, 0.95);
     --form-bg-glass: rgba(255, 255, 255, 0.85);
-    --form-text-primary: #1f2937;
-    --form-text-secondary: #6b7280;
-    --form-accent: #6366f1;
-    --form-accent-light: #a5b4fc;
-    --form-lavender: #c4b5fd;
+    --form-text-primary: #2a2a2a;
+    --form-text-secondary: #6b6b6b;
+    --form-accent: #6b5d7f;
+    --form-accent-light: #9d8bb0;
+    --form-lavender: #b8a6c8;
     --form-success: #059669;
-    --form-error: #dc2626;
-    --form-border: rgba(226, 232, 240, 0.6);
+    --form-error: #8b4a47;
+    --form-border: rgba(232, 230, 227, 0.6);
     --form-shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.03);
-    --form-shadow-medium: 0 4px 15px rgba(99, 102, 241, 0.08);
-    --form-shadow-strong: 0 8px 25px rgba(99, 102, 241, 0.15);
+    --form-shadow-medium: 0 4px 15px rgba(107, 93, 127, 0.08);
+    --form-shadow-strong: 0 8px 25px rgba(107, 93, 127, 0.15);
     --form-radius: 16px;
     --form-radius-large: 24px;
 }
@@ -57,6 +57,16 @@
     }
 }
 
+/* Contact Section Background - Neutral with warm undertones */
+#contact.section {
+    background: 
+        radial-gradient(ellipse at top right, rgba(157, 139, 176, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom left, rgba(139, 74, 71, 0.04) 0%, transparent 50%),
+        linear-gradient(to bottom, #faf9f8 0%, #f5f3f0 100%);
+    position: relative;
+    overflow: hidden;
+}
+
 /* Main Form Container - Ultra Modern Glass Design */
 .elegant-form-wrapper {
     background: var(--form-bg-glass);
@@ -78,7 +88,7 @@
 .elegant-form-wrapper:hover {
     transform: translateY(-2px);
     box-shadow: 
-        0 12px 35px rgba(99, 102, 241, 0.12),
+        0 12px 35px rgba(107, 93, 127, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 

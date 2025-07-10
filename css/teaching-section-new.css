@@ -108,8 +108,8 @@
   
   /* Story wrapper (pinned) */
   .story-wrapper { height:100vh; overflow:hidden; position:relative; z-index: 2; /* Set stacking order below nav dots */ }
-  .panels-container { display:flex; width:600%; height:100vh; will-change:transform; }
-  .panel { width:16.666%; height:100vh; display:flex; align-items:center; justify-content:center; position:relative; flex-shrink:0; padding:0 40px; box-sizing:border-box; }
+  .panels-container { display:flex; width:500%; height:100vh; will-change:transform; }
+  .panel { width:20%; height:100vh; display:flex; align-items:center; justify-content:center; position:relative; flex-shrink:0; padding:0 40px; box-sizing:border-box; }
   
   /* Dynamic background */
   /* Dynamic background container - enhanced with texture and effects */
@@ -358,12 +358,12 @@
       linear-gradient(135deg, #0f3020 0%, #1a4d4d 30%, #004d4d 70%, #003333 100%);
   }
   
-  /* Panel 5: Deep teal to midnight navy */
+  /* Panel 5: Deep navy to warm burgundy - matching press section */
   .bg-panel-5 {
     background: 
-      radial-gradient(ellipse at top left, rgba(0, 0, 128, 0.3) 0%, transparent 70%),
-      radial-gradient(ellipse at center bottom, rgba(25, 25, 112, 0.4) 0%, transparent 60%),
-      linear-gradient(135deg, #003333 0%, #002633 30%, #191970 70%, #0f0f3a 100%);
+      radial-gradient(ellipse at top left, rgba(139, 74, 71, 0.3) 0%, transparent 70%),
+      radial-gradient(ellipse at center bottom, rgba(107, 56, 53, 0.4) 0%, transparent 60%),
+      linear-gradient(135deg, #191970 0%, #2d1b69 30%, #6b3835 70%, #8b4a47 100%);
   }
   
   /* Panel 6: Midnight navy to deep plum */
