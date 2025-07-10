@@ -182,6 +182,19 @@ button {
     padding: 0 var(--spacing-md);
 }
 
+/* Ensure sections don't have excessive height on mobile */
+@media (max-width: 768px) {
+    .section {
+        min-height: auto !important;
+    }
+    
+    /* Ensure last section doesn't create extra space */
+    .section:last-of-type {
+        margin-bottom: 0 !important;
+        padding-bottom: 3rem !important;
+    }
+}
+
 .section {
     padding: var(--spacing-lg) 0;
     position: relative;
@@ -4053,6 +4066,31 @@ footer {
     /* Prevent any content bleeding below footer on mobile */
     position: relative;
     z-index: 1;
+}
+
+/* Prevent infinite scrolling on mobile */
+@media (max-width: 768px) {
+    html {
+        overflow-x: hidden;
+    }
+    
+    body {
+        overflow-x: hidden;
+        /* Remove any min-height that might cause issues */
+        min-height: auto;
+    }
+    
+    footer {
+        /* Ensure footer is the last element */
+        margin-bottom: 0 !important;
+        padding-bottom: 2rem;
+    }
+    
+    /* Prevent any elements from extending beyond viewport */
+    body > * {
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
 }
 
 .footer-content {
