@@ -366,6 +366,131 @@
     }
   }
 
+  /* Android-specific fixes for ghost text issue */
+  @supports not (-webkit-backdrop-filter: blur(1px)) {
+    /* Target Android which doesn't fully support backdrop-filter */
+    .nav-dots {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: rgba(0, 0, 0, 0.85);
+    }
+    
+    .panel-content {
+      /* Force proper layer isolation */
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    
+    .panels-container {
+      /* Prevent transform glitches */
+      transform-style: flat;
+      -webkit-transform-style: flat;
+    }
+  }
+
+  /* Android WebView specific (detected via JS) */
+  .android-device .story-wrapper {
+    /* Disable will-change to prevent compositing issues */
+    will-change: auto !important;
+  }
+
+  .android-device .panels-container {
+    will-change: auto !important;
+  }
+  
+  /* Disable all will-change properties on Android */
+  .android-device .dynamic-bg,
+  .android-device .progress-fill,
+  .android-device .panel-content {
+    will-change: auto !important;
+  }
+
+  .android-device .panel {
+    /* Ensure text doesn't bleed through */
+    isolation: isolate;
+    contain: layout style paint;
+  }
+
+  .android-device .dynamic-bg {
+    /* Simplify background rendering */
+    transform: none;
+    will-change: auto;
+  }
+
+  /* Prevent text overflow on Android */
+  .android-device .panel {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .android-device .panel-content {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Android-specific text containment */
+  .android-device .panel p,
+  .android-device .panel h2 {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Add solid background to panel content on Android */
+  .android-device .panel-content {
+    background: rgba(0, 0, 0, 0.95) !important;
+    border-radius: 12px;
+    padding: 2.5rem;
+    /* Disable opacity transitions to prevent ghost text */
+    transition: none !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
+  
+  /* Fix z-index hierarchy for Android */
+  .android-device #teaching-collaborative-piano {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .android-device .tc-content-wrapper {
+    z-index: 2;
+  }
+  
+  .android-device .story-wrapper {
+    z-index: 3;
+  }
+  
+  .android-device .nav-dots {
+    z-index: 9999 !important;
+  }
+  
+  .android-device .progress-bar {
+    z-index: 9998 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+  }
+
+  /* Additional Android fixes for panel visibility */
+  .android-device .panel:not(.active) {
+    display: none !important; /* Completely hide non-active panels */
+  }
+
+  .android-device .panel.active {
+    display: flex !important;
+  }
+
+  /* Fix for Android transform rendering */
+  .android-device #teaching-collaborative-piano {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+
 
 
 

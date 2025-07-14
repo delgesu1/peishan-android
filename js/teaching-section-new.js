@@ -1,5 +1,9 @@
 // New Teaching & Collaboration Section Script
 (function () {
+    // Prevent double initialization
+    if (window._teachingCollaboInitialized) return;
+    window._teachingCollaboInitialized = true;
+    
     // Ensure GSAP and necessary plugins are available
     function waitForGSAP(callback) {
       if (window.gsap && window.ScrollTrigger && window.gsap.plugins.scrollTo) {
@@ -232,12 +236,19 @@
       // Initially hide the UI elements
       gsap.set([navDots, progressBar], { autoAlpha: 0 });
   
+      // Detect Android for specific settings
+      const isAndroid = /Android/i.test(navigator.userAgent);
   
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.story-wrapper',
           pin: true,
           scrub: 1,
+          // Add Android-specific settings
+          pinType: isAndroid ? 'fixed' : 'transform',
+          anticipatePin: isAndroid ? 0 : 1,
+          fastScrollEnd: isAndroid ? false : true,
+          preventOverlaps: isAndroid ? true : false,
           snap: { 
             snapTo: (progress) => {
               // Don't snap during programmatic navigation
@@ -304,10 +315,22 @@
       // createParticleSystem(); // REMOVED - causing performance issues  
       // createGeometricElements(); // REMOVED - causing performance issues
 
+      // Detect Android and add class for CSS targeting
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      if (isAndroid) {
+        document.body.classList.add('android-device');
+      }
+
       // Isolate nav dots from section stacking contexts by moving it to the body
       const navDots = document.getElementById('navDots');
       if (navDots) {
         document.body.appendChild(navDots);
+        
+        // Disable backdrop-filter for Android
+        if (isAndroid) {
+          navDots.style.backdropFilter = 'none';
+          navDots.style.webkitBackdropFilter = 'none';
+        }
       }
 
       // Initialize first background layer if not present
