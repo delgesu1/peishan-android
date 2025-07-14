@@ -144,181 +144,11 @@
     pointer-events: none;
   }
   
-  /* Ambient light orbs for depth and atmosphere */
-  .ambient-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.3;
-    animation: float-orb 20s ease-in-out infinite;
-    pointer-events: none;
-  }
+  /* Ambient orbs removed for performance */
   
-  .orb-1 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(147, 112, 219, 0.6) 0%, transparent 70%);
-    top: 10%;
-    left: -10%;
-    animation-duration: 25s;
-  }
+  /* Musical particles removed for performance */
   
-  .orb-2 {
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255, 182, 193, 0.5) 0%, transparent 70%);
-    bottom: 20%;
-    right: -5%;
-    animation-duration: 30s;
-    animation-delay: -10s;
-  }
-  
-  .orb-3 {
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation-duration: 35s;
-    animation-delay: -20s;
-  }
-  
-  @keyframes float-orb {
-    0%, 100% {
-      transform: translate(0, 0) scale(1);
-    }
-    25% {
-      transform: translate(50px, -30px) scale(1.1);
-    }
-    50% {
-      transform: translate(-30px, 50px) scale(0.9);
-    }
-    75% {
-      transform: translate(-50px, -20px) scale(1.05);
-    }
-  }
-  
-  /* Musical particle system - keeping existing */
-  .particle-container {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 3;
-  }
-  
-  .musical-particle {
-    position: absolute;
-    font-family: 'Font Awesome 5 Free', sans-serif;
-    font-weight: 900;
-    opacity: 0;
-    animation: float-particle 15s linear infinite;
-    color: rgba(255, 255, 255, 0.15);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    font-size: clamp(14px, 1.5vw, 24px);
-  }
-  
-  .musical-particle.note::before { content: '\f001'; }
-  .musical-particle.eighth::before { content: '\f441'; }
-  .musical-particle.beam::before { content: '\f440'; }
-  
-  @keyframes float-particle {
-    0% {
-      transform: translateY(100vh) rotate(0deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.6;
-    }
-    90% {
-      opacity: 0.6;
-    }
-    100% {
-      transform: translateY(-100px) rotate(360deg);
-      opacity: 0;
-    }
-  }
-  
-  /* Subtle geometric floating elements */
-  .geometric-elements {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 2;
-  }
-  
-  .geo-element {
-    position: absolute;
-    opacity: 0.03;
-    animation: float-geo 30s ease-in-out infinite;
-  }
-  
-  /* Circle element */
-  .geo-circle {
-    width: 80px;
-    height: 80px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-  }
-  
-  /* Triangle element */
-  .geo-triangle {
-    width: 0;
-    height: 0;
-    border-left: 40px solid transparent;
-    border-right: 40px solid transparent;
-    border-bottom: 70px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  /* Square element */
-  .geo-square {
-    width: 60px;
-    height: 60px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    transform: rotate(45deg);
-  }
-  
-  /* Line element */
-  .geo-line {
-    width: 100px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  }
-  
-  /* Dots pattern */
-  .geo-dots {
-    width: 50px;
-    height: 50px;
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.3) 2px, transparent 2px);
-    background-size: 15px 15px;
-  }
-  
-  @keyframes float-geo {
-    0%, 100% {
-      transform: translate(0, 0) rotate(0deg) scale(1);
-    }
-    25% {
-      transform: translate(100px, -50px) rotate(90deg) scale(1.1);
-    }
-    50% {
-      transform: translate(-50px, 100px) rotate(180deg) scale(0.9);
-    }
-    75% {
-      transform: translate(-100px, -30px) rotate(270deg) scale(1.05);
-    }
-  }
-  
-  /* Position variations */
-  .geo-1 { top: 10%; left: 5%; animation-delay: 0s; animation-duration: 35s; }
-  .geo-2 { top: 70%; right: 10%; animation-delay: -10s; animation-duration: 40s; }
-  .geo-3 { bottom: 20%; left: 15%; animation-delay: -20s; animation-duration: 45s; }
-  .geo-4 { top: 40%; right: 20%; animation-delay: -5s; animation-duration: 38s; }
-  .geo-5 { top: 60%; left: 50%; animation-delay: -15s; animation-duration: 42s; }
-  .geo-6 { bottom: 40%; right: 5%; animation-delay: -25s; animation-duration: 50s; }
-  .geo-7 { top: 20%; left: 70%; animation-delay: -8s; animation-duration: 36s; }
-  .geo-8 { bottom: 10%; left: 40%; animation-delay: -18s; animation-duration: 44s; }
+  /* Geometric elements removed for performance */
   /* Background gradient layers - Premium palette */
   .bg-layer { 
     position: absolute; 
@@ -459,7 +289,7 @@
     font-family: 'Spectral', serif; 
     font-size: clamp(1.2rem, 1.8vw, 1.6rem); 
     font-weight: 400; 
-    line-height: 1.75; 
+    line-height: 1.45; 
     opacity: 0; 
     transform: translateY(20px); 
     transition: all 0.8s ease 0.4s; 
@@ -518,14 +348,22 @@
   /* Height-based responsive font sizing for panel text */
   @media(max-height:1000px){
     .panel h2 { font-size:clamp(2rem, 3vw, 3rem); }
-    .panel p { font-size:clamp(1.1rem, 1.6vw, 1.4rem); line-height: 1.65; }
+    .panel p { font-size:clamp(1.1rem, 1.6vw, 1.4rem); line-height: 1.4; }
     .panel-content { padding-block: 5vh; }
   }
 
   @media(max-height:900px){
     .panel h2 { font-size:clamp(1.8rem, 2.8vw, 2.8rem); margin-bottom: 2.4rem; }
-    .panel p { font-size:clamp(1rem, 1.4vw, 1.3rem); line-height: 1.6; }
+    .panel p { font-size:clamp(1rem, 1.4vw, 1.3rem); line-height: 1.35; }
     .panel-content { padding-block: 4vh; }
+  }
+
+  /* Compact font for very small viewports */
+  @media(max-width: 500px) {
+    .panel p { 
+      font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+      line-height: 1.4;
+    }
   }
 
 
