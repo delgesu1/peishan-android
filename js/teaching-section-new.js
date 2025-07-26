@@ -215,32 +215,42 @@
       // Update nav dots
       document.querySelectorAll('.nav-dot').forEach((d, idx) => d.classList.toggle('active', idx === panelIndex));
       
-      // Smooth panel transitions with overlapping fade
-      document.querySelectorAll('.panel').forEach((p, idx) => {
-        if (idx === panelIndex) {
-          // Incoming panel
-          p.classList.add('active');
-          const content = p.querySelector('.panel-content');
-          gsap.to(content, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: 'power2.out',
-            overwrite: 'auto'
-          });
-        } else if (idx === previousPanel) {
-          // Outgoing panel - fade out faster for overlap
-          const content = p.querySelector('.panel-content');
-          gsap.to(content, {
-            opacity: 0.3,
-            scale: 0.8,
-            duration: 0.5,
-            ease: 'power2.in',
-            overwrite: 'auto',
-            onComplete: () => p.classList.remove('active')
-          });
-        }
-      });
+      // Check if mobile
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // Simple class toggle for mobile - let CSS handle transitions
+        document.querySelectorAll('.panel').forEach((p, idx) => {
+          p.classList.toggle('active', idx === panelIndex);
+        });
+      } else {
+        // Smooth GSAP transitions for desktop only
+        document.querySelectorAll('.panel').forEach((p, idx) => {
+          if (idx === panelIndex) {
+            // Incoming panel
+            p.classList.add('active');
+            const content = p.querySelector('.panel-content');
+            gsap.to(content, {
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            });
+          } else if (idx === previousPanel) {
+            // Outgoing panel - fade out faster for overlap
+            const content = p.querySelector('.panel-content');
+            gsap.to(content, {
+              opacity: 0.3,
+              scale: 0.8,
+              duration: 0.5,
+              ease: 'power2.in',
+              overwrite: 'auto',
+              onComplete: () => p.classList.remove('active')
+            });
+          }
+        });
+      }
       
       changeBackground(panelIndex);
     }
@@ -255,15 +265,23 @@
       // Initially hide the UI elements
       gsap.set([navDots, progressBar], { autoAlpha: 0 });
   
+      // Detect mobile devices
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // Add mobile class for CSS targeting
+        document.body.classList.add('mobile-device');
+      }
+      
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.story-wrapper',
           pin: true,
-          scrub: 0.5,  // Smoother scrub value
+          scrub: isMobile ? true : 0.5,  // Direct scrub for mobile
           snap: { 
             snapTo: 1 / (totalPanels - 1),
             duration: { min: 0.2, max: 0.3 },
-            delay: 0.05,
+            delay: isMobile ? 0.1 : 0.05,
             ease: "power2.inOut"
           },
           end: '+=400%',
@@ -291,7 +309,7 @@
       tl.to('#panelsContainer', { 
         xPercent: -100 * (totalPanels - 1) / totalPanels, 
         ease: 'none',
-        force3D: true  // Force 3D transforms for smoother animation
+        force3D: !isMobile  // Disable 3D transforms on mobile
       })
         .addLabel('panel1', 0);
         for (let i = 1; i < totalPanels; i++) {

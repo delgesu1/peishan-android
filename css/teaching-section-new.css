@@ -251,6 +251,45 @@
     box-shadow: none;
   }
   
+  /* Mobile-specific optimizations to eliminate jitter */
+  .mobile-device .panels-container {
+    will-change: auto !important;
+    transform: translateX(0) !important;
+    -webkit-transform: translateX(0) !important;
+  }
+  
+  .mobile-device .panel-content,
+  .mobile-device .panel h2,
+  .mobile-device .panel p {
+    will-change: auto !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+  
+  .mobile-device .panel {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+  
+  /* Disable all text animations on mobile during scroll */
+  .mobile-device .panel:not(.active) .panel-content {
+    opacity: 0 !important;
+  }
+  
+  .mobile-device .panel.active .panel-content {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .mobile-device .panel h2,
+  .mobile-device .panel p {
+    transform: none !important;
+    opacity: inherit !important;
+  }
+  
   .panel.active .panel-content { 
     opacity: 1; 
     transform: scale(1);
