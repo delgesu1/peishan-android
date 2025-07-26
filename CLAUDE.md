@@ -98,15 +98,119 @@ Per `STYLE_NAMESPACE_REFactor_PLAN.md`, the project is moving away from global s
 2. Reusable styles are being moved to utility classes
 3. Each section maintains its own namespace
 
+## Mobile and Android-Specific Implementations
+
+### Android Detection and Handling
+The project includes extensive Android-specific optimizations to address rendering issues unique to Android WebView:
+
+#### JavaScript Detection (teaching-section-new.js)
+```javascript
+const isAndroid = /Android/i.test(navigator.userAgent);
+if (isAndroid) {
+  document.body.classList.add('android-device');
+}
+```
+
+#### GSAP ScrollTrigger Android Settings
+Android devices use specific ScrollTrigger settings to prevent ghost text and rendering issues:
+```javascript
+pinType: isAndroid ? 'fixed' : 'transform',
+anticipatePin: isAndroid ? 0 : 1,
+fastScrollEnd: isAndroid ? false : true,
+preventOverlaps: isAndroid ? true : false
+```
+
+#### CSS Android-Specific Fixes
+The `.android-device` class is used to apply Android-specific styles:
+
+1. **Backdrop Filter Disabled**: Android has limited support for backdrop-filter
+   ```css
+   .android-device .nav-dots,
+   .android-device .progress-bar {
+     backdrop-filter: none !important;
+   }
+   ```
+
+2. **Will-Change Optimizations**: Prevents compositing issues
+   ```css
+   .android-device .story-wrapper,
+   .android-device .panels-container,
+   .android-device .dynamic-bg {
+     will-change: auto !important;
+   }
+   ```
+
+3. **Panel Visibility Management**: Completely hides non-active panels
+   ```css
+   .android-device .panel:not(.active) {
+     display: none !important;
+   }
+   ```
+
+4. **Z-Index Hierarchy**: Ensures proper layering
+   ```css
+   .android-device .nav-dots { z-index: 9999 !important; }
+   .android-device .progress-bar { z-index: 9998 !important; }
+   ```
+
+5. **Solid Backgrounds**: Prevents text bleed-through
+   ```css
+   .android-device .panel-content {
+     background: rgba(0, 0, 0, 0.95) !important;
+   }
+   ```
+
+### Mobile-Responsive Design
+
+#### Mobile Navigation
+- Hamburger menu for screens < 768px
+- Overlay menu with animated links
+- Touch-friendly navigation dots in teaching section
+- Mobile device detection excludes navigation dots on phones:
+  ```javascript
+  const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  ```
+
+#### Responsive Breakpoints
+- Mobile: < 768px
+- Tablet: 768px - 1024px  
+- Desktop: > 1024px
+
+#### Mobile-Specific Features
+- Touch gestures for panel navigation
+- Simplified animations for performance
+- Larger touch targets for interactive elements
+- Optimized font sizes and spacing
+
+### Known Android Issues and Solutions
+
+1. **Ghost Text Issue**: Text from hidden panels appearing through active panels
+   - Solution: Use `display: none` for inactive panels on Android
+   - Add solid backgrounds to panel content
+   - Disable will-change properties
+
+2. **Transform Rendering**: Poor performance with transform animations
+   - Solution: Use `pinType: 'fixed'` for ScrollTrigger
+   - Add `transform: translateZ(0)` for hardware acceleration
+
+3. **Backdrop Filter**: Limited support in Android WebView
+   - Solution: Detect and disable backdrop-filter
+   - Use solid backgrounds as fallback
+
 ## Testing Considerations
 - Test all sections on both desktop and mobile viewports
+- **Android Testing**: Test specifically on Android Chrome and WebView
 - Verify smooth scrolling and navigation functionality
 - Check form submission with valid/invalid data
 - Test with browser cache disabled to ensure cache busting works
 - Verify GSAP animations perform well on lower-end devices
+- **Mobile Testing**: Test touch gestures and mobile menu functionality
+- **Cross-Browser**: Test on iOS Safari, Android Chrome, and desktop browsers
 
 ## Performance Notes
 - Tailwind CSS is loaded via CDN which may impact initial load time
 - GSAP and its plugins are loaded asynchronously with defer
 - Images should be optimized before deployment using the provided script
 - Consider lazy loading for images below the fold
+- **Mobile Performance**: Simplified animations and reduced particle effects for mobile
+- **Android Optimization**: Disabled complex visual effects (backdrop-filter, will-change) for better performance

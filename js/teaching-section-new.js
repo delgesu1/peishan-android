@@ -39,7 +39,7 @@
   
     const totalPanels = 5;
     let currentPanel = 0;
-    let scrollTriggerInstance = null; // To store the main ST instance
+    let scrollTriggerInstance = null;
 
     // --- Dynamic background crossfade helper ---
     const dynamicBgContainer = document.getElementById('dynamicBg');
@@ -163,18 +163,7 @@
         duration: 0.6, 
         ease: 'power2.out',
         onComplete: () => {
-          // Ensure perfect centering by applying snap position
-          setTimeout(() => {
-            const snapProgress = Math.round(progress * (totalPanels - 1)) / (totalPanels - 1);
-            const snapTargetScroll = scrollTriggerInstance.start + snapProgress * scrollDistance;
-            
-            // Fine-tune position if needed
-            if (Math.abs(window.pageYOffset - snapTargetScroll) > 1) {
-              gsap.set(window, { scrollTo: { y: snapTargetScroll } });
-            }
-            
-            isNavigating = false;
-          }, 50);
+          isNavigating = false;
         }
       });
     }
@@ -221,7 +210,11 @@
       if (panelIndex === currentPanel) return;
       currentPanel = panelIndex;
   
-      document.querySelectorAll('.panel').forEach((p, idx) => p.classList.toggle('active', idx === panelIndex));
+      // Simple class toggles - let CSS handle the animations
+      document.querySelectorAll('.panel').forEach((p, idx) => {
+        p.classList.toggle('active', idx === panelIndex);
+      });
+      
       document.querySelectorAll('.nav-dot').forEach((d, idx) => d.classList.toggle('active', idx === panelIndex));
       changeBackground(panelIndex);
     }
@@ -236,28 +229,16 @@
       // Initially hide the UI elements
       gsap.set([navDots, progressBar], { autoAlpha: 0 });
   
-      // Detect Android for specific settings
-      const isAndroid = /Android/i.test(navigator.userAgent);
-  
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.story-wrapper',
           pin: true,
           scrub: 1,
-          // Add Android-specific settings
-          pinType: isAndroid ? 'fixed' : 'transform',
-          anticipatePin: isAndroid ? 0 : 1,
-          fastScrollEnd: isAndroid ? false : true,
-          preventOverlaps: isAndroid ? true : false,
           snap: { 
-            snapTo: (progress) => {
-              // Don't snap during programmatic navigation
-              if (isNavigating) return progress;
-              return Math.round(progress * (totalPanels - 1)) / (totalPanels - 1);
-            }, 
-            duration: 0.35, 
-            delay: 0.15,  // Increased delay for better mobile snap behavior
-            ease: "power2.inOut"
+            snapTo: 1 / (totalPanels - 1),
+            duration: { min: 0.2, max: 0.3 },
+            delay: 0.1,
+            ease: "power1.inOut"
           },
           end: '+=400%',
           onEnter: () => {
@@ -281,7 +262,10 @@
         }
       });
   
-      tl.to('#panelsContainer', { xPercent: -100 * (totalPanels - 1) / totalPanels, ease: 'none' })
+      tl.to('#panelsContainer', { 
+        xPercent: -100 * (totalPanels - 1) / totalPanels, 
+        ease: 'none'
+      })
         .addLabel('panel1', 0);
         for (let i = 1; i < totalPanels; i++) {
           tl.addLabel(`panel${i + 1}`, i / (totalPanels - 1));
@@ -315,10 +299,18 @@
       // createParticleSystem(); // REMOVED - causing performance issues  
       // createGeometricElements(); // REMOVED - causing performance issues
 
-      // Detect Android and add class for CSS targeting
+      // Detect platforms and add classes for CSS targeting
       const isAndroid = /Android/i.test(navigator.userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      
       if (isAndroid) {
         document.body.classList.add('android-device');
+      }
+      if (isIOS) {
+        document.body.classList.add('ios-device');
+      }
+      if (isAndroid || isIOS) {
+        document.body.classList.add('mobile-device');
       }
 
       // Isolate nav dots from section stacking contexts by moving it to the body

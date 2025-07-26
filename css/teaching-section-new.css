@@ -45,9 +45,9 @@
   .loading-text { font-size: 1.2rem; opacity: 0.8; }
   
   /* Progress bar */
-  .dynamic-bg { position:absolute; top:0; left:0; width:100%; height:100%; z-index: 0; will-change:background; }
+  .dynamic-bg { position:absolute; top:0; left:0; width:100%; height:100%; z-index: 0; will-change: background; }
   .progress-bar { position: fixed; top: 0; left: 0; width: 100%; height: 2px; background: rgba(255,255,255,0.03); z-index: 1001; backdrop-filter: blur(1px); }
-  .progress-fill { height: 100%; width: 0%; background: rgba(255,255,255,0.7); box-shadow: 0 0 10px rgba(255,255,255,0.15); will-change: width; transition: width 0.1s linear; }
+  .progress-fill { height: 100%; width: 0%; background: rgba(255,255,255,0.7); box-shadow: 0 0 10px rgba(255,255,255,0.15); /* Remove will-change from progress bar */ transition: width 0.2s ease-out; }
   
   /* Navigation dots - enhanced design */
   .nav-dots { 
@@ -107,9 +107,38 @@
   .nav-dots.hidden, .progress-bar.hidden { opacity: 0; pointer-events: none; }
   
   /* Story wrapper (pinned) */
-  .story-wrapper { height:100vh; overflow:hidden; position:relative; z-index: 2; /* Set stacking order below nav dots */ }
-  .panels-container { display:flex; width:500%; height:100vh; will-change:transform; }
-  .panel { width:20%; height:100vh; display:flex; align-items:center; justify-content:center; position:relative; flex-shrink:0; padding:0 40px; box-sizing:border-box; }
+  .story-wrapper { 
+    height:100vh; 
+    overflow:hidden; 
+    position:relative; 
+    z-index: 2; /* Set stacking order below nav dots */
+  }
+  .panels-container { 
+    display:flex; 
+    width:500%; 
+    height:100vh; 
+    will-change: transform;
+    /* Force GPU acceleration */
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .panel { 
+    width:20%; 
+    height:100vh; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    position:relative; 
+    flex-shrink:0; 
+    padding:0 40px; 
+    box-sizing:border-box;
+    /* Prevent content shifting */
+    contain: layout style paint;
+  }
   
   /* Dynamic background */
   /* Dynamic background container - enhanced with texture and effects */
@@ -210,8 +239,7 @@
     text-align: left; 
     opacity: 0.3; 
     transform: scale(0.8); 
-    will-change: transform, opacity; 
-    transition: all 0.8s ease; 
+    /* NO TRANSITIONS - handled by GSAP */
     padding: 3rem;
     padding-block: 6vh;
     /* Remove glass morphism - clean text only */
@@ -226,8 +254,6 @@
   .panel.active .panel-content { 
     opacity: 1; 
     transform: scale(1);
-    background: transparent;
-    box-shadow: none;
   }
   .panel h2 { 
     font-family: 'Cormorant Garamond', serif; 
@@ -235,6 +261,7 @@
     margin: 0 0 2.4rem; 
     font-weight: 300; 
     letter-spacing: -0.01em; 
+    white-space: nowrap; /* Prevent line wrapping */
     transform: translateY(20px); 
     opacity: 0; 
     transition: all 0.8s ease 0.2s; 
@@ -289,10 +316,11 @@
     font-family: 'Spectral', serif; 
     font-size: clamp(1.2rem, 1.8vw, 1.6rem); 
     font-weight: 400; 
-    line-height: 1.45; 
+    line-height: 1.45;
     opacity: 0; 
     transform: translateY(20px); 
-    transition: all 0.8s ease 0.4s; 
+    /* NO TRANSITIONS */
+    -webkit-font-smoothing: antialiased; 
     margin-bottom: 1rem; 
     text-align: justify; 
     text-align-last: left;
@@ -302,9 +330,9 @@
   }
   
   .panel.active p { 
-    opacity: 0.95; 
+    opacity: 1; 
     transform: translateY(0);
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255, 255, 255, 0.9);
   }
   
   /* Spacer for scroll distance */
@@ -390,6 +418,27 @@
     }
   }
 
+  /* Mobile-specific optimizations */
+  .mobile-device .dynamic-bg::before,
+  .mobile-device .dynamic-bg::after {
+    /* Disable visual effects on mobile for performance */
+    display: none !important;
+  }
+  
+  /* iOS-specific fixes */
+  .ios-device .story-wrapper,
+  .ios-device .panels-container {
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-backface-visibility: hidden;
+  }
+  
+  .ios-device .panel-content,
+  .ios-device .panel h2,
+  .ios-device .panel p {
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-backface-visibility: hidden;
+  }
+  
   /* Android WebView specific (detected via JS) */
   .android-device .story-wrapper {
     /* Disable will-change to prevent compositing issues */
