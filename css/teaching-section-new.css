@@ -49,58 +49,62 @@
   .progress-bar { position: fixed; top: 0; left: 0; width: 100%; height: 2px; background: rgba(255,255,255,0.03); z-index: 1001; backdrop-filter: blur(1px); }
   .progress-fill { height: 100%; width: 0%; background: rgba(255,255,255,0.7); box-shadow: 0 0 10px rgba(255,255,255,0.15); /* Remove will-change from progress bar */ transition: width 0.2s ease-out; }
   
-  /* Navigation dots - enhanced design */
+  /* Navigation dots - vertical design on right */
   .nav-dots { 
     position: fixed; 
-    bottom: 40px; 
-    left: 50%; 
-    transform: translateX(-50%); 
+    right: 8px; 
+    top: 50%; 
+    transform: translateY(-50%); 
     z-index: 1000; 
     display: flex; 
-    flex-direction: row; 
-    gap: 20px;
-    padding: 16px 24px;
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 50px;
+    flex-direction: column; 
+    gap: 16px;
+    padding: 12px 8px;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.03) 0%, 
+      rgba(255, 255, 255, 0.06) 50%, 
+      rgba(255, 255, 255, 0.03) 100%);
+    backdrop-filter: blur(8px) saturate(1.2);
+    -webkit-backdrop-filter: blur(8px) saturate(1.2);
+    border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 4px 24px rgba(0, 0, 0, 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.05);
   }
   
   .nav-dot { 
-    width: 10px; 
-    height: 10px; 
+    width: 8px; 
+    height: 8px; 
     border-radius: 50%; 
-    background: rgba(255, 255, 255, 0.3); 
-    backdrop-filter: blur(1px); 
+    background: rgba(255, 255, 255, 0.2); 
     cursor: pointer; 
-    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); 
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); 
     position: relative; 
-    opacity: 0.8; 
+    opacity: 0.6; 
     touch-action: manipulation;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .nav-dot:hover { 
-    transform: scale(1.4); 
-    background: rgba(255, 255, 255, 0.6); 
-    opacity: 1;
+    transform: scale(1.2); 
+    background: rgba(255, 255, 255, 0.4); 
+    opacity: 0.9;
     box-shadow: 
-      0 0 20px rgba(255, 255, 255, 0.4),
-      0 0 40px rgba(255, 255, 255, 0.2);
+      0 0 10px rgba(255, 255, 255, 0.2),
+      0 0 20px rgba(255, 255, 255, 0.1);
   }
   
   .nav-dot.active { 
-    width: 28px; 
-    height: 10px; 
-    border-radius: 5px; 
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)); 
+    width: 8px; 
+    height: 24px; 
+    border-radius: 4px; 
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4)); 
     box-shadow: 
-      0 0 20px rgba(255, 255, 255, 0.6),
-      0 0 40px rgba(255, 255, 255, 0.3),
-      inset 0 0 10px rgba(255, 255, 255, 0.2); 
+      0 0 15px rgba(255, 255, 255, 0.3),
+      0 0 30px rgba(255, 255, 255, 0.15); 
     opacity: 1;
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
   }
   
   /* Hidden state for nav dots & progress bar */
@@ -395,12 +399,12 @@
     .panel h2{font-size:1.8rem;} 
     .panel p{font-size:1rem;} 
     .nav-dots{
-      bottom:30px; 
-      gap:12px;
-      padding: 12px 18px;
+      right: 5px;
+      gap: 10px;
+      padding: 8px 6px;
     } 
     .nav-dot{width:6px; height:6px;} 
-    .nav-dot.active{width:18px; height:6px;}
+    .nav-dot.active{width:6px; height:16px;}
     /* Reduce particle density on mobile */
     .musical-particle { display: none; }
     /* Simplify orbs on mobile */
@@ -445,7 +449,10 @@
     .nav-dots {
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
-      background: rgba(0, 0, 0, 0.85);
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(255, 255, 255, 0.12) 50%, 
+        rgba(255, 255, 255, 0.08) 100%);
     }
     
     .panel-content {

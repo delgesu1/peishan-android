@@ -273,6 +273,8 @@
         document.body.classList.add('mobile-device');
       }
       
+      // Remove the separate ScrollTrigger - we'll handle visibility in the main timeline
+      
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.story-wrapper',
@@ -285,17 +287,13 @@
             ease: "power2.inOut"
           },
           end: '+=400%',
-          onEnter: () => {
-            gsap.to([navDots, progressBar], { autoAlpha: 1, duration: 0.3 });
-          },
-          onLeave: () => {
-            gsap.to([navDots, progressBar], { autoAlpha: 0, duration: 0.3 });
-          },
-          onEnterBack: () => {
-            gsap.to([navDots, progressBar], { autoAlpha: 1, duration: 0.3 });
-          },
-          onLeaveBack: () => {
-            gsap.to([navDots, progressBar], { autoAlpha: 0, duration: 0.3 });
+          onToggle: self => {
+            // Show navigation when pinned, hide when not pinned
+            if (self.isActive) {
+              gsap.to([navDots, progressBar], { autoAlpha: 1, duration: 0.3 });
+            } else {
+              gsap.to([navDots, progressBar], { autoAlpha: 0, duration: 0.3 });
+            }
           },
           onUpdate: self => {
             const progress = self.progress;
