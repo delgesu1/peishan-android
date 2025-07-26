@@ -258,8 +258,7 @@
   /* Mobile-specific optimizations to eliminate jitter */
   .mobile-device .panels-container {
     will-change: auto !important;
-    transform: translateX(0) !important;
-    -webkit-transform: translateX(0) !important;
+    /* Don't override transform - it's needed for panel sliding */
   }
   
   .mobile-device .panel-content,

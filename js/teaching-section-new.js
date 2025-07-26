@@ -223,8 +223,20 @@
         document.querySelectorAll('.panel').forEach((p, idx) => {
           if (idx === panelIndex) {
             p.classList.add('active');
+            // Force visibility on mobile
+            const content = p.querySelector('.panel-content');
+            if (content) {
+              content.style.opacity = '1';
+              content.style.transform = 'scale(1)';
+            }
           } else {
             p.classList.remove('active');
+            // Force hide on mobile
+            const content = p.querySelector('.panel-content');
+            if (content) {
+              content.style.opacity = '0';
+              content.style.transform = 'scale(0.95)';
+            }
           }
         });
       } else {
@@ -381,11 +393,31 @@
 
       document.getElementById('loading').classList.add('hidden');
       
-      // Ensure first panel is active on initialization
-      const firstPanel = document.querySelector('.panel');
-      if (firstPanel && !firstPanel.classList.contains('active')) {
-        firstPanel.classList.add('active');
-      }
+      // Ensure first panel is active on initialization and force update
+      const panels = document.querySelectorAll('.panel');
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      panels.forEach((panel, idx) => {
+        if (idx === 0) {
+          panel.classList.add('active');
+          if (isMobile) {
+            const content = panel.querySelector('.panel-content');
+            if (content) {
+              content.style.opacity = '1';
+              content.style.transform = 'scale(1)';
+            }
+          }
+        } else {
+          panel.classList.remove('active');
+          if (isMobile) {
+            const content = panel.querySelector('.panel-content');
+            if (content) {
+              content.style.opacity = '0';
+              content.style.transform = 'scale(0.95)';
+            }
+          }
+        }
+      });
       
       initGSAP();
     }
