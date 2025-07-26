@@ -219,9 +219,13 @@
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       
       if (isMobile) {
-        // Simple class toggle for mobile - let CSS handle transitions
+        // Simple class toggle for mobile - ensure all panels are properly updated
         document.querySelectorAll('.panel').forEach((p, idx) => {
-          p.classList.toggle('active', idx === panelIndex);
+          if (idx === panelIndex) {
+            p.classList.add('active');
+          } else {
+            p.classList.remove('active');
+          }
         });
       } else {
         // Smooth GSAP transitions for desktop only
@@ -376,6 +380,13 @@
       }
 
       document.getElementById('loading').classList.add('hidden');
+      
+      // Ensure first panel is active on initialization
+      const firstPanel = document.querySelector('.panel');
+      if (firstPanel && !firstPanel.classList.contains('active')) {
+        firstPanel.classList.add('active');
+      }
+      
       initGSAP();
     }
   

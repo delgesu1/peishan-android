@@ -546,10 +546,20 @@
     background: rgba(0, 0, 0, 0.95) !important;
     border-radius: 12px;
     padding: 2.5rem;
-    /* Disable opacity transitions to prevent ghost text */
-    transition: none !important;
+    /* Keep transitions for proper visibility */
+    transition: opacity 0.3s ease !important;
+  }
+  
+  /* Ensure active panels are visible on Android */
+  .android-device .panel.active .panel-content {
     opacity: 1 !important;
     transform: scale(1) !important;
+  }
+  
+  /* Hide non-active panel content on Android */
+  .android-device .panel:not(.active) .panel-content {
+    opacity: 0 !important;
+    transform: scale(0.95) !important;
   }
   
   /* Fix z-index hierarchy for Android */
@@ -579,11 +589,12 @@
 
   /* Additional Android fixes for panel visibility */
   .android-device .panel:not(.active) {
-    display: none !important; /* Completely hide non-active panels */
+    /* Don't use display: none - it prevents content from showing */
+    pointer-events: none;
   }
 
   .android-device .panel.active {
-    display: flex !important;
+    pointer-events: auto;
   }
 
   /* Fix for Android transform rendering */
